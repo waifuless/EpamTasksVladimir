@@ -8,3 +8,10 @@
 
 
 
+Компиляция в папку app:
+
+1. javac -d app/ -cp "lib/*" -proc:none -sourcepath "src/main/java" src/main/java/com/epam/jwd/app/Main.java
+2. В папку app необходимо добавить log4j2.xml
+3. app и lib можно переместить в другое место
+4. cd app
+5. java -cp "../lib/*:." com.epam.jwd.app.Main 2
