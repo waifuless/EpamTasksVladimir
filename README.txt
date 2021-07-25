@@ -10,7 +10,7 @@
 
 
 
-Компиляция в папку app:
+Компиляция в папку app(требуется lib):
 
 1. javac -d app/ -cp "lib/*" -proc:none -sourcepath "src/main/java" src/main/java/com/epam/jwd/app/Main.java
 2. В папку app необходимо добавить log4j2.xml
