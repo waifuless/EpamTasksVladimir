@@ -10,7 +10,7 @@ public class Plane {
     private final BigDecimal coefficientC;
     private final BigDecimal freeTerm;
 
-    private Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
+    Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         this.coefficientA = coefficientA;
         this.coefficientB = coefficientB;
         this.coefficientC = coefficientC;
@@ -18,16 +18,16 @@ public class Plane {
     }
 
     public static Plane of(BigDecimal coefficientA, BigDecimal coefficientB,
-                           BigDecimal coefficientC, BigDecimal freeTerm){
+                           BigDecimal coefficientC, BigDecimal freeTerm) {
         return new Plane(coefficientA, coefficientB, coefficientC, freeTerm);
     }
 
-    public static Plane of(String coefficientA, String coefficientB, String coefficientC, String freeTerm){
+    public static Plane of(String coefficientA, String coefficientB, String coefficientC, String freeTerm) {
         return new Plane(new BigDecimal(coefficientA), new BigDecimal(coefficientB),
                 new BigDecimal(coefficientC), new BigDecimal(freeTerm));
     }
 
-    public static Plane of(double coefficientA, double coefficientB, double coefficientC, double freeTerm){
+    public static Plane of(double coefficientA, double coefficientB, double coefficientC, double freeTerm) {
         return new Plane(BigDecimal.valueOf(coefficientA), BigDecimal.valueOf(coefficientB),
                 BigDecimal.valueOf(coefficientC), BigDecimal.valueOf(freeTerm));
     }

@@ -9,22 +9,22 @@ public class Point {
     private final BigDecimal y;
     private final BigDecimal z;
 
-    private Point(BigDecimal x, BigDecimal y, BigDecimal z) {
+    Point(BigDecimal x, BigDecimal y, BigDecimal z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    public static Point of(double x, double y, double z){
+    public static Point of(double x, double y, double z) {
         return new Point(BigDecimal.valueOf(x),
                 BigDecimal.valueOf(y), BigDecimal.valueOf(z));
     }
 
-    public static Point of(String x, String y, String z){
+    public static Point of(String x, String y, String z) {
         return new Point(new BigDecimal(x), new BigDecimal(y), new BigDecimal(z));
     }
 
-    public static Point of(BigDecimal x, BigDecimal y, BigDecimal z){
+    public static Point of(BigDecimal x, BigDecimal y, BigDecimal z) {
         return new Point(x, y, z);
     }
 
