@@ -9,9 +9,12 @@ public class PlaneExecutor {
 
     private final static int NUMBER_OF_COEFFICIENTS_IN_PLANE = 4;
 
+    private final static String NORMAL_VECTOR_IS_ZERO_MCG = "Since the normal vector of the plane is zero," +
+            " the equation of the plane cannot be constructed from the given points.";
+
     public static Plane createPlaneFromThreePoints(Point firstP, Point secondP, Point thirdP) {
-        if (!arePointsValidToMakePlane(firstP, secondP, thirdP)) {
-            //Error
+        if (firstP == null || secondP == null || thirdP == null) {
+            //error
             throw new RuntimeException();
         }
 
@@ -28,37 +31,17 @@ public class PlaneExecutor {
         BigDecimal freeTerm = firstP.getX().negate().multiply(coefficientA).add
                 (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
+
+        if(coefficientA.doubleValue()==0&&coefficientB.doubleValue()==0&&coefficientC.doubleValue()==0){
+            //error
+            throw new RuntimeException(NORMAL_VECTOR_IS_ZERO_MCG);
+        }
+
         //Second coefficient with minus, by my formula I made on paper
         return normalizeCoefficients(Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm));
+        //return Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm);
     }
 
-
-    public static boolean arePointsValidToMakePlane(Point firstP, Point secondP, Point thirdP) {
-        if (firstP == null || secondP == null || thirdP == null) {
-            return false;
-        }
-
-        //Check that points are not equals
-        if (firstP.equals(secondP) || firstP.equals(thirdP) || secondP.equals(thirdP)) {
-            return false;
-        }
-
-        //Check that the points are not on the same line
-        if (firstP.getX().equals(secondP.getX()) &&
-                firstP.getX().equals(thirdP.getX())) {
-            return false;
-        }
-        if (firstP.getY().equals(secondP.getY()) &&
-                firstP.getY().equals(thirdP.getY())) {
-            return false;
-        }
-        if (firstP.getZ().equals(secondP.getZ()) &&
-                firstP.getZ().equals(thirdP.getZ())) {
-            return false;
-        }
-
-        return true;
-    }
 
     public static Plane normalizeCoefficients(Plane oldPlane) {
         BigDecimal[] arrayOfCoefficients = new BigDecimal[NUMBER_OF_COEFFICIENTS_IN_PLANE];
@@ -83,11 +66,10 @@ public class PlaneExecutor {
         }
 
         //Find the greatest common divisor of all coefficients
-        long gcdValue = arrayOfCoefficients[0].longValue();
+        long gcdValue = arrayOfCoefficients[0].abs().longValue();
         for (int i = 1; i < arrayOfCoefficients.length; i++) {
             gcdValue = GcdCalculator.findGcd(gcdValue, arrayOfCoefficients[i].abs().longValue());
         }
-
 
         if (gcdValue > 1) {
             for (int i = 0; i < arrayOfCoefficients.length; i++) {
