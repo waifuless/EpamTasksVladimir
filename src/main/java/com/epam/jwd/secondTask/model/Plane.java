@@ -1,42 +1,50 @@
 package com.epam.jwd.secondTask.model;
 
+import java.math.BigDecimal;
+
 public class Plane {
 
     //The coefficients of the equation of the plane
-    private final double coefficientA;
-    private final double coefficientB;
-    private final double coefficientC;
-    private final double freeTerm;
+    private final BigDecimal coefficientA;
+    private final BigDecimal coefficientB;
+    private final BigDecimal coefficientC;
+    private final BigDecimal freeTerm;
 
-    private Plane(double coefficientA, double coefficientB, double coefficientC, double freeTerm) {
+    private Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         this.coefficientA = coefficientA;
         this.coefficientB = coefficientB;
         this.coefficientC = coefficientC;
         this.freeTerm = freeTerm;
     }
 
-    public static Plane of(double coefficientA, double coefficientB, double coefficientC, double freeTerm){
+    public static Plane of(BigDecimal coefficientA, BigDecimal coefficientB,
+                           BigDecimal coefficientC, BigDecimal freeTerm){
         return new Plane(coefficientA, coefficientB, coefficientC, freeTerm);
     }
 
     public static Plane of(String coefficientA, String coefficientB, String coefficientC, String freeTerm){
-        return new Plane(Double.parseDouble(coefficientA), Double.parseDouble(coefficientB),
-                Double.parseDouble(coefficientC), Double.parseDouble(freeTerm));
+        return new Plane(new BigDecimal(coefficientA), new BigDecimal(coefficientB),
+                new BigDecimal(coefficientC), new BigDecimal(freeTerm));
     }
 
-    public double getCoefficientA() {
+    public static Plane of(double coefficientA, double coefficientB, double coefficientC, double freeTerm){
+        return new Plane(BigDecimal.valueOf(coefficientA), BigDecimal.valueOf(coefficientB),
+                BigDecimal.valueOf(coefficientC), BigDecimal.valueOf(freeTerm));
+    }
+
+    public BigDecimal getCoefficientA() {
         return coefficientA;
     }
 
-    public double getCoefficientB() {
+    public BigDecimal getCoefficientB() {
         return coefficientB;
     }
 
-    public double getCoefficientC() {
+    public BigDecimal getCoefficientC() {
         return coefficientC;
     }
 
-    public double getFreeTerm() {
+    public BigDecimal getFreeTerm() {
         return freeTerm;
     }
 
@@ -47,24 +55,18 @@ public class Plane {
 
         Plane plane = (Plane) o;
 
-        if (Double.compare(plane.coefficientA, coefficientA) != 0) return false;
-        if (Double.compare(plane.coefficientB, coefficientB) != 0) return false;
-        if (Double.compare(plane.coefficientC, coefficientC) != 0) return false;
-        return Double.compare(plane.freeTerm, freeTerm) == 0;
+        if (!coefficientA.equals(plane.coefficientA)) return false;
+        if (!coefficientB.equals(plane.coefficientB)) return false;
+        if (!coefficientC.equals(plane.coefficientC)) return false;
+        return freeTerm.equals(plane.freeTerm);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(coefficientA);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(coefficientB);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(coefficientC);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(freeTerm);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = coefficientA.hashCode();
+        result = 31 * result + coefficientB.hashCode();
+        result = 31 * result + coefficientC.hashCode();
+        result = 31 * result + freeTerm.hashCode();
         return result;
     }
 

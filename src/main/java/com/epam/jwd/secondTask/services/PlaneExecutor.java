@@ -3,6 +3,8 @@ package com.epam.jwd.secondTask.services;
 import com.epam.jwd.secondTask.model.Plane;
 import com.epam.jwd.secondTask.model.Point;
 
+import java.math.BigDecimal;
+
 public class PlaneExecutor {
 
     public static Plane createPlaneFromThreePoints(Point firstP, Point secondP, Point thirdP){
@@ -10,18 +12,22 @@ public class PlaneExecutor {
             //Error
             throw new RuntimeException();
         }
-
+        
         //Calculate from formula, I made on paper
-        double coefficientA = (secondP.getY()-firstP.getY())*(thirdP.getZ()-firstP.getZ())
-                -(thirdP.getY()- firstP.getY())*(secondP.getZ()-firstP.getZ());
-        double coefficientB = (secondP.getX()-firstP.getX())*(thirdP.getZ()-firstP.getZ())
-                -(thirdP.getX()- firstP.getX())*(secondP.getZ()-firstP.getZ());
-        double coefficientC = (secondP.getX()-firstP.getX())*(thirdP.getY()-firstP.getY())
-                -(thirdP.getX()- firstP.getX())*(secondP.getY()-firstP.getY());
-        double freeTerm = -firstP.getX()*coefficientA+firstP.getY()*coefficientB-firstP.getZ()*coefficientC;
+        BigDecimal coefficientA = (secondP.getY().subtract(firstP.getY()))
+                .multiply(thirdP.getZ().subtract(firstP.getZ())).subtract
+                        ((thirdP.getY().subtract(firstP.getY())).multiply(secondP.getZ().subtract(firstP.getZ())));
+        BigDecimal coefficientB = (secondP.getX().subtract(firstP.getX()))
+                .multiply(thirdP.getZ().subtract(firstP.getZ())).subtract
+                        ((thirdP.getX().subtract(firstP.getX())).multiply(secondP.getZ().subtract(firstP.getZ())));
+        BigDecimal coefficientC = (secondP.getX().subtract(firstP.getX()))
+                .multiply(thirdP.getY().subtract(firstP.getY())).subtract
+                        ((thirdP.getX().subtract(firstP.getX())).multiply(secondP.getY().subtract(firstP.getY())));
+        BigDecimal freeTerm = firstP.getX().negate().multiply(coefficientA).add
+                (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
         //Second coefficient with minus, by my formula I made on paper
-        return Plane.of(coefficientA, -coefficientB, coefficientC, freeTerm);
+        return Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm);
     }
 
     public static boolean arePointsValidToMakePlane(Point firstP, Point secondP, Point thirdP){
@@ -35,18 +41,19 @@ public class PlaneExecutor {
         }
 
         //Check that the points are not on the same line
-        if(firstP.getX()==secondP.getX()&&
-                firstP.getX()==thirdP.getX()){
+        if(firstP.getX().equals(secondP.getX())&&
+                firstP.getX().equals(thirdP.getX())){
             return false;
         }
-        if(firstP.getY()==secondP.getY()&&
-                firstP.getY()==thirdP.getY()){
+        if(firstP.getY().equals(secondP.getY())&&
+                firstP.getY().equals(thirdP.getY())){
             return false;
         }
-        if(firstP.getZ()==secondP.getZ()&&
-                firstP.getZ()==thirdP.getZ()){
+        if(firstP.getZ().equals(secondP.getZ())&&
+                firstP.getZ().equals(thirdP.getZ())){
             return false;
         }
+
         return true;
     }
 }

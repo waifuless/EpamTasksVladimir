@@ -1,35 +1,42 @@
 package com.epam.jwd.secondTask.model;
 
+import java.math.BigDecimal;
+
 public class Point {
 
     //Coordinates
-    private final double x;
-    private final double y;
-    private final double z;
+    private final BigDecimal x;
+    private final BigDecimal y;
+    private final BigDecimal z;
 
-    private Point(double x, double y, double z) {
+    private Point(BigDecimal x, BigDecimal y, BigDecimal z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
     public static Point of(double x, double y, double z){
-        return new Point(x, y, z);
+        return new Point(BigDecimal.valueOf(x),
+                BigDecimal.valueOf(y), BigDecimal.valueOf(z));
     }
 
     public static Point of(String x, String y, String z){
-        return new Point(Double.parseDouble(x), Double.parseDouble(y), Double.parseDouble(z));
+        return new Point(new BigDecimal(x), new BigDecimal(y), new BigDecimal(z));
     }
 
-    public double getX() {
+    public static Point of(BigDecimal x, BigDecimal y, BigDecimal z){
+        return new Point(x, y, z);
+    }
+
+    public BigDecimal getX() {
         return x;
     }
 
-    public double getY() {
+    public BigDecimal getY() {
         return y;
     }
 
-    public double getZ() {
+    public BigDecimal getZ() {
         return z;
     }
 
@@ -40,21 +47,16 @@ public class Point {
 
         Point point = (Point) o;
 
-        if (Double.compare(point.x, x) != 0) return false;
-        if (Double.compare(point.y, y) != 0) return false;
-        return Double.compare(point.z, z) == 0;
+        if (!x.equals(point.x)) return false;
+        if (!y.equals(point.y)) return false;
+        return z.equals(point.z);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(x);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(y);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(z);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = x.hashCode();
+        result = 31 * result + y.hashCode();
+        result = 31 * result + z.hashCode();
         return result;
     }
 
