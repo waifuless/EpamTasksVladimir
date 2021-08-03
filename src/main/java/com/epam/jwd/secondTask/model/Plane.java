@@ -11,6 +11,7 @@ public class Plane {
     private final BigDecimal freeTerm;
 
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
+        //todo: validation to all coeff not 0 and not null
         this.coefficientA = coefficientA;
         this.coefficientB = coefficientB;
         this.coefficientC = coefficientC;

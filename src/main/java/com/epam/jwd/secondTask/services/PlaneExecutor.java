@@ -4,17 +4,19 @@ import com.epam.jwd.secondTask.model.Plane;
 import com.epam.jwd.secondTask.model.Point;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class PlaneExecutor {
 
     private final static int NUMBER_OF_COEFFICIENTS_IN_PLANE = 4;
+    private final static int COMMON_DIVIDE_SCALE = 8;
 
     private final static String NORMAL_VECTOR_IS_ZERO_MCG = "Since the normal vector of the plane is zero," +
             " the equation of the plane cannot be constructed from the given points.";
 
     public static Plane createPlaneFromThreePoints(Point firstP, Point secondP, Point thirdP) {
         if (firstP == null || secondP == null || thirdP == null) {
-            //error
+            //todo: error
             throw new RuntimeException();
         }
 
@@ -32,14 +34,13 @@ public class PlaneExecutor {
                 (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
 
-        if(coefficientA.doubleValue()==0&&coefficientB.doubleValue()==0&&coefficientC.doubleValue()==0){
-            //error
+        if (coefficientA.doubleValue() == 0 && coefficientB.doubleValue() == 0 && coefficientC.doubleValue() == 0) {
+            //todo: error
             throw new RuntimeException(NORMAL_VECTOR_IS_ZERO_MCG);
         }
 
         //Second coefficient with minus, by my formula I made on paper
         return normalizeCoefficients(Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm));
-        //return Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm);
     }
 
 
@@ -61,7 +62,8 @@ public class PlaneExecutor {
         //multiply by 10^maxScaleLen to get the integers
         if (maxScaleLength > 0) {
             for (int i = 0; i < arrayOfCoefficients.length; i++) {
-                arrayOfCoefficients[i] = arrayOfCoefficients[i].multiply(BigDecimal.valueOf(Math.pow(10, maxScaleLength)));
+                arrayOfCoefficients[i] = arrayOfCoefficients[i]
+                        .multiply(BigDecimal.valueOf(Math.pow(10, maxScaleLength)));
             }
         }
 
@@ -73,7 +75,8 @@ public class PlaneExecutor {
 
         if (gcdValue > 1) {
             for (int i = 0; i < arrayOfCoefficients.length; i++) {
-                arrayOfCoefficients[i] = arrayOfCoefficients[i].divide(BigDecimal.valueOf(gcdValue));
+                arrayOfCoefficients[i] = arrayOfCoefficients[i].divide(BigDecimal.valueOf(gcdValue),
+                        COMMON_DIVIDE_SCALE, RoundingMode.HALF_UP);
             }
         }
 
