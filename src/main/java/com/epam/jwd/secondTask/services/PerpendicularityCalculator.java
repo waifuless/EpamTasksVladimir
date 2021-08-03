@@ -13,9 +13,9 @@ public class PerpendicularityCalculator {
             //todo: Send exception?
             return false;
         }
-        if(plane.getCoefficientA().equals(plane.getCoefficientB())
-                &&plane.getCoefficientA().equals(plane.getCoefficientC())
-                &&plane.getCoefficientA().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientA().compareTo(plane.getCoefficientB())==0
+                &&plane.getCoefficientA().compareTo(plane.getCoefficientC())==0
+                &&plane.getCoefficientA().compareTo(BigDecimal.ZERO)==0){
             return false;
         }
         return true;
@@ -26,10 +26,12 @@ public class PerpendicularityCalculator {
             //todo: Error
             throw new RuntimeException();
         }
-        if(plane.getCoefficientB().equals(plane.getCoefficientC())&&plane.getCoefficientB().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientB().compareTo(plane.getCoefficientC())==0
+                &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
         }
-        if(plane.getCoefficientA().equals(plane.getCoefficientC())&&plane.getCoefficientA().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientA().compareTo(plane.getCoefficientC())==0
+                &&plane.getCoefficientA().compareTo(BigDecimal.ZERO)==0){
             return true;
         }
         return false;
@@ -40,10 +42,12 @@ public class PerpendicularityCalculator {
             //todo: Error
             throw new RuntimeException();
         }
-        if(plane.getCoefficientB().equals(plane.getCoefficientA())&&plane.getCoefficientB().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientB().compareTo(plane.getCoefficientA())==0
+                &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
         }
-        if(plane.getCoefficientB().equals(plane.getCoefficientC())&&plane.getCoefficientB().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientB().compareTo(plane.getCoefficientC())==0
+                &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
         }
         return false;
@@ -54,10 +58,12 @@ public class PerpendicularityCalculator {
             //todo: Error
             throw new RuntimeException();
         }
-        if(plane.getCoefficientB().equals(plane.getCoefficientA())&&plane.getCoefficientB().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientB().compareTo(plane.getCoefficientA())==0
+                &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
         }
-        if(plane.getCoefficientA().equals(plane.getCoefficientC())&&plane.getCoefficientA().equals(BigDecimal.ZERO)){
+        if(plane.getCoefficientA().compareTo(plane.getCoefficientC())==0
+                &&plane.getCoefficientA().compareTo(BigDecimal.ZERO)==0){
             return true;
         }
         return false;

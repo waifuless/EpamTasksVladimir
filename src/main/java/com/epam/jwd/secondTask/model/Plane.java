@@ -1,5 +1,8 @@
 package com.epam.jwd.secondTask.model;
 
+import com.epam.jwd.secondTask.exceptions.ExceptionMessages;
+import com.epam.jwd.secondTask.exceptions.PlaneConstructedException;
+
 import java.math.BigDecimal;
 
 public class Plane {
@@ -11,7 +14,13 @@ public class Plane {
     private final BigDecimal freeTerm;
 
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
-        //todo: validation to all coeff not 0 and not null
+        if (coefficientA == null || coefficientB == null || coefficientC == null || freeTerm == null) {
+            throw new PlaneConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
+        }
+        if (coefficientA.compareTo(coefficientB)==0 && coefficientA.compareTo(coefficientC)==0
+                && coefficientA.compareTo(BigDecimal.ZERO)==0) {
+            throw new PlaneConstructedException(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG);
+        }
         this.coefficientA = coefficientA;
         this.coefficientB = coefficientB;
         this.coefficientC = coefficientC;
@@ -56,10 +65,10 @@ public class Plane {
 
         Plane plane = (Plane) o;
 
-        if (!coefficientA.equals(plane.coefficientA)) return false;
-        if (!coefficientB.equals(plane.coefficientB)) return false;
-        if (!coefficientC.equals(plane.coefficientC)) return false;
-        return freeTerm.equals(plane.freeTerm);
+        if (coefficientA.compareTo(plane.coefficientA)!=0) return false;
+        if (coefficientB.compareTo(plane.coefficientB)!=0) return false;
+        if (coefficientC.compareTo(plane.coefficientC)!=0) return false;
+        return freeTerm.compareTo(plane.freeTerm)==0;
     }
 
     @Override

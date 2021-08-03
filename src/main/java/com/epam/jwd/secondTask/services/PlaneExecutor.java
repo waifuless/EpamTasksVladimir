@@ -1,5 +1,7 @@
 package com.epam.jwd.secondTask.services;
 
+import com.epam.jwd.secondTask.exceptions.ExceptionMessages;
+import com.epam.jwd.secondTask.exceptions.PlaneConstructedException;
 import com.epam.jwd.secondTask.model.Plane;
 import com.epam.jwd.secondTask.model.Point;
 
@@ -11,13 +13,9 @@ public class PlaneExecutor {
     private final static int NUMBER_OF_COEFFICIENTS_IN_PLANE = 4;
     private final static int COMMON_DIVIDE_SCALE = 8;
 
-    private final static String NORMAL_VECTOR_IS_ZERO_MCG = "Since the normal vector of the plane is zero," +
-            " the equation of the plane cannot be constructed from the given points.";
-
     public static Plane createPlaneFromThreePoints(Point firstP, Point secondP, Point thirdP) {
         if (firstP == null || secondP == null || thirdP == null) {
-            //todo: error
-            throw new RuntimeException();
+            throw new PlaneConstructedException(ExceptionMessages.POINT_IS_NULL_MCG);
         }
 
         //Calculate from formula, I made on paper
@@ -34,11 +32,10 @@ public class PlaneExecutor {
                 (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
 
-        if (coefficientA.equals(BigDecimal.ZERO)
-                && coefficientB.equals(BigDecimal.ZERO)
-                && coefficientC.equals(BigDecimal.ZERO)) {
-            //todo: error
-            throw new RuntimeException(NORMAL_VECTOR_IS_ZERO_MCG);
+        if (coefficientA.compareTo(BigDecimal.ZERO)==0
+                && coefficientB.compareTo(BigDecimal.ZERO)==0
+                && coefficientC.compareTo(BigDecimal.ZERO)==0) {
+            throw new PlaneConstructedException(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG);
         }
 
         //Second coefficient with minus, by my formula I made on paper

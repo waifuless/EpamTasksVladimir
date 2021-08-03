@@ -1,5 +1,8 @@
 package com.epam.jwd.secondTask.model;
 
+import com.epam.jwd.secondTask.exceptions.ExceptionMessages;
+import com.epam.jwd.secondTask.exceptions.PointConstructedException;
+
 import java.math.BigDecimal;
 
 public class Point {
@@ -10,6 +13,9 @@ public class Point {
     private final BigDecimal z;
 
     Point(BigDecimal x, BigDecimal y, BigDecimal z) {
+        if (x == null || y == null || z == null) {
+            throw new PointConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
+        }
         this.x = x;
         this.y = y;
         this.z = z;
@@ -47,9 +53,9 @@ public class Point {
 
         Point point = (Point) o;
 
-        if (!x.equals(point.x)) return false;
-        if (!y.equals(point.y)) return false;
-        return z.equals(point.z);
+        if (x.compareTo(point.x)!=0) return false;
+        if (y.compareTo(point.y)!=0) return false;
+        return z.compareTo(point.z)==0;
     }
 
     @Override

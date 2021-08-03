@@ -1,7 +1,9 @@
 package com.epam.jwd.secondTask.app;
 
-import com.epam.jwd.secondTask.model.*;
+import com.epam.jwd.secondTask.model.Plane;
+import com.epam.jwd.secondTask.model.Point;
 import com.epam.jwd.secondTask.services.AngleOfPlanesCalculator;
+import com.epam.jwd.secondTask.services.PlaneExecutor;
 
 import java.math.BigDecimal;
 
@@ -24,8 +26,9 @@ public class Main {
 
          */
 
-        BigDecimal decimal = BigDecimal.valueOf(0);
-        BigDecimal decimal1 = BigDecimal.valueOf(1);
-        System.out.println(BigDecimal.ONE.equals(decimal));
+        Plane plane = Plane.of(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ONE,BigDecimal.TEN);
+        Plane plane1 = Plane.of(0,0,1,10);
+
+        System.out.println(plane.hashCode()==plane1.hashCode());
     }
 }
