@@ -34,7 +34,9 @@ public class PlaneExecutor {
                 (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
 
-        if (coefficientA.doubleValue() == 0 && coefficientB.doubleValue() == 0 && coefficientC.doubleValue() == 0) {
+        if (coefficientA.equals(BigDecimal.ZERO)
+                && coefficientB.equals(BigDecimal.ZERO)
+                && coefficientC.equals(BigDecimal.ZERO)) {
             //todo: error
             throw new RuntimeException(NORMAL_VECTOR_IS_ZERO_MCG);
         }
