@@ -1,6 +1,6 @@
-package com.epam.jwd.secondTask.services;
+package com.epam.jwd.secondtask.services;
 
-import com.epam.jwd.secondTask.model.Plane;
+import com.epam.jwd.secondtask.model.Plane;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

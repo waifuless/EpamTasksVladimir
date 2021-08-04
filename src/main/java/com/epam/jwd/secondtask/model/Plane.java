@@ -1,7 +1,7 @@
-package com.epam.jwd.secondTask.model;
+package com.epam.jwd.secondtask.model;
 
-import com.epam.jwd.secondTask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondTask.exceptions.PlaneConstructedException;
+import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
+import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
 
 import java.math.BigDecimal;
 
@@ -73,10 +73,17 @@ public class Plane {
 
     @Override
     public int hashCode() {
-        int result = coefficientA.hashCode();
-        result = 31 * result + coefficientB.hashCode();
-        result = 31 * result + coefficientC.hashCode();
-        result = 31 * result + freeTerm.hashCode();
+        int result;
+        long temp;
+        //I use .doubleValue() so that the scale is not taken into account
+        temp = Double.doubleToLongBits(coefficientA.doubleValue());
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(coefficientB.doubleValue());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(coefficientC.doubleValue());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(freeTerm.doubleValue());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 

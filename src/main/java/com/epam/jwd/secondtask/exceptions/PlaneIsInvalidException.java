@@ -1,4 +1,4 @@
-package com.epam.jwd.secondTask.exceptions;
+package com.epam.jwd.secondtask.exceptions;
 
 public class PlaneIsInvalidException extends RuntimeException{
 

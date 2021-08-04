@@ -1,7 +1,7 @@
-package com.epam.jwd.secondTask.model;
+package com.epam.jwd.secondtask.model;
 
-import com.epam.jwd.secondTask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondTask.exceptions.PointConstructedException;
+import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
+import com.epam.jwd.secondtask.exceptions.PointConstructedException;
 
 import java.math.BigDecimal;
 
@@ -60,9 +60,15 @@ public class Point {
 
     @Override
     public int hashCode() {
-        int result = x.hashCode();
-        result = 31 * result + y.hashCode();
-        result = 31 * result + z.hashCode();
+        int result;
+        long temp;
+        //I use .doubleValue() so that the scale is not taken into account
+        temp = Double.doubleToLongBits(x.doubleValue());
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y.doubleValue());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(z.doubleValue());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 

@@ -1,9 +1,9 @@
-package com.epam.jwd.secondTask.services;
+package com.epam.jwd.secondtask.services;
 
-import com.epam.jwd.secondTask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondTask.exceptions.PlaneConstructedException;
-import com.epam.jwd.secondTask.model.Plane;
-import com.epam.jwd.secondTask.model.Point;
+import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
+import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
+import com.epam.jwd.secondtask.model.Plane;
+import com.epam.jwd.secondtask.model.Point;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

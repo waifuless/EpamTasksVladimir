@@ -1,4 +1,4 @@
-package com.epam.jwd.secondTask.services;
+package com.epam.jwd.secondtask.services;
 
 //GCD = greatest common divisor
 public class GcdCalculator {
