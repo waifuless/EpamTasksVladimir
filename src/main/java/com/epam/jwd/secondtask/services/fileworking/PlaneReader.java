@@ -3,10 +3,13 @@ package com.epam.jwd.secondtask.services.fileworking;
 import com.epam.jwd.secondtask.model.Plane;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public interface PlaneReader {
 
-    Plane readPlane();
+    Plane nextPlane() throws IOException;
+    List<Plane> findAllPlanes() throws IOException;
     File getFile();
 
 }

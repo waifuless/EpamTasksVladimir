@@ -4,6 +4,7 @@ import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
 import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
+import com.epam.jwd.secondtask.services.calculation.GcdCalculator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,27 +1,15 @@
-package com.epam.jwd.secondtask.services;
+package com.epam.jwd.secondtask.services.calculation;
 
 import com.epam.jwd.secondtask.model.Plane;
+import com.epam.jwd.secondtask.services.PlaneValidator;
 
 import java.math.BigDecimal;
 
 
 public class PerpendicularityCalculator {
 
-    private static boolean isPlaneValid(Plane plane){
-        if(plane.getCoefficientA()==null||plane.getCoefficientB()==null||plane.getCoefficientC()==null){
-            //todo: Send exception?
-            return false;
-        }
-        if(plane.getCoefficientA().compareTo(plane.getCoefficientB())==0
-                &&plane.getCoefficientA().compareTo(plane.getCoefficientC())==0
-                &&plane.getCoefficientA().compareTo(BigDecimal.ZERO)==0){
-            return false;
-        }
-        return true;
-    }
-
     public static boolean isPlanePerpendicularOxy(Plane plane){
-        if(!isPlaneValid(plane)){
+        if(!PlaneValidator.isPlaneValid(plane)){
             //todo: Error
             throw new RuntimeException();
         }
@@ -37,7 +25,7 @@ public class PerpendicularityCalculator {
     }
 
     public static boolean isPlanePerpendicularOxz(Plane plane){
-        if(!isPlaneValid(plane)){
+        if(!PlaneValidator.isPlaneValid(plane)){
             //todo: Error
             throw new RuntimeException();
         }
@@ -53,7 +41,7 @@ public class PerpendicularityCalculator {
     }
 
     public static boolean isPlanePerpendicularOyz(Plane plane){
-        if(!isPlaneValid(plane)){
+        if(!PlaneValidator.isPlaneValid(plane)){
             //todo: Error
             throw new RuntimeException();
         }

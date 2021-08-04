@@ -1,4 +1,4 @@
-package com.epam.jwd.secondtask.services;
+package com.epam.jwd.secondtask.services.calculation;
 
 import com.epam.jwd.secondtask.model.Plane;
 

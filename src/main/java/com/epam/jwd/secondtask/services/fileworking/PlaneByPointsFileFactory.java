@@ -13,14 +13,4 @@ public class PlaneByPointsFileFactory implements FileExecutorsFactory {
     public PlaneReader makeReader(String filePath){
         return new PlaneByPointReader(new File(filePath));
     }
-
-    @Override
-    public PlaneWriter makeWriter(File file){
-        return new PlaneByPointsWriter(file);
-    }
-
-    @Override
-    public PlaneWriter makeWriter(String filePath){
-        return new PlaneByPointsWriter(new File(filePath));
-    }
 }
