@@ -15,7 +15,7 @@ public class PlaneByPointsWriter implements PlaneWriter {
     @Override
     public void writePlane(Plane plane) {
 
-        
+
     }
 
     @Override
