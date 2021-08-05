@@ -1,11 +1,8 @@
 package com.epam.jwd.secondtask.model;
 
-import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
 import com.epam.jwd.secondtask.services.PlaneValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.MarkerManager;
 
 import java.math.BigDecimal;
 

@@ -332,3 +332,247 @@
 17:52:29.323 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @37 - 	Plane perpendicular with OXZ: false
 17:52:29.325 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @39 - 	Plane angle with OXY: 61.9692904510427
 17:52:29.327 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @49 - Program end
+20:36:20.251 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @27 - Program start
+20:36:20.326 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @86 - com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+20:36:20.327 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - Error while parsing string
+com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:85) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+20:36:20.335 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @43 - The plane was not created
+20:36:20.356 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0E-8, coefficientB=0E-8, coefficientC=1.00000000, freeTerm=0E-8}
+20:36:20.356 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+20:36:20.357 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+20:36:20.358 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0, coefficientB=0, coefficientC=-1, freeTerm=0}
+20:36:20.358 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+20:36:20.358 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+20:36:20.359 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @26 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+20:36:20.360 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - All coefficients are zero
+com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+	at com.epam.jwd.secondtask.services.PlaneValidator.checkCoefficients(PlaneValidator.java:32) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.<init>(Plane.java:24) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.of(Plane.java:37) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.PlaneExecutor.createPlaneFromThreePoints(PlaneExecutor.java:42) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:93) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+20:36:20.361 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @43 - The plane was not created
+20:36:20.362 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @26 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+20:36:20.363 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - All coefficients are zero
+com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+	at com.epam.jwd.secondtask.services.PlaneValidator.checkCoefficients(PlaneValidator.java:32) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.<init>(Plane.java:24) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.of(Plane.java:37) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.PlaneExecutor.createPlaneFromThreePoints(PlaneExecutor.java:42) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:93) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+20:36:20.364 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @43 - The plane was not created
+20:36:20.366 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-200306889577.00000000, coefficientB=-844680267400.00000000, coefficientC=580200000.00000000, freeTerm=-688406286915.00000000}
+20:36:20.366 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+20:36:20.367 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 89.96170636291153
+20:36:20.368 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-3.00000000, coefficientB=-2.00000000, coefficientC=-9.00000000, freeTerm=26.00000000}
+20:36:20.369 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+20:36:20.369 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 21.83186921968092
+20:36:20.370 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-4.00000000, coefficientB=-18.00000000, coefficientC=-23.00000000, freeTerm=82.00000000}
+20:36:20.370 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+20:36:20.371 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 38.71913429556739
+20:36:20.371 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @79 - com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+20:36:20.372 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - String: '  12 dasd 1223 123' does not match the pattern
+com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:78) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+20:36:20.373 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @43 - The plane was not created
+20:36:20.374 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=42.00000000, coefficientB=21.00000000, coefficientC=25.00000000, freeTerm=-92.00000000}
+20:36:20.375 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+20:36:20.375 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 61.9692904510427
+20:36:20.376 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @49 - Program end
+21:27:41.198 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @27 - Program start
+21:27:41.297 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @86 - com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+21:27:41.299 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - Error while parsing string
+com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:85) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:27:41.314 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:27:41.331 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0E-8, coefficientB=0E-8, coefficientC=1.00000000, freeTerm=0E-8}
+21:27:41.338 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:27:41.343 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:27:41.345 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0, coefficientB=0, coefficientC=-1, freeTerm=0}
+21:27:41.347 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:27:41.349 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:27:41.352 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:27:41.354 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - All coefficients are zero
+com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+	at com.epam.jwd.secondtask.services.PlaneValidator.checkCoefficients(PlaneValidator.java:19) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.<init>(Plane.java:21) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.of(Plane.java:34) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.PlaneExecutor.createPlaneFromThreePoints(PlaneExecutor.java:42) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:93) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:27:41.358 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:27:41.361 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:27:41.362 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - All coefficients are zero
+com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+	at com.epam.jwd.secondtask.services.PlaneValidator.checkCoefficients(PlaneValidator.java:19) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.<init>(Plane.java:21) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.of(Plane.java:34) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.PlaneExecutor.createPlaneFromThreePoints(PlaneExecutor.java:42) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:93) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:27:41.366 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:27:41.372 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-200306889577.00000000, coefficientB=-844680267400.00000000, coefficientC=580200000.00000000, freeTerm=-688406286915.00000000}
+21:27:41.374 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:27:41.377 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 89.96170636291153
+21:27:41.379 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-3.00000000, coefficientB=-2.00000000, coefficientC=-9.00000000, freeTerm=26.00000000}
+21:27:41.381 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:27:41.382 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 21.83186921968092
+21:27:41.386 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-4.00000000, coefficientB=-18.00000000, coefficientC=-23.00000000, freeTerm=82.00000000}
+21:27:41.387 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:27:41.389 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 38.71913429556739
+21:27:41.392 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @79 - com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+21:27:41.394 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - String: '  12 dasd 1223 123' does not match the pattern
+com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:78) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:27:41.396 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:27:41.399 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=42.00000000, coefficientB=21.00000000, coefficientC=25.00000000, freeTerm=-92.00000000}
+21:27:41.400 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:27:41.401 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 61.9692904510427
+21:27:41.403 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @48 - Program end
+21:29:14.387 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @27 - Program start
+21:29:14.458 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @86 - com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+21:29:14.462 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+21:29:14.472 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:29:14.498 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0E-8, coefficientB=0E-8, coefficientC=1.00000000, freeTerm=0E-8}
+21:29:14.506 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:29:14.510 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:29:14.512 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0, coefficientB=0, coefficientC=-1, freeTerm=0}
+21:29:14.514 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:29:14.517 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:29:14.524 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:29:14.525 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:29:14.527 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:29:14.535 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:29:14.536 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:29:14.538 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:29:14.549 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-200306889577.00000000, coefficientB=-844680267400.00000000, coefficientC=580200000.00000000, freeTerm=-688406286915.00000000}
+21:29:14.551 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:29:14.553 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 89.96170636291153
+21:29:14.580 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-3.00000000, coefficientB=-2.00000000, coefficientC=-9.00000000, freeTerm=26.00000000}
+21:29:14.582 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:29:14.586 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 21.83186921968092
+21:29:14.589 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-4.00000000, coefficientB=-18.00000000, coefficientC=-23.00000000, freeTerm=82.00000000}
+21:29:14.591 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:29:14.593 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 38.71913429556739
+21:29:14.598 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @79 - com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+21:29:14.602 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+21:29:14.606 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:29:14.655 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=42.00000000, coefficientB=21.00000000, coefficientC=25.00000000, freeTerm=-92.00000000}
+21:29:14.657 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:29:14.659 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 61.9692904510427
+21:29:14.660 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @48 - Program end
+21:32:35.978 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @27 - Program start
+21:32:36.009 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @86 - com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+21:32:36.012 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - [Ljava.lang.StackTraceElement;@5a4041cc
+21:32:36.013 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:32:36.022 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0E-8, coefficientB=0E-8, coefficientC=1.00000000, freeTerm=0E-8}
+21:32:36.028 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:32:36.031 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:32:36.034 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0, coefficientB=0, coefficientC=-1, freeTerm=0}
+21:32:36.035 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:32:36.036 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:32:36.039 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:32:36.040 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - [Ljava.lang.StackTraceElement;@4b53f538
+21:32:36.041 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:32:36.044 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:32:36.045 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - [Ljava.lang.StackTraceElement;@134593bf
+21:32:36.047 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:32:36.052 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-200306889577.00000000, coefficientB=-844680267400.00000000, coefficientC=580200000.00000000, freeTerm=-688406286915.00000000}
+21:32:36.054 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:32:36.056 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 89.96170636291153
+21:32:36.058 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-3.00000000, coefficientB=-2.00000000, coefficientC=-9.00000000, freeTerm=26.00000000}
+21:32:36.059 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:32:36.060 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 21.83186921968092
+21:32:36.062 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-4.00000000, coefficientB=-18.00000000, coefficientC=-23.00000000, freeTerm=82.00000000}
+21:32:36.063 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:32:36.065 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 38.71913429556739
+21:32:36.068 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @79 - com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+21:32:36.069 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - [Ljava.lang.StackTraceElement;@4bb4de6a
+21:32:36.070 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:32:36.073 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=42.00000000, coefficientB=21.00000000, coefficientC=25.00000000, freeTerm=-92.00000000}
+21:32:36.075 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:32:36.077 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 61.9692904510427
+21:32:36.078 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @48 - Program end
+21:33:27.511 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @27 - Program start
+21:33:27.562 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @86 - com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+21:33:27.563 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - Error while parsing string
+com.epam.jwd.secondtask.exceptions.InvalidStringException: Error while parsing string
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:85) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:33:27.579 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:33:27.589 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0E-8, coefficientB=0E-8, coefficientC=1.00000000, freeTerm=0E-8}
+21:33:27.595 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:33:27.598 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:33:27.601 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=0, coefficientB=0, coefficientC=-1, freeTerm=0}
+21:33:27.602 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: true
+21:33:27.603 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 0.0
+21:33:27.606 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:33:27.607 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - All coefficients are zero
+com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+	at com.epam.jwd.secondtask.services.PlaneValidator.checkCoefficients(PlaneValidator.java:19) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.<init>(Plane.java:21) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.of(Plane.java:34) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.PlaneExecutor.createPlaneFromThreePoints(PlaneExecutor.java:42) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:93) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:33:27.610 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:33:27.616 ERROR  com.epam.jwd.secondtask.model.Plane.<init>() @23 - com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+21:33:27.617 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - All coefficients are zero
+com.epam.jwd.secondtask.exceptions.PlaneConstructedException: All coefficients are zero
+	at com.epam.jwd.secondtask.services.PlaneValidator.checkCoefficients(PlaneValidator.java:19) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.<init>(Plane.java:21) ~[classes/:?]
+	at com.epam.jwd.secondtask.model.Plane.of(Plane.java:34) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.PlaneExecutor.createPlaneFromThreePoints(PlaneExecutor.java:42) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:93) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:33:27.622 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:33:27.631 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-200306889577.00000000, coefficientB=-844680267400.00000000, coefficientC=580200000.00000000, freeTerm=-688406286915.00000000}
+21:33:27.633 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:33:27.635 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 89.96170636291153
+21:33:27.637 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-3.00000000, coefficientB=-2.00000000, coefficientC=-9.00000000, freeTerm=26.00000000}
+21:33:27.638 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:33:27.639 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 21.83186921968092
+21:33:27.641 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=-4.00000000, coefficientB=-18.00000000, coefficientC=-23.00000000, freeTerm=82.00000000}
+21:33:27.642 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:33:27.644 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 38.71913429556739
+21:33:27.646 ERROR  com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane() @79 - com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+21:33:27.647 ERROR  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @41 - String: '  12 dasd 1223 123' does not match the pattern
+com.epam.jwd.secondtask.exceptions.InvalidStringException: String: '  12 dasd 1223 123' does not match the pattern
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.makeNextPlane(PlaneByPointReader.java:78) ~[classes/:?]
+	at com.epam.jwd.secondtask.services.fileworking.PlaneByPointReader.nextPlane(PlaneByPointReader.java:44) ~[classes/:?]
+	at com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile(ApplicationExecutor.java:34) [classes/:?]
+	at com.epam.jwd.secondtask.app.Main.main(Main.java:50) [classes/:?]
+21:33:27.650 WARN   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @42 - The plane was not created
+21:33:27.652 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @35 - Plane{coefficientA=42.00000000, coefficientB=21.00000000, coefficientC=25.00000000, freeTerm=-92.00000000}
+21:33:27.653 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @36 - 	Plane perpendicular with OXZ: false
+21:33:27.655 INFO   com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @38 - 	Plane angle with OXY: 61.9692904510427
+21:33:27.655 TRACE  com.epam.jwd.secondtask.app.ApplicationExecutor.findPlanesInFile() @48 - Program end

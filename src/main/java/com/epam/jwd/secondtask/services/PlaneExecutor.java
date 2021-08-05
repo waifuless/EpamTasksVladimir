@@ -16,12 +16,12 @@ public class PlaneExecutor {
     private final static int NUMBER_OF_COEFFICIENTS_IN_PLANE = 4;
     private final static int COMMON_DIVIDE_SCALE = 8;
 
-    private final static Logger planeExecutorLogger = LogManager.getLogger(PlaneExecutor.class);
+    private final static Logger LOG = LogManager.getLogger(PlaneExecutor.class);
 
     public static Plane createPlaneFromThreePoints(Point firstP, Point secondP, Point thirdP) {
         if (firstP == null || secondP == null || thirdP == null) {
             PlaneConstructedException ex = new PlaneConstructedException(ExceptionMessages.POINT_IS_NULL_MCG);
-            planeExecutorLogger.error(ex);
+            LOG.error(ex);
             throw ex;
         }
 
@@ -46,12 +46,6 @@ public class PlaneExecutor {
 
 
     public static Plane normalizeCoefficients(Plane oldPlane) {
-        try {
-            PlaneValidator.checkPlane(oldPlane);
-        }catch(Exception ex){
-            planeExecutorLogger.error(ex);
-            throw ex;
-        }
         BigDecimal[] arrayOfCoefficients = new BigDecimal[NUMBER_OF_COEFFICIENTS_IN_PLANE];
 
         arrayOfCoefficients[0] = oldPlane.getCoefficientA();
