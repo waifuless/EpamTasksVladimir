@@ -2,6 +2,8 @@ package com.epam.jwd.secondtask.model;
 
 import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
 import com.epam.jwd.secondtask.exceptions.PointConstructedException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 
@@ -12,9 +14,13 @@ public class Point {
     private final BigDecimal y;
     private final BigDecimal z;
 
+    private final static Logger pointLogger = LogManager.getLogger(Point.class);
+
     Point(BigDecimal x, BigDecimal y, BigDecimal z) {
         if (x == null || y == null || z == null) {
-            throw new PointConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
+            PointConstructedException ex = new PointConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
+            pointLogger.error(ex);
+            throw ex;
         }
         this.x = x;
         this.y = y;

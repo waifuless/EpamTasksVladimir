@@ -1,10 +1,11 @@
 package com.epam.jwd.secondtask.exceptions;
 
 public class InvalidStringException extends RuntimeException {
-
-    private final static String ERROR_MCG = "String: '%s' does not match the pattern";
-
     public InvalidStringException(String invalidString) {
-        super(String.format(ERROR_MCG, invalidString));
+        super(String.format(ExceptionMessages.STRING_MATCH_ERROR_MCG.getMessage(), invalidString));
+    }
+
+    public InvalidStringException(ExceptionMessages ex){
+        super(ex.getMessage());
     }
 }

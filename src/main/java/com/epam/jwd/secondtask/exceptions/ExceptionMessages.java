@@ -2,10 +2,12 @@ package com.epam.jwd.secondtask.exceptions;
 
 public enum ExceptionMessages {
 
-    POINT_IS_NULL_MCG("received point(s) is(are) null"),
-    NORMAL_VECTOR_IS_ZERO_MCG("the normal vector of the plane is zero"),
-    ALL_COEFFICIENTS_ARE_ZERO_MCG("all coefficients are zero"),
-    ARGUMENT_IS_NULL_MCG("received argument(s) is(are) null");
+    POINT_IS_NULL_MCG("Received point(s) is(are) null"),
+    ALL_COEFFICIENTS_ARE_ZERO_MCG("All coefficients are zero"),
+    ARGUMENT_IS_NULL_MCG("Received argument(s) is(are) null"),
+    FIELD_OF_PLANE_IS_NULL_MCG("Field(s) of plane is(are) null"),
+    STRING_MATCH_ERROR_MCG("String: '%s' does not match the pattern"),
+    PARSING_ERROR_MCG("Error while parsing string");
 
     private final String message;
 

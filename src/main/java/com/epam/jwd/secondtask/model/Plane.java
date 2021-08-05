@@ -2,6 +2,10 @@ package com.epam.jwd.secondtask.model;
 
 import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
 import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
+import com.epam.jwd.secondtask.services.PlaneValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.MarkerManager;
 
 import java.math.BigDecimal;
 
@@ -13,13 +17,14 @@ public class Plane {
     private final BigDecimal coefficientC;
     private final BigDecimal freeTerm;
 
+    private final static Logger planeLogger = LogManager.getLogger(Plane.class);
+
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
-        if (coefficientA == null || coefficientB == null || coefficientC == null || freeTerm == null) {
-            throw new PlaneConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
-        }
-        if (coefficientA.compareTo(coefficientB)==0 && coefficientA.compareTo(coefficientC)==0
-                && coefficientA.compareTo(BigDecimal.ZERO)==0) {
-            throw new PlaneConstructedException(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG);
+        try {
+            PlaneValidator.checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
+        }catch(Exception ex){
+            planeLogger.error(ex);
+            throw ex;
         }
         this.coefficientA = coefficientA;
         this.coefficientB = coefficientB;

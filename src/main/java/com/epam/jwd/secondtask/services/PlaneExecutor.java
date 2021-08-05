@@ -5,6 +5,8 @@ import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
 import com.epam.jwd.secondtask.services.calculation.GcdCalculator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,9 +16,13 @@ public class PlaneExecutor {
     private final static int NUMBER_OF_COEFFICIENTS_IN_PLANE = 4;
     private final static int COMMON_DIVIDE_SCALE = 8;
 
+    private final static Logger planeExecutorLogger = LogManager.getLogger(PlaneExecutor.class);
+
     public static Plane createPlaneFromThreePoints(Point firstP, Point secondP, Point thirdP) {
         if (firstP == null || secondP == null || thirdP == null) {
-            throw new PlaneConstructedException(ExceptionMessages.POINT_IS_NULL_MCG);
+            PlaneConstructedException ex = new PlaneConstructedException(ExceptionMessages.POINT_IS_NULL_MCG);
+            planeExecutorLogger.error(ex);
+            throw ex;
         }
 
         //Calculate from formula, I made on paper
@@ -33,18 +39,19 @@ public class PlaneExecutor {
                 (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
 
-        if (coefficientA.compareTo(BigDecimal.ZERO)==0
-                && coefficientB.compareTo(BigDecimal.ZERO)==0
-                && coefficientC.compareTo(BigDecimal.ZERO)==0) {
-            throw new PlaneConstructedException(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG);
-        }
-
+        Plane newPlane = Plane.of(coefficientA, coefficientB, coefficientC, freeTerm);
         //Second coefficient with minus, by my formula I made on paper
-        return normalizeCoefficients(Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm));
+        return normalizeCoefficients(newPlane);
     }
 
 
     public static Plane normalizeCoefficients(Plane oldPlane) {
+        try {
+            PlaneValidator.checkPlane(oldPlane);
+        }catch(Exception ex){
+            planeExecutorLogger.error(ex);
+            throw ex;
+        }
         BigDecimal[] arrayOfCoefficients = new BigDecimal[NUMBER_OF_COEFFICIENTS_IN_PLANE];
 
         arrayOfCoefficients[0] = oldPlane.getCoefficientA();
