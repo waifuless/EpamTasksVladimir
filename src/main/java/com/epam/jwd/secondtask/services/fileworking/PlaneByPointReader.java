@@ -15,9 +15,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+
+//Every nextPlane() delete string from top of stringDeque and if string is correct, add Plane to the end of planeList
 public class PlaneByPointReader implements PlaneReader {
 
-    //todo: finish regex validator
     //"[+-]?([0-9]+[.])?[0-9]+" for one point
     private final static String VALIDATOR = "([\\s]*[+-]?([0-9]+[.])?[0-9]+[\\s]*){9}";
     private final static int NUMBER_OF_POINTS_IN_PLANE = 3;
@@ -26,7 +27,7 @@ public class PlaneByPointReader implements PlaneReader {
     private Deque<String> stringDeque;
     private List<Plane> planeList;
 
-    public PlaneByPointReader(File file) {
+    PlaneByPointReader(File file) {
         this.file = file;
         planeList = new ArrayList<>();
     }
@@ -54,8 +55,8 @@ public class PlaneByPointReader implements PlaneReader {
     private void fillArrayOfStringsIfItNull() throws IOException {
         if (stringDeque == null) {
             Stream<String> lines = Files.lines(file.toPath());
-            //todo: check lines is empty
-            stringDeque = lines.collect(ArrayDeque::new, ArrayDeque::add,
+            //filter empty strings
+            stringDeque = lines.filter(str-> !str.trim().equals("")).collect(ArrayDeque::new, ArrayDeque::add,
                     ArrayDeque::addAll);
         }
     }
@@ -63,7 +64,7 @@ public class PlaneByPointReader implements PlaneReader {
     private Plane makeNextPlane() {
         String str = stringDeque.remove();
         if (!Pattern.matches(VALIDATOR, str)) {
-            throw new InvalidStringException();
+            throw new InvalidStringException(str);
         }
         String[] coordinates = str.replaceAll("\\s{2,}", " ")
                 .trim().split("\\s");

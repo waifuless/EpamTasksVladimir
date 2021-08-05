@@ -8,16 +8,14 @@ public class PlaneValidator {
 
     //todo: static methods to validate plane
 
-    public static boolean isPlaneValid(Plane plane){
+    public static void checkPlane(Plane plane){
         if(plane.getCoefficientA()==null||plane.getCoefficientB()==null||plane.getCoefficientC()==null){
             //todo: Send exception?
-            return false;
         }
         if(plane.getCoefficientA().compareTo(plane.getCoefficientB())==0
                 &&plane.getCoefficientA().compareTo(plane.getCoefficientC())==0
                 &&plane.getCoefficientA().compareTo(BigDecimal.ZERO)==0){
-            return false;
+            //todo: send exc
         }
-        return true;
     }
 }

@@ -9,10 +9,7 @@ import java.math.BigDecimal;
 public class PerpendicularityCalculator {
 
     public static boolean isPlanePerpendicularOxy(Plane plane){
-        if(!PlaneValidator.isPlaneValid(plane)){
-            //todo: Error
-            throw new RuntimeException();
-        }
+        PlaneValidator.checkPlane(plane);
         if(plane.getCoefficientB().compareTo(plane.getCoefficientC())==0
                 &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
@@ -25,10 +22,7 @@ public class PerpendicularityCalculator {
     }
 
     public static boolean isPlanePerpendicularOxz(Plane plane){
-        if(!PlaneValidator.isPlaneValid(plane)){
-            //todo: Error
-            throw new RuntimeException();
-        }
+        PlaneValidator.checkPlane(plane);
         if(plane.getCoefficientB().compareTo(plane.getCoefficientA())==0
                 &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
@@ -41,10 +35,7 @@ public class PerpendicularityCalculator {
     }
 
     public static boolean isPlanePerpendicularOyz(Plane plane){
-        if(!PlaneValidator.isPlaneValid(plane)){
-            //todo: Error
-            throw new RuntimeException();
-        }
+        PlaneValidator.checkPlane(plane);
         if(plane.getCoefficientB().compareTo(plane.getCoefficientA())==0
                 &&plane.getCoefficientB().compareTo(BigDecimal.ZERO)==0){
             return true;
