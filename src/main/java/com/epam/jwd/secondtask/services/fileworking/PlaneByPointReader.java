@@ -25,7 +25,7 @@ public class PlaneByPointReader implements PlaneReader {
     private final static Logger LOG = LogManager.getLogger(PlaneByPointReader.class);
 
     //"[+-]?([0-9]+[.])?[0-9]+" for one point
-    private final static String VALIDATOR = "([\\s]*[+-]?([0-9]+[.])?[0-9]+[\\s]*){9}";
+    private final static String VALIDATOR = "[+-]?([0-9]+[.])?[0-9]+";
     private final static int NUMBER_OF_POINTS_IN_PLANE = 3;
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
 
@@ -74,17 +74,18 @@ public class PlaneByPointReader implements PlaneReader {
 
     private Plane makeNextPlane() {
         String str = stringDeque.remove();
-        if (!Pattern.matches(VALIDATOR, str)) {
+        String[] coordinates = str.trim().split("\\s+");
+        if(coordinates.length!=NUMBER_OF_ALL_COORDINATES){
             InvalidStringException ex = new InvalidStringException(str);
             LOG.error(ex);
             throw ex;
         }
-        String[] coordinates = str.replaceAll("\\s{2,}", " ")
-                .trim().split("\\s");
-        if(coordinates.length!=NUMBER_OF_ALL_COORDINATES){
-            InvalidStringException ex = new InvalidStringException(ExceptionMessages.PARSING_ERROR_MCG);
-            LOG.error(ex);
-            throw ex;
+        for (int i = 0; i < coordinates.length; i++) {
+            if (!Pattern.matches(VALIDATOR, coordinates[i])) {
+                InvalidStringException ex = new InvalidStringException(str);
+                LOG.error(ex);
+                throw ex;
+            }
         }
         Point[] points = new Point[NUMBER_OF_POINTS_IN_PLANE];
         for (int i = 0, j = 0; i < coordinates.length; i += 3, j++) {

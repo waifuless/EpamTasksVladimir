@@ -6,8 +6,7 @@ public enum ExceptionMessages {
     ALL_COEFFICIENTS_ARE_ZERO_MCG("All coefficients are zero"),
     ARGUMENT_IS_NULL_MCG("Received argument(s) is(are) null"),
     FIELD_OF_PLANE_IS_NULL_MCG("Field(s) of plane is(are) null"),
-    STRING_MATCH_ERROR_MCG("String: '%s' does not match the pattern"),
-    PARSING_ERROR_MCG("Error while parsing string");
+    STRING_MATCH_ERROR_MCG("String: '%s' does not match the pattern");
 
     private final String message;
 

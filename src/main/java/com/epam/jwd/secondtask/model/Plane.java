@@ -14,13 +14,13 @@ public class Plane {
     private final BigDecimal coefficientC;
     private final BigDecimal freeTerm;
 
-    private final static Logger planeLogger = LogManager.getLogger(Plane.class);
+    private final static Logger LOG = LogManager.getLogger(Plane.class);
 
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         try {
             PlaneValidator.checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
         }catch(Exception ex){
-            planeLogger.error(ex);
+            LOG.error(ex);
             throw ex;
         }
         this.coefficientA = coefficientA;

@@ -14,12 +14,12 @@ public class Point {
     private final BigDecimal y;
     private final BigDecimal z;
 
-    private final static Logger pointLogger = LogManager.getLogger(Point.class);
+    private final static Logger LOG = LogManager.getLogger(Point.class);
 
     Point(BigDecimal x, BigDecimal y, BigDecimal z) {
         if (x == null || y == null || z == null) {
             PointConstructedException ex = new PointConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
-            pointLogger.error(ex);
+            LOG.error(ex);
             throw ex;
         }
         this.x = x;
