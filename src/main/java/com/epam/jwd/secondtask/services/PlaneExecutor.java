@@ -81,6 +81,13 @@ public class PlaneExecutor {
             }
         }
 
+        //first coefficient must be positive
+        if(arrayOfCoefficients[0].compareTo(BigDecimal.ZERO)<0){
+            for (int i = 0; i < arrayOfCoefficients.length; i++) {
+                arrayOfCoefficients[i] = arrayOfCoefficients[i].negate();
+            }
+        }
+
         return Plane.of(arrayOfCoefficients[0], arrayOfCoefficients[1], arrayOfCoefficients[2], arrayOfCoefficients[3]);
     }
 
