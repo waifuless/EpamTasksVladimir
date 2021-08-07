@@ -39,7 +39,7 @@ public class PlaneExecutor {
                 (firstP.getY().multiply(coefficientB)).subtract(firstP.getZ().multiply(coefficientC));
 
 
-        Plane newPlane = Plane.of(coefficientA, coefficientB, coefficientC, freeTerm);
+        Plane newPlane = Plane.of(coefficientA, coefficientB.negate(), coefficientC, freeTerm);
         //Second coefficient with minus, by my formula I made on paper
         return normalizeCoefficients(newPlane);
     }
