@@ -22,28 +22,24 @@ public class ApplicationExecutor {
     private final static String PLANE_WAS_NOT_CREATED_MCG = "The plane was not created";
     private final static Logger LOG = LogManager.getLogger(ApplicationExecutor.class);
 
-    public static void findPlanesInFile(String filePath) {
+    public static void findPlanesInFile(String filePath) throws IOException {
 
         LOG.trace("Program start");
-        try {
-            FileExecutorsFactory executorsFactory = FileExecutorsFactory.create();
-            PlaneReader planeReader = executorsFactory.makeReader(filePath);
-            Plane plane;
-            while (planeReader.hesNextPlane()) {
-                try {
-                    plane = planeReader.nextPlane();
-                    LOG.info(plane);
-                    LOG.info(COMMON_PERPENDICULAR_INFO_MCG,
-                            COMMON_PERPENDICULAR_FUNCTION.apply(plane));
-                    LOG.info(COMMON_ANGLE_INFO_MCG, AngleOfPlanesCalculator
-                            .calculateAngleBetweenPlanes(plane, COMMON_PLANE_FOR_ANGLE_CALCULATE));
-                } catch (Exception ex) {
-                    LOG.error(ex.getMessage(), ex);
-                    LOG.warn(PLANE_WAS_NOT_CREATED_MCG);
-                }
+        FileExecutorsFactory executorsFactory = FileExecutorsFactory.create();
+        PlaneReader planeReader = executorsFactory.makeReader(filePath);
+        Plane plane;
+        while (planeReader.hesNextPlane()) {
+            try {
+                plane = planeReader.nextPlane();
+                LOG.info(plane);
+                LOG.info(COMMON_PERPENDICULAR_INFO_MCG,
+                        COMMON_PERPENDICULAR_FUNCTION.apply(plane));
+                LOG.info(COMMON_ANGLE_INFO_MCG, AngleOfPlanesCalculator
+                        .calculateAngleBetweenPlanes(plane, COMMON_PLANE_FOR_ANGLE_CALCULATE));
+            } catch (Exception ex) {
+                LOG.error(ex.getMessage(), ex);
+                LOG.warn(PLANE_WAS_NOT_CREATED_MCG);
             }
-        } catch (IOException ex) {
-            LOG.error(ex);
         }
         LOG.trace("Program end");
     }
