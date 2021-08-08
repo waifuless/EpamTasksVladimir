@@ -72,6 +72,16 @@ public class PlaneByPointReader implements PlaneReader {
         return file;
     }
 
+
+    //just free memory
+    @Override
+    public void close() {
+        if(stringDeque!=null) {
+            stringDeque.clear();
+        }
+        planeList.clear();
+    }
+
     private void fillArrayOfStringsIfItNull() throws IOException {
         if (stringDeque == null) {
             Stream<String> lines = Files.lines(file.toPath());

@@ -32,7 +32,7 @@ public class PlaneByPointReaderTest {
         Files.createFile(EMPTY_FILE.toPath());
         Files.createFile(FILE_WITH_DATA.toPath());
 
-        String [] strings = new String[]{
+        String[] strings = new String[]{
                 "  2 1 4 6   7 8 9 0 2",
                 "1.1 2.2 -5 1 0.52 12 3 2",
                 "1.1 5 0 2 1 0 3 -1 0",
@@ -54,39 +54,45 @@ public class PlaneByPointReaderTest {
 
     @Test(expectedExceptions = RunOutOfPlanesException.class)
     public void testNextPlaneEmptyFile() throws IOException {
-        PlaneByPointReader reader = new PlaneByPointReader(EMPTY_FILE);
-        reader.nextPlane();
+        try (PlaneByPointReader reader = new PlaneByPointReader(EMPTY_FILE)) {
+            reader.nextPlane();
+        }
     }
 
     @Test
     public void testFindAllPlanesEmptyFile() throws IOException {
-        PlaneByPointReader reader = new PlaneByPointReader(EMPTY_FILE);
-        List<Plane> list = reader.findAllPlanes();
-        Assert.assertTrue(list.isEmpty());
+        try (PlaneByPointReader reader = new PlaneByPointReader(EMPTY_FILE)) {
+            List<Plane> list = reader.findAllPlanes();
+            Assert.assertTrue(list.isEmpty());
+        }
     }
 
     @Test(expectedExceptions = IOException.class)
     public void testNextPlaneNonExistFile() throws IOException {
-        PlaneByPointReader reader = new PlaneByPointReader(NON_EXISTING_FILE);
-        reader.nextPlane();
+        try (PlaneByPointReader reader = new PlaneByPointReader(NON_EXISTING_FILE)) {
+            reader.nextPlane();
+        }
     }
 
     @Test(expectedExceptions = IOException.class)
     public void testFindAllPlanesNonExistFile() throws IOException {
-        PlaneByPointReader reader = new PlaneByPointReader(NON_EXISTING_FILE);
-        List<Plane> list = reader.findAllPlanes();
+        try (PlaneByPointReader reader = new PlaneByPointReader(NON_EXISTING_FILE)) {
+            List<Plane> list = reader.findAllPlanes();
+        }
     }
 
     @Test
     public void testNextPlane() throws IOException {
-        PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA);
-        Assert.assertEquals(reader.nextPlane(), Plane.of(4, -18, 23, -82));
+        try(PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
+            Assert.assertEquals(reader.nextPlane(), Plane.of(4, -18, 23, -82));
+        }
     }
 
     @Test
     public void testFindAllPlanes() throws IOException {
-        PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA);
-        List<Plane> list = reader.findAllPlanes();
-        Assert.assertEquals(list.size(), 7);
+        try(PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
+            List<Plane> list = reader.findAllPlanes();
+            Assert.assertEquals(list.size(), 7);
+        }
     }
 }
