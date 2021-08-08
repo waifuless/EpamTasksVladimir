@@ -17,10 +17,10 @@ import java.util.List;
 
 public class PlaneByPointReaderTest {
 
-    private final static Path DIRECTORIES = Paths.get("src/test/test_data/");
-    private final static File EMPTY_FILE = new File("src/test/test_data/empty.txt");
-    private final static File NON_EXISTING_FILE = new File("src/test/test_data/non_exist_space.txt");
-    private final static File FILE_WITH_DATA = new File("src/test/test_data/coordinates.txt");
+    private final static Path DIRECTORIES = Paths.get("test_data/");
+    private final static File EMPTY_FILE = new File("test_data/empty.txt");
+    private final static File NON_EXISTING_FILE = new File("test_data/non_exist_space.txt");
+    private final static File FILE_WITH_DATA = new File("test_data/coordinates.txt");
 
     @BeforeTest
     private void initFiles() throws IOException {
