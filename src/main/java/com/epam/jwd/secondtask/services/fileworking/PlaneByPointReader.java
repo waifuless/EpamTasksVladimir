@@ -2,6 +2,7 @@ package com.epam.jwd.secondtask.services.fileworking;
 
 import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
 import com.epam.jwd.secondtask.exceptions.InvalidStringException;
+import com.epam.jwd.secondtask.exceptions.RunOutOfPlanesException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
 import com.epam.jwd.secondtask.services.PlaneExecutor;
@@ -41,11 +42,14 @@ public class PlaneByPointReader implements PlaneReader {
     @Override
     public Plane nextPlane() throws IOException {
         fillArrayOfStringsIfItNull();
+        if(stringDeque.isEmpty()){
+            throw new RunOutOfPlanesException(ExceptionMessages.RUN_OUT_OF_PLANES_MCG);
+        }
         return makeNextPlane();
     }
 
     @Override
-    public boolean hesNextPlane() throws IOException{
+    public boolean hasNextPlane() throws IOException{
         fillArrayOfStringsIfItNull();
         return !stringDeque.isEmpty();
     }
@@ -54,7 +58,11 @@ public class PlaneByPointReader implements PlaneReader {
     public List<Plane> findAllPlanes() throws IOException {
         fillArrayOfStringsIfItNull();
         while (!stringDeque.isEmpty()) {
-            makeNextPlane();
+            try {
+                makeNextPlane();
+            }catch (Exception ignored){//Invalid strings just will be skipped
+                //ignore
+            }
         }
         return planeList;
     }

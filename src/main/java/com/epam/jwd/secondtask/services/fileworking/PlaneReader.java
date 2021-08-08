@@ -9,7 +9,7 @@ import java.util.List;
 public interface PlaneReader {
 
     Plane nextPlane() throws IOException;
-    boolean hesNextPlane() throws IOException;
+    boolean hasNextPlane() throws IOException;
     List<Plane> findAllPlanes() throws IOException;
     File getFile();
 

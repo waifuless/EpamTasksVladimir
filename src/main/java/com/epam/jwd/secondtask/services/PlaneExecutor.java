@@ -4,7 +4,6 @@ import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
 import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
-import com.epam.jwd.secondtask.services.calculation.GcdCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,7 +70,7 @@ public class PlaneExecutor {
         //Find the greatest common divisor of all coefficients
         long gcdValue = arrayOfCoefficients[0].abs().longValue();
         for (int i = 1; i < arrayOfCoefficients.length; i++) {
-            gcdValue = GcdCalculator.findGcd(gcdValue, arrayOfCoefficients[i].abs().longValue());
+            gcdValue = GcdFinder.findGcd(gcdValue, arrayOfCoefficients[i].abs().longValue());
         }
 
         if (gcdValue > 1) {

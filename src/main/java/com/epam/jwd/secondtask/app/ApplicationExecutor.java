@@ -28,7 +28,7 @@ public class ApplicationExecutor {
         FileExecutorsFactory executorsFactory = FileExecutorsFactory.create();
         PlaneReader planeReader = executorsFactory.makeReader(filePath);
         Plane plane;
-        while (planeReader.hesNextPlane()) {
+        while (planeReader.hasNextPlane()) {
             try {
                 plane = planeReader.nextPlane();
                 LOG.info(plane);
