@@ -4,4 +4,4 @@ target/
 *.log
 lib/
 *.class
-app/log4j2.xml
+app/
