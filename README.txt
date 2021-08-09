@@ -1,5 +1,3 @@
-Данная ветка не содержит lib/ и app/
-
 Для создания fat-jar с скомпилированными классами и зависимостями с помощью maven в pom.xml были добавлены плагины. Для запуска:
 
 1. mvn package                                                                                                  ✔ 
@@ -11,6 +9,12 @@
 
 
 Компиляция в папку app(требуется lib):
+(содержимое lib:
+log4j-api-2.9.0.jar
+log4j-core-2.9.0.jar
+log4j-slf4j-impl-2.9.0.jar
+slf4j-api-1.7.25.jar
+)
 
 1. javac -d app/ -cp "lib/*" -proc:none -sourcepath "src/main/java" src/main/java/com/epam/jwd/app/Main.java
 2. В папку app необходимо добавить log4j2.xml
