@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.service.calculation;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.model.Plane;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -22,6 +23,11 @@ public class PerpendicularityCalculatorTest {
         Assert.assertEquals(PerpendicularityCalculator.isPlanePerpendicularOxy(plane), answer);
     }
 
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArgumentOxy() {
+        PerpendicularityCalculator.isPlanePerpendicularOxy(null);
+    }
+
 
     @DataProvider
     public Object[][] perpendicularOxzData() {
@@ -38,6 +44,11 @@ public class PerpendicularityCalculatorTest {
         Assert.assertEquals(PerpendicularityCalculator.isPlanePerpendicularOxz(plane), answer);
     }
 
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArgumentOxz() {
+        PerpendicularityCalculator.isPlanePerpendicularOxz(null);
+    }
+
 
     @DataProvider
     public Object[][] perpendicularOyzData() {
@@ -52,5 +63,10 @@ public class PerpendicularityCalculatorTest {
     @Test(dataProvider = "perpendicularOyzData")
     public void testIsPlanePerpendicularOyz(Plane plane, boolean answer) {
         Assert.assertEquals(PerpendicularityCalculator.isPlanePerpendicularOyz(plane), answer);
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArgumentOyz() {
+        PerpendicularityCalculator.isPlanePerpendicularOyz(null);
     }
 }

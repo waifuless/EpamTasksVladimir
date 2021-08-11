@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.service;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
@@ -52,5 +53,10 @@ public class PlaneExecutorTest {
     public void testNormalizeCoefficients2() {
         Plane oldPlane = Plane.of(-60, -24, -79.2, 158.4);
         Assert.assertEquals(PlaneExecutor.normalizeCoefficients(oldPlane), Plane.of(25, 10, 33, -66));
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNormalizeCoefficientsNullArgument() {
+        PlaneExecutor.normalizeCoefficients(null);
     }
 }

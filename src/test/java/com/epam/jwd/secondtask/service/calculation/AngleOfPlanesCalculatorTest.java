@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.service.calculation;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.model.Plane;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -25,5 +26,10 @@ public class AngleOfPlanesCalculatorTest {
         Assert.assertEquals(AngleOfPlanesCalculator.calculateAngleBetweenPlanes(plane1, plane2)
                         .setScale(4, RoundingMode.HALF_UP),
                 angle.setScale(4, RoundingMode.HALF_UP));
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArguments() {
+        AngleOfPlanesCalculator.calculateAngleBetweenPlanes(null, null);
     }
 }

@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.service.fileworking;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.exception.RunOutOfPlanesException;
 import com.epam.jwd.secondtask.model.Plane;
 import org.testng.Assert;
@@ -13,7 +14,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -99,19 +99,24 @@ public class PlaneByPointReaderTest {
     }
 
     @Test
-    public void test_FindAllPlanesAndNextPlane_shouldReturnEqualResults() throws IOException{
+    public void test_FindAllPlanesAndNextPlane_shouldReturnEqualResults() throws IOException {
         try (PlaneByPointReader reader1 = new PlaneByPointReader(FILE_WITH_DATA);
-        PlaneByPointReader reader2 = new PlaneByPointReader(FILE_WITH_DATA)) {
+             PlaneByPointReader reader2 = new PlaneByPointReader(FILE_WITH_DATA)) {
             List<Plane> list1 = reader1.findAllPlanes();
             List<Plane> list2 = new ArrayList<>();
-            while(reader2.hasNextPlane()){
+            while (reader2.hasNextPlane()) {
                 try {
                     list2.add(reader2.nextPlane());
-                }catch (Exception ignored){
+                } catch (Exception ignored) {
                     //do nothing
                 }
             }
             Assert.assertEquals(list1, list2);
         }
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArgument() {
+        new PlaneByPointReader(null);
     }
 }

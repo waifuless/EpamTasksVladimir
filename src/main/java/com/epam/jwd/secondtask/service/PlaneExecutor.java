@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.service;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.exception.ExceptionMessages;
 import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
@@ -45,6 +46,11 @@ public class PlaneExecutor {
 
 
     public static Plane normalizeCoefficients(Plane oldPlane) {
+        if (oldPlane == null) {
+            ArgumentNullException ex = new ArgumentNullException();
+            LOG.error(ex.getMessage(), ex);
+            throw ex;
+        }
         BigDecimal[] arrayOfCoefficients = new BigDecimal[NUMBER_OF_COEFFICIENTS_IN_PLANE];
         arrayOfCoefficients[0] = oldPlane.getCoefficientA();
         arrayOfCoefficients[1] = oldPlane.getCoefficientB();

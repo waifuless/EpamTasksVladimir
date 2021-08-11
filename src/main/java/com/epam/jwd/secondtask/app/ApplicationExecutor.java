@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.app;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.service.calculation.AngleOfPlanesCalculator;
 import com.epam.jwd.secondtask.service.calculation.PerpendicularityCalculator;
@@ -23,8 +24,12 @@ public class ApplicationExecutor {
     private final static Logger LOG = LogManager.getLogger(ApplicationExecutor.class);
 
     public static void findPlanesInFile(String filePath) throws IOException {
-
         LOG.trace("Program start");
+        if (filePath == null) {
+            ArgumentNullException ex = new ArgumentNullException();
+            LOG.error(ex.getMessage(), ex);
+            throw ex;
+        }
         FileExecutorsFactory executorsFactory = FileExecutorsFactory.create();
         PlaneReader planeReader = executorsFactory.makeReader(filePath);
         Plane plane;

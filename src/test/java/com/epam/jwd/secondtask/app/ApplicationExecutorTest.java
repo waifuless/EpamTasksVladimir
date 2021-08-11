@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.app;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -51,5 +52,10 @@ public class ApplicationExecutorTest {
     @Test
     public void testNotException() throws IOException {
         ApplicationExecutor.findPlanesInFile(FILE_WITH_DATA.getPath());
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArgument() throws IOException {
+        ApplicationExecutor.findPlanesInFile(null);
     }
 }

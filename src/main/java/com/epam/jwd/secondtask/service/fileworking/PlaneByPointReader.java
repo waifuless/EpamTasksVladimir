@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.service.fileworking;
 
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.exception.ExceptionMessages;
 import com.epam.jwd.secondtask.exception.InvalidStringException;
 import com.epam.jwd.secondtask.exception.RunOutOfPlanesException;
@@ -35,6 +36,11 @@ public class PlaneByPointReader implements PlaneReader {
     private Deque<String> stringDeque;
 
     PlaneByPointReader(File file) {
+        if (file == null) {
+            ArgumentNullException ex = new ArgumentNullException();
+            LOG.error(ex.getMessage(), ex);
+            throw ex;
+        }
         this.file = file;
         planeList = new ArrayList<>();
     }
