@@ -31,8 +31,8 @@ public class PlaneByPointReader implements PlaneReader {
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
 
     private final File file;
-    private Deque<String> stringDeque;
     private final List<Plane> planeList;
+    private Deque<String> stringDeque;
 
     PlaneByPointReader(File file) {
         this.file = file;
@@ -42,14 +42,14 @@ public class PlaneByPointReader implements PlaneReader {
     @Override
     public Plane nextPlane() throws IOException {
         fillArrayOfStringsIfItNull();
-        if(stringDeque.isEmpty()){
+        if (stringDeque.isEmpty()) {
             throw new RunOutOfPlanesException(ExceptionMessages.RUN_OUT_OF_PLANES_MCG);
         }
         return makeNextPlane();
     }
 
     @Override
-    public boolean hasNextPlane() throws IOException{
+    public boolean hasNextPlane() throws IOException {
         fillArrayOfStringsIfItNull();
         return !stringDeque.isEmpty();
     }
@@ -60,7 +60,7 @@ public class PlaneByPointReader implements PlaneReader {
         while (!stringDeque.isEmpty()) {
             try {
                 makeNextPlane();
-            }catch (Exception ignored){//Invalid strings just will be skipped
+            } catch (Exception ignored) {//Invalid strings just will be skipped
                 //ignore
             }
         }
@@ -76,7 +76,7 @@ public class PlaneByPointReader implements PlaneReader {
     //just free memory
     @Override
     public void close() {
-        if(stringDeque!=null) {
+        if (stringDeque != null) {
             stringDeque.clear();
         }
         planeList.clear();
@@ -93,7 +93,7 @@ public class PlaneByPointReader implements PlaneReader {
     private Plane makeNextPlane() {
         String str = stringDeque.remove();
         String[] coordinates = str.trim().split("\\s+");
-        if(coordinates.length!=NUMBER_OF_ALL_COORDINATES){
+        if (coordinates.length != NUMBER_OF_ALL_COORDINATES) {
             InvalidStringException ex = new InvalidStringException(str);
             LOG.error(ex);
             throw ex;

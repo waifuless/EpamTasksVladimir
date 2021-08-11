@@ -1,6 +1,6 @@
 package com.epam.jwd.secondtask.exception;
 
-public class PointConstructedException extends RuntimeException{
+public class PointConstructedException extends RuntimeException {
 
     public PointConstructedException() {
     }
@@ -9,7 +9,7 @@ public class PointConstructedException extends RuntimeException{
         super(mcg);
     }
 
-    public PointConstructedException(ExceptionMessages mcg){
+    public PointConstructedException(ExceptionMessages mcg) {
         super(mcg.getMessage());
     }
 }

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class GcdFinderTest {
 
     @DataProvider
-    public Object[][] findGcdData(){
+    public Object[][] findGcdData() {
         return new Object[][]{
                 {1, -2, 1},
                 {52, 21, 1},
@@ -19,6 +19,6 @@ public class GcdFinderTest {
 
     @Test(dataProvider = "findGcdData")
     public void testFindGcd(long a, long b, long answer) {
-        Assert.assertEquals(GcdFinder.findGcd(a,b), answer);
+        Assert.assertEquals(GcdFinder.findGcd(a, b), answer);
     }
 }

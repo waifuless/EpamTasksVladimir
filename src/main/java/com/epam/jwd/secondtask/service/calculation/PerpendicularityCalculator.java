@@ -19,17 +19,18 @@ public class PerpendicularityCalculator {
         return isPlaneParallelOxy(plane) || isPlaneParallelOxz(plane);
     }
 
-    private static boolean isPlaneParallelOxy(Plane plane){
+
+    private static boolean isPlaneParallelOxy(Plane plane) {
         return plane.getCoefficientB().compareTo(plane.getCoefficientA()) == 0
                 && plane.getCoefficientB().compareTo(BigDecimal.ZERO) == 0;
     }
 
-    private static boolean isPlaneParallelOxz(Plane plane){
+    private static boolean isPlaneParallelOxz(Plane plane) {
         return plane.getCoefficientA().compareTo(plane.getCoefficientC()) == 0
                 && plane.getCoefficientA().compareTo(BigDecimal.ZERO) == 0;
     }
 
-    private static boolean isPlaneParallelOyz(Plane plane){
+    private static boolean isPlaneParallelOyz(Plane plane) {
         return plane.getCoefficientB().compareTo(plane.getCoefficientC()) == 0
                 && plane.getCoefficientB().compareTo(BigDecimal.ZERO) == 0;
     }

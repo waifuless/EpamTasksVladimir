@@ -58,14 +58,14 @@ public class PlaneExecutor {
             reduceCoefficientsByGcd(arrayOfCoefficients, gcdValue);
         }
         //first coefficient must be positive
-        if(arrayOfCoefficients[0].compareTo(BigDecimal.ZERO)<0){
+        if (arrayOfCoefficients[0].compareTo(BigDecimal.ZERO) < 0) {
             swapAllSigns(arrayOfCoefficients);
         }
 
         return Plane.of(arrayOfCoefficients[0], arrayOfCoefficients[1], arrayOfCoefficients[2], arrayOfCoefficients[3]);
     }
 
-    private static long findMaxScaleLength(BigDecimal[] coefficients){
+    private static long findMaxScaleLength(BigDecimal[] coefficients) {
         long maxScaleLength = 0;
         for (BigDecimal coefficient : coefficients) {
             if (maxScaleLength < coefficient.scale()) {
@@ -75,7 +75,7 @@ public class PlaneExecutor {
         return maxScaleLength;
     }
 
-    private static void multiplyTheCoefficientsToIntegers(BigDecimal [] coefficients, long maxScaleLength){
+    private static void multiplyTheCoefficientsToIntegers(BigDecimal[] coefficients, long maxScaleLength) {
         //multiply by 10^maxScaleLen to get the integers
         if (maxScaleLength > 0) {
             for (int i = 0; i < coefficients.length; i++) {
@@ -85,7 +85,7 @@ public class PlaneExecutor {
         }
     }
 
-    private static long findGcdOfAllCoefficients(BigDecimal [] coefficients){
+    private static long findGcdOfAllCoefficients(BigDecimal[] coefficients) {
         //Find the greatest common divisor of all coefficients
         long gcdValue = coefficients[0].abs().longValue();
         for (int i = 1; i < coefficients.length; i++) {
@@ -94,14 +94,14 @@ public class PlaneExecutor {
         return gcdValue;
     }
 
-    private static void reduceCoefficientsByGcd(BigDecimal[] coefficients, long gcdValue){
+    private static void reduceCoefficientsByGcd(BigDecimal[] coefficients, long gcdValue) {
         for (int i = 0; i < coefficients.length; i++) {
             coefficients[i] = coefficients[i].divide(BigDecimal.valueOf(gcdValue),
                     COMMON_DIVIDE_SCALE, RoundingMode.HALF_UP);
         }
     }
 
-    private static void swapAllSigns(BigDecimal[] coefficients){
+    private static void swapAllSigns(BigDecimal[] coefficients) {
         for (int i = 0; i < coefficients.length; i++) {
             coefficients[i] = coefficients[i].negate();
         }

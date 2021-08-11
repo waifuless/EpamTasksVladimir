@@ -1,16 +1,12 @@
 package com.epam.jwd.secondtask.app;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
-
-import static org.testng.Assert.*;
 
 public class ApplicationExecutorTest {
 
@@ -48,12 +44,12 @@ public class ApplicationExecutorTest {
 
 
     @Test(expectedExceptions = IOException.class)
-    public void testFindPlanesInFile() throws IOException{
-       ApplicationExecutor.findPlanesInFile(UN_EXISTING_FILE_PATH.getPath());
+    public void testFindPlanesInFile() throws IOException {
+        ApplicationExecutor.findPlanesInFile(UN_EXISTING_FILE_PATH.getPath());
     }
 
     @Test
-    public void testNotException() throws IOException{
+    public void testNotException() throws IOException {
         ApplicationExecutor.findPlanesInFile(FILE_WITH_DATA.getPath());
     }
 }

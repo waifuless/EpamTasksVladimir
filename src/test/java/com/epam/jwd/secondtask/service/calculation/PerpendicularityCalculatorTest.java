@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 public class PerpendicularityCalculatorTest {
 
     @DataProvider
-    public Object[][] perpendicularOxyData(){
+    public Object[][] perpendicularOxyData() {
         return new Object[][]{
-                {Plane.of(0,0,1,0), false},
-                {Plane.of(1,0,0,1), true},
-                {Plane.of(0,1,0,1), true},
-                {Plane.of(1,2,3,1), false}
+                {Plane.of(0, 0, 1, 0), false},
+                {Plane.of(1, 0, 0, 1), true},
+                {Plane.of(0, 1, 0, 1), true},
+                {Plane.of(1, 2, 3, 1), false}
         };
     }
 
@@ -24,12 +24,12 @@ public class PerpendicularityCalculatorTest {
 
 
     @DataProvider
-    public Object[][] perpendicularOxzData(){
+    public Object[][] perpendicularOxzData() {
         return new Object[][]{
-                {Plane.of(0,0,1,0), true},
-                {Plane.of(1,0,0,1), true},
-                {Plane.of(0,1,0,1), false},
-                {Plane.of(1,2,3,1), false}
+                {Plane.of(0, 0, 1, 0), true},
+                {Plane.of(1, 0, 0, 1), true},
+                {Plane.of(0, 1, 0, 1), false},
+                {Plane.of(1, 2, 3, 1), false}
         };
     }
 
@@ -40,12 +40,12 @@ public class PerpendicularityCalculatorTest {
 
 
     @DataProvider
-    public Object[][] perpendicularOyzData(){
+    public Object[][] perpendicularOyzData() {
         return new Object[][]{
-                {Plane.of(0,0,1,0), true},
-                {Plane.of(1,0,0,1), false},
-                {Plane.of(0,1,0,1), true},
-                {Plane.of(1,2,3,1), false}
+                {Plane.of(0, 0, 1, 0), true},
+                {Plane.of(1, 0, 0, 1), false},
+                {Plane.of(0, 1, 0, 1), true},
+                {Plane.of(1, 2, 3, 1), false}
         };
     }
 

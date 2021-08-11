@@ -28,10 +28,10 @@ public class PlaneExecutorTest {
 
 
     @DataProvider
-    public Object[][] constructedExceptionData(){
+    public Object[][] constructedExceptionData() {
         return new Object[][]{
-                {Point.of(1,1,1), Point.of(2,2,2), Point.of(3,3,3)},
-                {Point.of(0,0,0),Point.of(0,0,0),Point.of(0,0,0)},
+                {Point.of(1, 1, 1), Point.of(2, 2, 2), Point.of(3, 3, 3)},
+                {Point.of(0, 0, 0), Point.of(0, 0, 0), Point.of(0, 0, 0)},
                 {null, null, null}
         };
     }

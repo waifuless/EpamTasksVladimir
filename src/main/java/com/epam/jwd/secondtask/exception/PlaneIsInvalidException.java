@@ -3,7 +3,6 @@ package com.epam.jwd.secondtask.exception;
 public class PlaneIsInvalidException extends RuntimeException {
 
     public PlaneIsInvalidException() {
-
     }
 
     public PlaneIsInvalidException(String mcg) {

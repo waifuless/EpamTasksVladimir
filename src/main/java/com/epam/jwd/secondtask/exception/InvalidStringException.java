@@ -5,7 +5,7 @@ public class InvalidStringException extends RuntimeException {
         super(String.format(ExceptionMessages.STRING_MATCH_ERROR_MCG.getMessage(), invalidString));
     }
 
-    public InvalidStringException(ExceptionMessages ex){
+    public InvalidStringException(ExceptionMessages ex) {
         super(ex.getMessage());
     }
 }

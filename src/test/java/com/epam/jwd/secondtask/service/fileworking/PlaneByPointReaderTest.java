@@ -83,14 +83,14 @@ public class PlaneByPointReaderTest {
 
     @Test
     public void testNextPlane() throws IOException {
-        try(PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
+        try (PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
             Assert.assertEquals(reader.nextPlane(), Plane.of(4, -18, 23, -82));
         }
     }
 
     @Test
     public void testFindAllPlanes() throws IOException {
-        try(PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
+        try (PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
             List<Plane> list = reader.findAllPlanes();
             Assert.assertEquals(list.size(), 7);
         }

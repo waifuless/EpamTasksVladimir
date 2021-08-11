@@ -9,12 +9,11 @@ import java.math.BigDecimal;
 
 public class Point {
 
+    private final static Logger LOG = LogManager.getLogger(Point.class);
     //Coordinates
     private final BigDecimal x;
     private final BigDecimal y;
     private final BigDecimal z;
-
-    private final static Logger LOG = LogManager.getLogger(Point.class);
 
     Point(BigDecimal x, BigDecimal y, BigDecimal z) {
         if (x == null || y == null || z == null) {
@@ -59,9 +58,9 @@ public class Point {
 
         Point point = (Point) o;
 
-        if (x.compareTo(point.x)!=0) return false;
-        if (y.compareTo(point.y)!=0) return false;
-        return z.compareTo(point.z)==0;
+        if (x.compareTo(point.x) != 0) return false;
+        if (y.compareTo(point.y) != 0) return false;
+        return z.compareTo(point.z) == 0;
     }
 
     @Override

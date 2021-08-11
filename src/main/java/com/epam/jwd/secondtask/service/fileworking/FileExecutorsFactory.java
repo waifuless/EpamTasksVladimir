@@ -4,11 +4,12 @@ import java.io.File;
 
 public interface FileExecutorsFactory {
 
-    PlaneReader makeReader(File file);
-    PlaneReader makeReader(String filePath);
-
-    static FileExecutorsFactory create(){
+    static FileExecutorsFactory create() {
         return new PlaneByPointsFileFactory();
     }
+
+    PlaneReader makeReader(File file);
+
+    PlaneReader makeReader(String filePath);
 
 }

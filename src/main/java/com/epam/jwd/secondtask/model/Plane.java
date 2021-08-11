@@ -8,18 +8,17 @@ import java.math.BigDecimal;
 
 public class Plane {
 
+    private final static Logger LOG = LogManager.getLogger(Plane.class);
     //The coefficients of the equation of the plane
     private final BigDecimal coefficientA;
     private final BigDecimal coefficientB;
     private final BigDecimal coefficientC;
     private final BigDecimal freeTerm;
 
-    private final static Logger LOG = LogManager.getLogger(Plane.class);
-
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         try {
             PlaneValidator.checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             LOG.error(ex);
             throw ex;
         }
@@ -67,10 +66,10 @@ public class Plane {
 
         Plane plane = (Plane) o;
 
-        if (coefficientA.compareTo(plane.coefficientA)!=0) return false;
-        if (coefficientB.compareTo(plane.coefficientB)!=0) return false;
-        if (coefficientC.compareTo(plane.coefficientC)!=0) return false;
-        return freeTerm.compareTo(plane.freeTerm)==0;
+        if (coefficientA.compareTo(plane.coefficientA) != 0) return false;
+        if (coefficientB.compareTo(plane.coefficientB) != 0) return false;
+        if (coefficientC.compareTo(plane.coefficientC) != 0) return false;
+        return freeTerm.compareTo(plane.freeTerm) == 0;
     }
 
     @Override

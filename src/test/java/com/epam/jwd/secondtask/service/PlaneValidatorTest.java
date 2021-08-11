@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class PlaneValidatorTest {
 
     @DataProvider
-    public Object[][] constructedExceptionData(){
+    public Object[][] constructedExceptionData() {
         return new Object[][]{
                 {null, null, null, null},
                 {BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO},
