@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -93,6 +95,23 @@ public class PlaneByPointReaderTest {
         try (PlaneByPointReader reader = new PlaneByPointReader(FILE_WITH_DATA)) {
             List<Plane> list = reader.findAllPlanes();
             Assert.assertEquals(list.size(), 7);
+        }
+    }
+
+    @Test
+    public void test_FindAllPlanesAndNextPlane_shouldReturnEqualResults() throws IOException{
+        try (PlaneByPointReader reader1 = new PlaneByPointReader(FILE_WITH_DATA);
+        PlaneByPointReader reader2 = new PlaneByPointReader(FILE_WITH_DATA)) {
+            List<Plane> list1 = reader1.findAllPlanes();
+            List<Plane> list2 = new ArrayList<>();
+            while(reader2.hasNextPlane()){
+                try {
+                    list2.add(reader2.nextPlane());
+                }catch (Exception ignored){
+                    //do nothing
+                }
+            }
+            Assert.assertEquals(list1, list2);
         }
     }
 }
