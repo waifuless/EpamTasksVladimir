@@ -46,49 +46,64 @@ public class PlaneExecutor {
 
     public static Plane normalizeCoefficients(Plane oldPlane) {
         BigDecimal[] arrayOfCoefficients = new BigDecimal[NUMBER_OF_COEFFICIENTS_IN_PLANE];
-
         arrayOfCoefficients[0] = oldPlane.getCoefficientA();
         arrayOfCoefficients[1] = oldPlane.getCoefficientB();
         arrayOfCoefficients[2] = oldPlane.getCoefficientC();
         arrayOfCoefficients[3] = oldPlane.getFreeTerm();
 
-        long maxScaleLength = 0;
-        for (BigDecimal coefficient : arrayOfCoefficients) {
-            if (maxScaleLength < coefficient.scale()) {
-                maxScaleLength = coefficient.scale();
-            }
-        }
-
-        //multiply by 10^maxScaleLen to get the integers
-        if (maxScaleLength > 0) {
-            for (int i = 0; i < arrayOfCoefficients.length; i++) {
-                arrayOfCoefficients[i] = arrayOfCoefficients[i]
-                        .multiply(BigDecimal.valueOf(Math.pow(10, maxScaleLength)));
-            }
-        }
-
-        //Find the greatest common divisor of all coefficients
-        long gcdValue = arrayOfCoefficients[0].abs().longValue();
-        for (int i = 1; i < arrayOfCoefficients.length; i++) {
-            gcdValue = GcdFinder.findGcd(gcdValue, arrayOfCoefficients[i].abs().longValue());
-        }
-
+        long maxScaleLength = findMaxScaleLength(arrayOfCoefficients);
+        multiplyTheCoefficientsToIntegers(arrayOfCoefficients, maxScaleLength);
+        long gcdValue = findGcdOfAllCoefficients(arrayOfCoefficients);
         if (gcdValue > 1) {
-            for (int i = 0; i < arrayOfCoefficients.length; i++) {
-                arrayOfCoefficients[i] = arrayOfCoefficients[i].divide(BigDecimal.valueOf(gcdValue),
-                        COMMON_DIVIDE_SCALE, RoundingMode.HALF_UP);
-            }
+            reduceCoefficientsByGcd(arrayOfCoefficients, gcdValue);
         }
-
         //first coefficient must be positive
         if(arrayOfCoefficients[0].compareTo(BigDecimal.ZERO)<0){
-            for (int i = 0; i < arrayOfCoefficients.length; i++) {
-                arrayOfCoefficients[i] = arrayOfCoefficients[i].negate();
-            }
+            swapAllSigns(arrayOfCoefficients);
         }
 
         return Plane.of(arrayOfCoefficients[0], arrayOfCoefficients[1], arrayOfCoefficients[2], arrayOfCoefficients[3]);
     }
 
+    private static long findMaxScaleLength(BigDecimal[] coefficients){
+        long maxScaleLength = 0;
+        for (BigDecimal coefficient : coefficients) {
+            if (maxScaleLength < coefficient.scale()) {
+                maxScaleLength = coefficient.scale();
+            }
+        }
+        return maxScaleLength;
+    }
 
+    private static void multiplyTheCoefficientsToIntegers(BigDecimal [] coefficients, long maxScaleLength){
+        //multiply by 10^maxScaleLen to get the integers
+        if (maxScaleLength > 0) {
+            for (int i = 0; i < coefficients.length; i++) {
+                coefficients[i] = coefficients[i]
+                        .multiply(BigDecimal.valueOf(Math.pow(10, maxScaleLength)));
+            }
+        }
+    }
+
+    private static long findGcdOfAllCoefficients(BigDecimal [] coefficients){
+        //Find the greatest common divisor of all coefficients
+        long gcdValue = coefficients[0].abs().longValue();
+        for (int i = 1; i < coefficients.length; i++) {
+            gcdValue = GcdFinder.findGcd(gcdValue, coefficients[i].abs().longValue());
+        }
+        return gcdValue;
+    }
+
+    private static void reduceCoefficientsByGcd(BigDecimal[] coefficients, long gcdValue){
+        for (int i = 0; i < coefficients.length; i++) {
+            coefficients[i] = coefficients[i].divide(BigDecimal.valueOf(gcdValue),
+                    COMMON_DIVIDE_SCALE, RoundingMode.HALF_UP);
+        }
+    }
+
+    private static void swapAllSigns(BigDecimal[] coefficients){
+        for (int i = 0; i < coefficients.length; i++) {
+            coefficients[i] = coefficients[i].negate();
+        }
+    }
 }
