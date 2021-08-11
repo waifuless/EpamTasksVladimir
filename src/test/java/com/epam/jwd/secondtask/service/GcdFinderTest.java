@@ -1,10 +1,8 @@
-package com.epam.jwd.secondtask.services;
+package com.epam.jwd.secondtask.service;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 public class GcdFinderTest {
 

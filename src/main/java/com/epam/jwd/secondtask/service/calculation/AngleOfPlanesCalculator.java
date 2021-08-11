@@ -1,4 +1,4 @@
-package com.epam.jwd.secondtask.services.calculation;
+package com.epam.jwd.secondtask.service.calculation;
 
 import com.epam.jwd.secondtask.model.Plane;
 import java.math.BigDecimal;

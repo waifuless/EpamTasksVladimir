@@ -1,7 +1,7 @@
-package com.epam.jwd.secondtask.services;
+package com.epam.jwd.secondtask.service;
 
-import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
+import com.epam.jwd.secondtask.exception.ExceptionMessages;
+import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

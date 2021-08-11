@@ -1,6 +1,6 @@
 package com.epam.jwd.secondtask.model;
 
-import com.epam.jwd.secondtask.services.PlaneValidator;
+import com.epam.jwd.secondtask.service.PlaneValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

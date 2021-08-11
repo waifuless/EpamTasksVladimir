@@ -1,11 +1,11 @@
-package com.epam.jwd.secondtask.services.fileworking;
+package com.epam.jwd.secondtask.service.fileworking;
 
-import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondtask.exceptions.InvalidStringException;
-import com.epam.jwd.secondtask.exceptions.RunOutOfPlanesException;
+import com.epam.jwd.secondtask.exception.ExceptionMessages;
+import com.epam.jwd.secondtask.exception.InvalidStringException;
+import com.epam.jwd.secondtask.exception.RunOutOfPlanesException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
-import com.epam.jwd.secondtask.services.PlaneExecutor;
+import com.epam.jwd.secondtask.service.PlaneExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

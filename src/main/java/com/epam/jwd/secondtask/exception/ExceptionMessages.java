@@ -1,4 +1,4 @@
-package com.epam.jwd.secondtask.exceptions;
+package com.epam.jwd.secondtask.exception;
 
 public enum ExceptionMessages {
 

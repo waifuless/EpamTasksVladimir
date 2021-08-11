@@ -1,12 +1,10 @@
-package com.epam.jwd.secondtask.services;
+package com.epam.jwd.secondtask.service;
 
-import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
+import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
-
-import static org.testng.Assert.*;
 
 public class PlaneValidatorTest {
 

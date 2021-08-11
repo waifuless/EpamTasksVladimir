@@ -1,12 +1,12 @@
 package com.epam.jwd.secondtask.app;
 
 import com.epam.jwd.secondtask.model.Plane;
-import com.epam.jwd.secondtask.services.calculation.AngleOfPlanesCalculator;
-import com.epam.jwd.secondtask.services.fileworking.FileExecutorsFactory;
-import com.epam.jwd.secondtask.services.fileworking.PlaneReader;
+import com.epam.jwd.secondtask.service.calculation.AngleOfPlanesCalculator;
+import com.epam.jwd.secondtask.service.fileworking.FileExecutorsFactory;
+import com.epam.jwd.secondtask.service.fileworking.PlaneReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.jwd.secondtask.services.calculation.PerpendicularityCalculator;
+import com.epam.jwd.secondtask.service.calculation.PerpendicularityCalculator;
 
 import java.io.IOException;
 import java.util.function.Function;

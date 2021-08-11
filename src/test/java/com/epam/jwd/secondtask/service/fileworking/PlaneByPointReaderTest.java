@@ -1,6 +1,6 @@
-package com.epam.jwd.secondtask.services.fileworking;
+package com.epam.jwd.secondtask.service.fileworking;
 
-import com.epam.jwd.secondtask.exceptions.RunOutOfPlanesException;
+import com.epam.jwd.secondtask.exception.RunOutOfPlanesException;
 import com.epam.jwd.secondtask.model.Plane;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;

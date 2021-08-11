@@ -1,11 +1,9 @@
-package com.epam.jwd.secondtask.services.calculation;
+package com.epam.jwd.secondtask.service.calculation;
 
 import com.epam.jwd.secondtask.model.Plane;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 public class PerpendicularityCalculatorTest {
 

@@ -1,7 +1,7 @@
 package com.epam.jwd.secondtask.model;
 
-import com.epam.jwd.secondtask.exceptions.ExceptionMessages;
-import com.epam.jwd.secondtask.exceptions.PointConstructedException;
+import com.epam.jwd.secondtask.exception.ExceptionMessages;
+import com.epam.jwd.secondtask.exception.PointConstructedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

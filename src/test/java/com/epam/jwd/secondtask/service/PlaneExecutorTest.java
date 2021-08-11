@@ -1,6 +1,6 @@
-package com.epam.jwd.secondtask.services;
+package com.epam.jwd.secondtask.service;
 
-import com.epam.jwd.secondtask.exceptions.PlaneConstructedException;
+import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
 import org.testng.Assert;
