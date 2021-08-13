@@ -19,7 +19,10 @@ public class AngleOfPlanesCalculatorTest {
                 {Plane.of(1, 1, 1, 0),
                         Plane.of(2, 2, 2, 0), BigDecimal.ZERO},
                 {Plane.of(0, 2, 1, 2),
-                        Plane.of(22, 21, -8, 0), BigDecimal.valueOf(61.08580854)}
+                        Plane.of(22, 21, -8, 0), BigDecimal.valueOf(61.08580854)},
+                {AngleOfPlanesCalculator.OXY_PLANE, AngleOfPlanesCalculator.OXY_PLANE, BigDecimal.ZERO},
+                {AngleOfPlanesCalculator.OXY_PLANE, AngleOfPlanesCalculator.OXZ_PLANE, BigDecimal.valueOf(90)},
+                {AngleOfPlanesCalculator.OXY_PLANE, AngleOfPlanesCalculator.OYZ_PLANE, BigDecimal.valueOf(90)}
         };
     }
 
