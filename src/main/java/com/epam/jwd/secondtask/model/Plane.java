@@ -17,7 +17,7 @@ public class Plane {
 
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         try {
-            PlaneValidator.checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
+            PlaneValidator.getInstance().checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
         } catch (Exception ex) {
             LOG.error(ex);
             throw ex;

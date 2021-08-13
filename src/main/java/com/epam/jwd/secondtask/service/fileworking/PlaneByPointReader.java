@@ -31,6 +31,7 @@ public class PlaneByPointReader implements PlaneReader {
     private final static int NUMBER_OF_POINTS_IN_PLANE = 3;
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
 
+    private PlaneExecutor planeExecutor;
     private final File file;
     private final List<Plane> planeList;
     private Deque<String> stringDeque;
@@ -43,6 +44,7 @@ public class PlaneByPointReader implements PlaneReader {
         }
         this.file = file;
         planeList = new ArrayList<>();
+        planeExecutor = PlaneExecutor.getInstance();
     }
 
     @Override
@@ -115,7 +117,7 @@ public class PlaneByPointReader implements PlaneReader {
         for (int i = 0, j = 0; i < coordinates.length; i += 3, j++) {
             points[j] = Point.of(coordinates[i], coordinates[i + 1], coordinates[i + 2]);
         }
-        Plane newPlane = PlaneExecutor.createPlaneFromThreePoints(points[0], points[1], points[2]);
+        Plane newPlane = planeExecutor.createPlaneFromThreePoints(points[0], points[1], points[2]);
         planeList.add(newPlane);
         return newPlane;
     }

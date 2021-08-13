@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 
 public class PerpendicularityCalculatorTest {
 
+    private final PerpendicularityCalculator perpendicularityCalculator = PerpendicularityCalculator.getInstance();
+
     @DataProvider
     public Object[][] perpendicularOxyData() {
         return new Object[][]{
@@ -20,12 +22,12 @@ public class PerpendicularityCalculatorTest {
 
     @Test(dataProvider = "perpendicularOxyData")
     public void testIsPlanePerpendicularOxy(Plane plane, boolean answer) {
-        Assert.assertEquals(PerpendicularityCalculator.isPlanePerpendicularOxy(plane), answer);
+        Assert.assertEquals(perpendicularityCalculator.isPlanePerpendicularOxy(plane), answer);
     }
 
     @Test(expectedExceptions = ArgumentNullException.class)
     public void testNullArgumentOxy() {
-        PerpendicularityCalculator.isPlanePerpendicularOxy(null);
+        perpendicularityCalculator.isPlanePerpendicularOxy(null);
     }
 
 
@@ -41,12 +43,12 @@ public class PerpendicularityCalculatorTest {
 
     @Test(dataProvider = "perpendicularOxzData")
     public void testIsPlanePerpendicularOxz(Plane plane, boolean answer) {
-        Assert.assertEquals(PerpendicularityCalculator.isPlanePerpendicularOxz(plane), answer);
+        Assert.assertEquals(perpendicularityCalculator.isPlanePerpendicularOxz(plane), answer);
     }
 
     @Test(expectedExceptions = ArgumentNullException.class)
     public void testNullArgumentOxz() {
-        PerpendicularityCalculator.isPlanePerpendicularOxz(null);
+        perpendicularityCalculator.isPlanePerpendicularOxz(null);
     }
 
 
@@ -62,11 +64,11 @@ public class PerpendicularityCalculatorTest {
 
     @Test(dataProvider = "perpendicularOyzData")
     public void testIsPlanePerpendicularOyz(Plane plane, boolean answer) {
-        Assert.assertEquals(PerpendicularityCalculator.isPlanePerpendicularOyz(plane), answer);
+        Assert.assertEquals(perpendicularityCalculator.isPlanePerpendicularOyz(plane), answer);
     }
 
     @Test(expectedExceptions = ArgumentNullException.class)
     public void testNullArgumentOyz() {
-        PerpendicularityCalculator.isPlanePerpendicularOyz(null);
+        perpendicularityCalculator.isPlanePerpendicularOyz(null);
     }
 }

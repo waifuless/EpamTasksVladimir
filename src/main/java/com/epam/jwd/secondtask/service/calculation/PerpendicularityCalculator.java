@@ -12,22 +12,34 @@ public class PerpendicularityCalculator {
 
     private final static Logger LOG = LogManager.getLogger(PerpendicularityCalculator.class);
 
-    public static boolean isPlanePerpendicularOxy(Plane plane) {
+    private static PerpendicularityCalculator instance;
+
+    private PerpendicularityCalculator() {
+    }
+
+    public static PerpendicularityCalculator getInstance() {
+        if (instance == null) {
+            instance = new PerpendicularityCalculator();
+        }
+        return instance;
+    }
+
+    public boolean isPlanePerpendicularOxy(Plane plane) {
         checkPlaneNotNull(plane);
         return isPlaneParallelOxz(plane) || isPlaneParallelOyz(plane);
     }
 
-    public static boolean isPlanePerpendicularOxz(Plane plane) {
+    public boolean isPlanePerpendicularOxz(Plane plane) {
         checkPlaneNotNull(plane);
         return isPlaneParallelOxy(plane) || isPlaneParallelOyz(plane);
     }
 
-    public static boolean isPlanePerpendicularOyz(Plane plane) {
+    public boolean isPlanePerpendicularOyz(Plane plane) {
         checkPlaneNotNull(plane);
         return isPlaneParallelOxy(plane) || isPlaneParallelOxz(plane);
     }
 
-    private static void checkPlaneNotNull(Plane plane) {
+    private void checkPlaneNotNull(Plane plane) {
         if (plane == null) {
             ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex.getMessage(), ex);
@@ -35,17 +47,17 @@ public class PerpendicularityCalculator {
         }
     }
 
-    private static boolean isPlaneParallelOxy(Plane plane) {
+    private boolean isPlaneParallelOxy(Plane plane) {
         return plane.getCoefficientB().compareTo(plane.getCoefficientA()) == 0
                 && plane.getCoefficientB().compareTo(BigDecimal.ZERO) == 0;
     }
 
-    private static boolean isPlaneParallelOxz(Plane plane) {
+    private boolean isPlaneParallelOxz(Plane plane) {
         return plane.getCoefficientA().compareTo(plane.getCoefficientC()) == 0
                 && plane.getCoefficientA().compareTo(BigDecimal.ZERO) == 0;
     }
 
-    private static boolean isPlaneParallelOyz(Plane plane) {
+    private boolean isPlaneParallelOyz(Plane plane) {
         return plane.getCoefficientB().compareTo(plane.getCoefficientC()) == 0
                 && plane.getCoefficientB().compareTo(BigDecimal.ZERO) == 0;
     }

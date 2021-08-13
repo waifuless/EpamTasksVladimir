@@ -1,8 +1,23 @@
 package com.epam.jwd.secondtask.service;
 
-//GCD = greatest common divisor
+/**
+ * GCD = greatest common divisor
+ */
 public class GcdFinder {
-    public static long findGcd(long a, long b) {
+
+    private static GcdFinder instance;
+
+    private GcdFinder() {
+    }
+
+    public static GcdFinder getInstance() {
+        if (instance == null) {
+            instance = new GcdFinder();
+        }
+        return instance;
+    }
+
+    public long findGcd(long a, long b) {
         while (b != 0) {
             long tmp = a % b;
             a = b;

@@ -11,8 +11,20 @@ public class PlaneValidator {
 
     private final static Logger LOG = LogManager.getLogger(PlaneValidator.class);
 
-    public static void checkCoefficients(BigDecimal coefficientA, BigDecimal coefficientB,
-                                         BigDecimal coefficientC, BigDecimal freeTerm) {
+    private static PlaneValidator instance;
+
+    private PlaneValidator() {
+    }
+
+    public static PlaneValidator getInstance() {
+        if (instance == null) {
+            instance = new PlaneValidator();
+        }
+        return instance;
+    }
+
+    public void checkCoefficients(BigDecimal coefficientA, BigDecimal coefficientB,
+                                  BigDecimal coefficientC, BigDecimal freeTerm) {
         if (coefficientA == null || coefficientB == null || coefficientC == null || freeTerm == null) {
             LOG.error(ExceptionMessages.ARGUMENT_IS_NULL_MCG.getMessage());
             throw new PlaneConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);

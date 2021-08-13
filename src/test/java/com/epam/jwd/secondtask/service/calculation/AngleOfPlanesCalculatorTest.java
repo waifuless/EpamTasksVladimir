@@ -11,6 +11,8 @@ import java.math.RoundingMode;
 
 public class AngleOfPlanesCalculatorTest {
 
+    private final AngleOfPlanesCalculator angleOfPlanesCalculator = AngleOfPlanesCalculator.getInstance();
+
     @DataProvider
     public Object[][] calculateAngleBetweenPlanesData() {
         return new Object[][]{
@@ -23,13 +25,13 @@ public class AngleOfPlanesCalculatorTest {
 
     @Test(dataProvider = "calculateAngleBetweenPlanesData")
     public void testCalculateAngleBetweenPlanes(Plane plane1, Plane plane2, BigDecimal angle) {
-        Assert.assertEquals(AngleOfPlanesCalculator.calculateAngleBetweenPlanes(plane1, plane2)
+        Assert.assertEquals(angleOfPlanesCalculator.calculateAngleBetweenPlanes(plane1, plane2)
                         .setScale(4, RoundingMode.HALF_UP),
                 angle.setScale(4, RoundingMode.HALF_UP));
     }
 
     @Test(expectedExceptions = ArgumentNullException.class)
     public void testNullArguments() {
-        AngleOfPlanesCalculator.calculateAngleBetweenPlanes(null, null);
+        angleOfPlanesCalculator.calculateAngleBetweenPlanes(null, null);
     }
 }

@@ -17,7 +17,19 @@ public class AngleOfPlanesCalculator {
 
     private final static Logger LOG = LogManager.getLogger(AngleOfPlanesCalculator.class);
 
-    public static BigDecimal calculateAngleBetweenPlanes(Plane planeA, Plane planeB) {
+    private static AngleOfPlanesCalculator instance;
+
+    private AngleOfPlanesCalculator() {
+    }
+
+    public static AngleOfPlanesCalculator getInstance() {
+        if (instance == null) {
+            instance = new AngleOfPlanesCalculator();
+        }
+        return instance;
+    }
+
+    public BigDecimal calculateAngleBetweenPlanes(Plane planeA, Plane planeB) {
         if (planeA == null || planeB == null) {
             ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex.getMessage(), ex);

@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 
 public class PlaneValidatorTest {
 
+    private final PlaneValidator planeValidator = PlaneValidator.getInstance();
+
     @DataProvider
     public Object[][] constructedExceptionData() {
         return new Object[][]{
@@ -19,13 +21,13 @@ public class PlaneValidatorTest {
 
     @Test(expectedExceptions = PlaneConstructedException.class, dataProvider = "constructedExceptionData")
     public void testCheckCoefficients(BigDecimal cA, BigDecimal cB, BigDecimal cC, BigDecimal freeTerm) {
-        PlaneValidator.checkCoefficients(cA, cB, cC, freeTerm);
+        planeValidator.checkCoefficients(cA, cB, cC, freeTerm);
     }
 
     //test that exception will not be received
     @Test
     public void testCheckCoefficients2() {
-        PlaneValidator.checkCoefficients(BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.TEN, BigDecimal.ZERO);
+        planeValidator.checkCoefficients(BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.TEN, BigDecimal.ZERO);
     }
 
 
