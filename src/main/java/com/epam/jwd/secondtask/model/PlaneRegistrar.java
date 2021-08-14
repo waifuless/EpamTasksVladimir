@@ -2,8 +2,9 @@ package com.epam.jwd.secondtask.model;
 
 import com.epam.jwd.secondtask.exception.ExceptionMessages;
 import com.epam.jwd.secondtask.exception.PlaneIsInvalidException;
-import com.epam.jwd.secondtask.service.PlaneValidator;
 import com.epam.jwd.secondtask.service.calculation.AngleOfPlanesCalculator;
+import com.epam.jwd.secondtask.validation.PlaneValidationFactory;
+import com.epam.jwd.secondtask.validation.ValidationStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,15 +15,16 @@ import java.math.BigDecimal;
 public class PlaneRegistrar implements PropertyChangeListener {
 
     private final static Logger LOG = LogManager.getLogger(PlaneRegistrar.class);
-    private final static PlaneValidator planeValidator = PlaneValidator.getInstance();
+    private final static ValidationStrategy planeValidator = PlaneValidationFactory
+            .getValidationStrategy(PlaneValidationFactory.WayToValidPlane.VALIDATE_WITH_BOOL);
     private final static AngleOfPlanesCalculator angleCalculator = AngleOfPlanesCalculator.getInstance();
 
     private final int id;
     private final String name;
+    private final Plane plane;
     private BigDecimal angleWithOxy;
     private BigDecimal angleWithOxz;
     private BigDecimal angleWithOyz;
-    private final Plane plane;
     private boolean planeIsValid;
 
     public PlaneRegistrar(int id, String name, Plane plane) {
@@ -31,7 +33,7 @@ public class PlaneRegistrar implements PropertyChangeListener {
         this.plane = plane;
         plane.addPropertyChangeListener(this);
         this.planeIsValid = planeValidator.isPlaneValid(plane);
-        if(planeIsValid){
+        if (planeIsValid) {
             updateAngles();
         }
     }
@@ -94,7 +96,7 @@ public class PlaneRegistrar implements PropertyChangeListener {
         return planeIsValid;
     }
 
-    private void updateAngles(){
+    private void updateAngles() {
         angleWithOxy = angleCalculator.calculateAngleBetweenPlanes(plane, AngleOfPlanesCalculator.OXY_PLANE);
         angleWithOxz = angleCalculator.calculateAngleBetweenPlanes(plane, AngleOfPlanesCalculator.OXZ_PLANE);
         angleWithOyz = angleCalculator.calculateAngleBetweenPlanes(plane, AngleOfPlanesCalculator.OYZ_PLANE);

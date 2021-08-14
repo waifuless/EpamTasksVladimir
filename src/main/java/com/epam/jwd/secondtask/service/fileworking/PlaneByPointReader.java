@@ -30,10 +30,9 @@ public class PlaneByPointReader implements PlaneReader {
     private final static String VALIDATOR = "[+-]?([0-9]+[.])?[0-9]+";
     private final static int NUMBER_OF_POINTS_IN_PLANE = 3;
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
-
-    private PlaneExecutor planeExecutor;
     private final File file;
     private final List<Plane> planeList;
+    private final PlaneExecutor planeExecutor;
     private Deque<String> stringDeque;
 
     PlaneByPointReader(File file) {

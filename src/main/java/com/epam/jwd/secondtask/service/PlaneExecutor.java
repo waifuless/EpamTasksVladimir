@@ -63,6 +63,7 @@ public class PlaneExecutor {
             LOG.error(ex.getMessage(), ex);
             throw ex;
         }
+
         BigDecimal[] arrayOfCoefficients = new BigDecimal[NUMBER_OF_COEFFICIENTS_IN_PLANE];
         arrayOfCoefficients[0] = oldPlane.getCoefficientA();
         arrayOfCoefficients[1] = oldPlane.getCoefficientB();

@@ -1,9 +1,8 @@
 package com.epam.jwd.secondtask.service.calculation;
 
-import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.model.Plane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.secondtask.validation.PlaneValidationFactory;
+import com.epam.jwd.secondtask.validation.ValidationStrategy;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,8 +14,8 @@ public class AngleOfPlanesCalculator {
     public final static Plane OYZ_PLANE = Plane.of(1, 0, 0, 0);
     private final static int COMMON_DIVIDE_SCALE = 8;
 
-    private final static Logger LOG = LogManager.getLogger(AngleOfPlanesCalculator.class);
-
+    private final static ValidationStrategy planeValidator = PlaneValidationFactory
+            .getValidationStrategy(PlaneValidationFactory.WayToValidPlane.VALIDATE_WITH_EXCEPTIONS);
     private static AngleOfPlanesCalculator instance;
 
     private AngleOfPlanesCalculator() {
@@ -30,11 +29,8 @@ public class AngleOfPlanesCalculator {
     }
 
     public BigDecimal calculateAngleBetweenPlanes(Plane planeA, Plane planeB) {
-        if (planeA == null || planeB == null) {
-            ArgumentNullException ex = new ArgumentNullException();
-            LOG.error(ex.getMessage(), ex);
-            throw ex;
-        }
+        planeValidator.isPlaneValid(planeA);
+        planeValidator.isPlaneValid(planeB);
         //Formula(A, B, C - coefficients): cos α = (|A1·A2 + B1·B2 + C1·C2|)/(√(A1^2 + B1^2 + C1^2)*(A2^2 + B2^2 + C2^2))
         BigDecimal numerator = planeA.getCoefficientA().multiply(planeB.getCoefficientA())
                 .add(planeA.getCoefficientB().multiply(planeB.getCoefficientB()))

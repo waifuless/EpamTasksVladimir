@@ -1,16 +1,16 @@
 package com.epam.jwd.secondtask.service.calculation;
 
-import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.model.Plane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.secondtask.validation.PlaneValidationFactory;
+import com.epam.jwd.secondtask.validation.ValidationStrategy;
 
 import java.math.BigDecimal;
 
 
 public class PerpendicularityCalculator {
 
-    private final static Logger LOG = LogManager.getLogger(PerpendicularityCalculator.class);
+    private final static ValidationStrategy planeValidator = PlaneValidationFactory
+            .getValidationStrategy(PlaneValidationFactory.WayToValidPlane.VALIDATE_WITH_EXCEPTIONS);
 
     private static PerpendicularityCalculator instance;
 
@@ -25,26 +25,22 @@ public class PerpendicularityCalculator {
     }
 
     public boolean isPlanePerpendicularOxy(Plane plane) {
-        checkPlaneNotNull(plane);
+        checkPlane(plane);
         return isPlaneParallelOxz(plane) || isPlaneParallelOyz(plane);
     }
 
     public boolean isPlanePerpendicularOxz(Plane plane) {
-        checkPlaneNotNull(plane);
+        checkPlane(plane);
         return isPlaneParallelOxy(plane) || isPlaneParallelOyz(plane);
     }
 
     public boolean isPlanePerpendicularOyz(Plane plane) {
-        checkPlaneNotNull(plane);
+        checkPlane(plane);
         return isPlaneParallelOxy(plane) || isPlaneParallelOxz(plane);
     }
 
-    private void checkPlaneNotNull(Plane plane) {
-        if (plane == null) {
-            ArgumentNullException ex = new ArgumentNullException();
-            LOG.error(ex.getMessage(), ex);
-            throw ex;
-        }
+    private void checkPlane(Plane plane) {
+        planeValidator.isPlaneValid(plane);
     }
 
     private boolean isPlaneParallelOxy(Plane plane) {

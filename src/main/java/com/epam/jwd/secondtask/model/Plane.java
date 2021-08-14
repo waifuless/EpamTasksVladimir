@@ -1,6 +1,7 @@
 package com.epam.jwd.secondtask.model;
 
-import com.epam.jwd.secondtask.service.PlaneValidator;
+import com.epam.jwd.secondtask.exception.ExceptionMessages;
+import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 public class Plane {
 
     private final static Logger LOG = LogManager.getLogger(Plane.class);
-
+    private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
     /**
      * The coefficients of the equation of the plane
      */
@@ -21,11 +22,9 @@ public class Plane {
     private BigDecimal coefficientC;
     private BigDecimal freeTerm;
 
-    private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
-
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         try {
-            PlaneValidator.getInstance().checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
+            checkCoefficients(coefficientA, coefficientB, coefficientC, freeTerm);
         } catch (Exception ex) {
             LOG.error(ex);
             throw ex;
@@ -55,22 +54,14 @@ public class Plane {
         return coefficientA;
     }
 
-    public BigDecimal getCoefficientB() {
-        return coefficientB;
-    }
-
-    public BigDecimal getCoefficientC() {
-        return coefficientC;
-    }
-
-    public BigDecimal getFreeTerm() {
-        return freeTerm;
-    }
-
     public void setCoefficientA(BigDecimal coefficientA) {
         BigDecimal oldValue = this.coefficientA;
         this.coefficientA = coefficientA;
         changes.firePropertyChange("coefficientA", oldValue, coefficientA);
+    }
+
+    public BigDecimal getCoefficientB() {
+        return coefficientB;
     }
 
     public void setCoefficientB(BigDecimal coefficientB) {
@@ -79,16 +70,24 @@ public class Plane {
         changes.firePropertyChange("coefficientB", oldValue, coefficientB);
     }
 
+    public BigDecimal getCoefficientC() {
+        return coefficientC;
+    }
+
     public void setCoefficientC(BigDecimal coefficientC) {
         BigDecimal oldValue = this.coefficientC;
         this.coefficientC = coefficientC;
         changes.firePropertyChange("coefficientC", oldValue, coefficientC);
     }
 
+    public BigDecimal getFreeTerm() {
+        return freeTerm;
+    }
+
     public void setFreeTerm(BigDecimal freeTerm) {
         BigDecimal oldValue = this.freeTerm;
         this.freeTerm = freeTerm;
-        changes.firePropertyChange("freeTerm", freeTerm, freeTerm);
+        changes.firePropertyChange("freeTerm", oldValue, freeTerm);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -137,5 +136,18 @@ public class Plane {
                 ", coefficientC=" + coefficientC +
                 ", freeTerm=" + freeTerm +
                 '}';
+    }
+
+    private void checkCoefficients(BigDecimal coefficientA, BigDecimal coefficientB,
+                                   BigDecimal coefficientC, BigDecimal freeTerm) {
+        if (coefficientA == null || coefficientB == null || coefficientC == null || freeTerm == null) {
+            LOG.error(ExceptionMessages.ARGUMENT_IS_NULL_MCG.getMessage());
+            throw new PlaneConstructedException(ExceptionMessages.ARGUMENT_IS_NULL_MCG);
+        }
+        if (coefficientA.compareTo(coefficientB) == 0 && coefficientA.compareTo(coefficientC) == 0
+                && coefficientA.compareTo(BigDecimal.ZERO) == 0) {
+            LOG.error(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG.getMessage());
+            throw new PlaneConstructedException(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG);
+        }
     }
 }
