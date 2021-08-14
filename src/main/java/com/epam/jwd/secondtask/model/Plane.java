@@ -4,16 +4,24 @@ import com.epam.jwd.secondtask.service.PlaneValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.math.BigDecimal;
 
+//todo: fully remake plane to mutable and make it observable
 public class Plane {
 
     private final static Logger LOG = LogManager.getLogger(Plane.class);
-    //The coefficients of the equation of the plane
-    private final BigDecimal coefficientA;
-    private final BigDecimal coefficientB;
-    private final BigDecimal coefficientC;
-    private final BigDecimal freeTerm;
+
+    /**
+     * The coefficients of the equation of the plane
+     */
+    private BigDecimal coefficientA;
+    private BigDecimal coefficientB;
+    private BigDecimal coefficientC;
+    private BigDecimal freeTerm;
+
+    private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
     Plane(BigDecimal coefficientA, BigDecimal coefficientB, BigDecimal coefficientC, BigDecimal freeTerm) {
         try {
@@ -59,6 +67,38 @@ public class Plane {
         return freeTerm;
     }
 
+    public void setCoefficientA(BigDecimal coefficientA) {
+        BigDecimal oldValue = this.coefficientA;
+        this.coefficientA = coefficientA;
+        changes.firePropertyChange("coefficientA", oldValue, coefficientA);
+    }
+
+    public void setCoefficientB(BigDecimal coefficientB) {
+        BigDecimal oldValue = this.coefficientB;
+        this.coefficientB = coefficientB;
+        changes.firePropertyChange("coefficientB", oldValue, coefficientB);
+    }
+
+    public void setCoefficientC(BigDecimal coefficientC) {
+        BigDecimal oldValue = this.coefficientC;
+        this.coefficientC = coefficientC;
+        changes.firePropertyChange("coefficientC", oldValue, coefficientC);
+    }
+
+    public void setFreeTerm(BigDecimal freeTerm) {
+        BigDecimal oldValue = this.freeTerm;
+        this.freeTerm = freeTerm;
+        changes.firePropertyChange("freeTerm", freeTerm, freeTerm);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener l) {
+        changes.addPropertyChangeListener(l);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener l) {
+        changes.removePropertyChangeListener(l);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,6 +111,7 @@ public class Plane {
         if (coefficientC.compareTo(plane.coefficientC) != 0) return false;
         return freeTerm.compareTo(plane.freeTerm) == 0;
     }
+
 
     @Override
     public int hashCode() {

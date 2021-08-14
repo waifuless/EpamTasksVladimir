@@ -2,6 +2,8 @@ package com.epam.jwd.secondtask.service;
 
 import com.epam.jwd.secondtask.exception.ExceptionMessages;
 import com.epam.jwd.secondtask.exception.PlaneConstructedException;
+import com.epam.jwd.secondtask.exception.PlaneIsInvalidException;
+import com.epam.jwd.secondtask.model.Plane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,5 +36,15 @@ public class PlaneValidator {
             LOG.error(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG.getMessage());
             throw new PlaneConstructedException(ExceptionMessages.ALL_COEFFICIENTS_ARE_ZERO_MCG);
         }
+    }
+
+    public boolean isPlaneValid(Plane plane){
+        if (plane.getCoefficientA() == null || plane.getCoefficientB() == null
+                || plane.getCoefficientC() == null || plane.getFreeTerm() == null) {
+            return false;
+        }
+        return !(plane.getCoefficientA().compareTo(plane.getCoefficientB()) == 0
+                && plane.getCoefficientA().compareTo(plane.getCoefficientC()) == 0
+                && plane.getCoefficientA().compareTo(BigDecimal.ZERO) == 0);
     }
 }
