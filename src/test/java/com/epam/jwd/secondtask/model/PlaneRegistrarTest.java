@@ -11,7 +11,7 @@ public class PlaneRegistrarTest {
 
     @Test
     public void testInitialization(){
-        PlaneRegistrar registrar = new PlaneRegistrar(1, "lol",
+        PlaneRegistrar registrar = new PlaneRegistrar("lol",
                 Plane.of(2,2,2,2));
         assertEquals(registrar.getAngleWithOxy().setScale(4, RoundingMode.HALF_UP),
                 BigDecimal.valueOf(54.7356).setScale(4, RoundingMode.HALF_UP));
@@ -23,7 +23,7 @@ public class PlaneRegistrarTest {
 
     @Test
     public void testPropertyChange() {
-        PlaneRegistrar registrar = new PlaneRegistrar(1, "lol",
+        PlaneRegistrar registrar = new PlaneRegistrar("lol",
                 Plane.of(2,2,2,2));
         registrar.getPlane().setCoefficientA(BigDecimal.valueOf(4));
 

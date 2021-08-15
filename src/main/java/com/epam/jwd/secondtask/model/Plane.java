@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.math.BigDecimal;
 
-//todo: fully remake plane to mutable and make it observable
 public class Plane {
 
     private final static Logger LOG = LogManager.getLogger(Plane.class);
@@ -35,6 +34,13 @@ public class Plane {
         this.freeTerm = freeTerm;
     }
 
+    Plane(Plane oldPlane) {
+        this.coefficientA = oldPlane.coefficientA;
+        this.coefficientB = oldPlane.coefficientB;
+        this.coefficientC = oldPlane.coefficientC;
+        this.freeTerm = oldPlane.freeTerm;
+    }
+
     public static Plane of(BigDecimal coefficientA, BigDecimal coefficientB,
                            BigDecimal coefficientC, BigDecimal freeTerm) {
         return new Plane(coefficientA, coefficientB, coefficientC, freeTerm);
@@ -48,6 +54,10 @@ public class Plane {
     public static Plane of(double coefficientA, double coefficientB, double coefficientC, double freeTerm) {
         return new Plane(BigDecimal.valueOf(coefficientA), BigDecimal.valueOf(coefficientB),
                 BigDecimal.valueOf(coefficientC), BigDecimal.valueOf(freeTerm));
+    }
+
+    public static Plane of(Plane oldPlane) {
+        return new Plane(oldPlane);
     }
 
     public BigDecimal getCoefficientA() {

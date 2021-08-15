@@ -19,40 +19,10 @@ import java.util.List;
 
 public class PlaneByPointReaderTest {
 
-    private final static Path DIRECTORIES = Paths.get("test_data/");
-    private final static File EMPTY_FILE = new File("test_data/empty.txt");
-    private final static File NON_EXISTING_FILE = new File("test_data/non_exist_space.txt");
-    private final static File FILE_WITH_DATA = new File("test_data/coordinates.txt");
+    private final static File EMPTY_FILE = new File("src/test/resources/test_data/empty.txt");
+    private final static File NON_EXISTING_FILE = new File("src/test/resources/test_data/non_exist_space.txt");
+    private final static File FILE_WITH_DATA = new File("src/test/resources/test_data/coordinates.txt");
 
-    @BeforeTest
-    private void initFiles() throws IOException {
-        Files.deleteIfExists(NON_EXISTING_FILE.toPath());
-        Files.deleteIfExists(EMPTY_FILE.toPath());
-        Files.deleteIfExists(FILE_WITH_DATA.toPath());
-
-        Files.createDirectories(DIRECTORIES);
-        Files.createFile(EMPTY_FILE.toPath());
-        Files.createFile(FILE_WITH_DATA.toPath());
-
-        String[] strings = new String[]{
-                "  2 1 4 6   7 8 9 0 2",
-                "1.1 2.2 -5 1 0.52 12 3 2",
-                "1.1 5 0 2 1 0 3 -1 0",
-                "1 2 0 2 1 0 4 -2 0",
-                "0 0 0 0 0 0 0 0 0",
-                "  1 1 1 1 1 1 1 1 1",
-                "1.2   1.101 -2.1 +3 0 2222.21123   5 2 1",
-                "  1   2 3 3 5 3 7 2 1",
-                "",
-                "",
-                "  2 1 4 6   7 8 9 0 2",
-                "",
-                "    12 dasd 1223 123",
-                "",
-                "  1 0 2 3 4 2 1 5 6.2"
-        };
-        Files.write(FILE_WITH_DATA.toPath(), Arrays.asList(strings));
-    }
 
     @Test(expectedExceptions = RunOutOfPlanesException.class)
     public void testNextPlaneEmptyFile() throws IOException {
