@@ -6,6 +6,8 @@ import com.epam.jwd.secondtask.exception.repositoryexception.InvalidIdException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
@@ -139,5 +141,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<T> findAllMatch(PredicateForRepository<T> predicate) {
+        return list.stream().filter(predicate::test).collect(Collectors.toList());
     }
 }

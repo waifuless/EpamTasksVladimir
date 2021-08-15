@@ -24,7 +24,7 @@ public class PlaneRegistrar implements PropertyChangeListener, EntityWithId {
     private final Plane plane;
 
     private final long id;
-    private String name;
+    private final String name;
     private BigDecimal angleWithOxy;
     private BigDecimal angleWithOxz;
     private BigDecimal angleWithOyz;
@@ -78,9 +78,6 @@ public class PlaneRegistrar implements PropertyChangeListener, EntityWithId {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     /**
      * Angles getters work when plane is valid

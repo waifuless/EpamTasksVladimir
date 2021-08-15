@@ -1,6 +1,7 @@
 package com.epam.jwd.secondtask.repository;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * @param <T> - type of entity
@@ -28,5 +29,7 @@ public interface Repository<T extends EntityWithId> {
     boolean isExistById(long id);
 
     boolean isExist(T t);
+
+    List<T> findAllMatch(PredicateForRepository<T> predicate);
 
 }
