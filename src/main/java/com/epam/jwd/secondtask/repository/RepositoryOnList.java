@@ -7,7 +7,6 @@ import com.epam.jwd.secondtask.exception.repositoryexception.InvalidIdException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
@@ -23,7 +22,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     }
 
     RepositoryOnList(List<T> list) {
-        if(list==null){
+        if (list == null) {
             throw new ArgumentNullException();
         }
         this.list = new ArrayList<>();
@@ -35,7 +34,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public T save(T t) {
-        if(t==null){
+        if (t == null) {
             throw new ArgumentNullException();
         }
         T newObject = (T) t.createWithId(++maxId);
@@ -45,10 +44,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public T findById(long id) {
-        if(id<MINIMAL_ID_VALUE){
+        if (id < MINIMAL_ID_VALUE) {
             throw new InvalidIdException();
         }
-        if(id>maxId){
+        if (id > maxId) {
             throw new EntityNotFoundException();
         }
         for (T t : list) {
@@ -62,7 +61,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public long findId(T t) {
-        if(t==null){
+        if (t == null) {
             throw new ArgumentNullException();
         }
         for (T elem : list) {
@@ -74,7 +73,6 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
         throw new EntityNotFoundException();
     }
 
-    //todo: test that it`s deep clone
     @Override
     public List<T> findAll() {
         return new ArrayList<>(list);
@@ -82,10 +80,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public void update(T newObject, long id) {
-        if(id<MINIMAL_ID_VALUE || id>maxId){
+        if (id < MINIMAL_ID_VALUE || id > maxId) {
             throw new InvalidIdException();
         }
-        if(newObject==null){
+        if (newObject == null) {
             throw new ArgumentNullException();
         }
         T oldObject = findById(id);
@@ -94,10 +92,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public void deleteById(long id) {
-        if(id<MINIMAL_ID_VALUE){
+        if (id < MINIMAL_ID_VALUE) {
             throw new InvalidIdException();
         }
-        if(id>maxId){
+        if (id > maxId) {
             throw new EntityNotFoundException();
         }
         T oldObject = findById(id);
@@ -117,10 +115,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public boolean isExistById(long id) {
-        if(id<MINIMAL_ID_VALUE){
+        if (id < MINIMAL_ID_VALUE) {
             throw new InvalidIdException();
         }
-        if(id>maxId){
+        if (id > maxId) {
             return false;
         }
         for (T t : list) {
@@ -133,7 +131,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public boolean isExist(T t) {
-        if(t==null){
+        if (t == null) {
             throw new ArgumentNullException();
         }
         for (T elem : list) {

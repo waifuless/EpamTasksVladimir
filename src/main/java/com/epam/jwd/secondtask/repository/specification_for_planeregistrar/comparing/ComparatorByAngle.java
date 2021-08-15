@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class ComparatorByAngle<T extends PlaneRegistrar> implements Comparator<T> {
 
-    private Angle angle;
+    private final Angle angle;
 
     ComparatorByAngle(Angle angle) {
         this.angle = angle;
@@ -18,7 +18,7 @@ public class ComparatorByAngle<T extends PlaneRegistrar> implements Comparator<T
 
     @Override
     public int compare(T elem1, T elem2) {
-        switch (angle){
+        switch (angle) {
             case OXY:
                 return elem1.getAngleWithOxy().compareTo(elem2.getAngleWithOxy());
             case OXZ:
@@ -30,7 +30,7 @@ public class ComparatorByAngle<T extends PlaneRegistrar> implements Comparator<T
         }
     }
 
-    enum Angle{
+    enum Angle {
         OXY, OXZ, OYZ
     }
 }

@@ -2,7 +2,6 @@ package com.epam.jwd.secondtask.repository;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * @param <T> - type of entity

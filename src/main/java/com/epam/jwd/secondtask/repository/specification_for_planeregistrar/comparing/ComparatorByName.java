@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class ComparatorByName<T extends PlaneRegistrar> implements Comparator<T> {
 
-    private CompareMode mode;
+    private final CompareMode mode;
 
     ComparatorByName(CompareMode mode) {
         this.mode = mode;
@@ -18,7 +18,7 @@ public class ComparatorByName<T extends PlaneRegistrar> implements Comparator<T>
 
     @Override
     public int compare(T elem1, T elem2) {
-        switch (mode){
+        switch (mode) {
             case COMMON:
                 return elem1.getName().compareTo(elem2.getName());
             case IGNORE_CASE:
@@ -28,7 +28,7 @@ public class ComparatorByName<T extends PlaneRegistrar> implements Comparator<T>
         }
     }
 
-    enum CompareMode{
+    enum CompareMode {
         COMMON, IGNORE_CASE
     }
 

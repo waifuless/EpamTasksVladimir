@@ -4,6 +4,7 @@ import com.epam.jwd.secondtask.model.PlaneRegistrar;
 
 import java.util.Comparator;
 
+//todo: tests to all comparators
 public class ComparatorFactory {
 
     private static ComparatorById byId;
@@ -77,7 +78,7 @@ public class ComparatorFactory {
     }
 
 
-    enum CompareParameter {
+    public enum CompareParameter {
         ID,
         NAME_COMMON_CASE,
         NAME_IGNORE_CASE,

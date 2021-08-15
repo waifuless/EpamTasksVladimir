@@ -6,7 +6,8 @@ import java.util.Comparator;
 
 public class ComparatorById<T extends PlaneRegistrar> implements Comparator<T> {
 
-    ComparatorById(){}
+    ComparatorById() {
+    }
 
     @Override
     public int compare(T elem1, T elem2) {
