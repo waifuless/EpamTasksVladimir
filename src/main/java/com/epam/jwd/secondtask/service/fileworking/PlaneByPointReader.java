@@ -27,7 +27,7 @@ public class PlaneByPointReader implements PlaneReader {
     private final static Logger LOG = LogManager.getLogger(PlaneByPointReader.class);
 
     //"[+-]?([0-9]+[.])?[0-9]+" for one point
-    private final static String VALIDATOR = "[+-]?([0-9]+[.])?[0-9]+";
+    private final static Pattern ONE_COORDINATE_PATTERN = Pattern.compile("[+-]?([0-9]+[.])?[0-9]+");
     private final static int NUMBER_OF_POINTS_IN_PLANE = 3;
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
     private final File file;
@@ -106,7 +106,7 @@ public class PlaneByPointReader implements PlaneReader {
             throw ex;
         }
         for (int i = 0; i < coordinates.length; i++) {
-            if (!Pattern.matches(VALIDATOR, coordinates[i])) {
+            if (!ONE_COORDINATE_PATTERN.matcher(coordinates[i]).matches()) {
                 InvalidStringException ex = new InvalidStringException(str);
                 LOG.error(ex);
                 throw ex;
