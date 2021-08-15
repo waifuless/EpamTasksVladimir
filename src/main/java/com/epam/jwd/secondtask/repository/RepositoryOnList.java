@@ -5,6 +5,7 @@ import com.epam.jwd.secondtask.exception.repositoryexception.EntityNotFoundExcep
 import com.epam.jwd.secondtask.exception.repositoryexception.InvalidIdException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     private final static long MINIMAL_ID_VALUE = 1;
 
-    private final List<T> list;
+    private List<T> list;
     private long maxId;
 
     RepositoryOnList() {
@@ -146,5 +147,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public List<T> findAllMatch(PredicateForRepository<T> predicate) {
         return list.stream().filter(predicate::test).collect(Collectors.toList());
+    }
+
+    @Override
+    public void sort(Comparator<T> comparator) {
+        list = list.stream().sorted(comparator).collect(Collectors.toList());
     }
 }

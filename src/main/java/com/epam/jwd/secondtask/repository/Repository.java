@@ -1,5 +1,6 @@
 package com.epam.jwd.secondtask.repository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -31,5 +32,7 @@ public interface Repository<T extends EntityWithId> {
     boolean isExist(T t);
 
     List<T> findAllMatch(PredicateForRepository<T> predicate);
+
+    void sort(Comparator<T> comparator);
 
 }
