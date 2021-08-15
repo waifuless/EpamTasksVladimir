@@ -11,21 +11,21 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class PlaneExecutor {
+public class PlaneByPointsBuilder {
 
     private final static int NUMBER_OF_COEFFICIENTS_IN_PLANE = 4;
     private final static int COMMON_DIVIDE_SCALE = 8;
 
-    private final static Logger LOG = LogManager.getLogger(PlaneExecutor.class);
+    private final static Logger LOG = LogManager.getLogger(PlaneByPointsBuilder.class);
 
-    private static PlaneExecutor instance;
+    private static PlaneByPointsBuilder instance;
 
-    private PlaneExecutor() {
+    private PlaneByPointsBuilder() {
     }
 
-    public static PlaneExecutor getInstance() {
+    public static PlaneByPointsBuilder getInstance() {
         if (instance == null) {
-            instance = new PlaneExecutor();
+            instance = new PlaneByPointsBuilder();
         }
         return instance;
     }

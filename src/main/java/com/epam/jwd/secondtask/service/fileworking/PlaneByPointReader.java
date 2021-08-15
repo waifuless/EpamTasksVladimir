@@ -6,7 +6,7 @@ import com.epam.jwd.secondtask.exception.InvalidStringException;
 import com.epam.jwd.secondtask.exception.RunOutOfPlanesException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.Point;
-import com.epam.jwd.secondtask.service.PlaneExecutor;
+import com.epam.jwd.secondtask.service.PlaneByPointsBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,7 +32,7 @@ public class PlaneByPointReader implements PlaneReader {
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
     private final File file;
     private final List<Plane> planeList;
-    private final PlaneExecutor planeExecutor;
+    private final PlaneByPointsBuilder planeByPointsBuilder;
     private Deque<String> stringDeque;
 
     PlaneByPointReader(File file) {
@@ -43,7 +43,7 @@ public class PlaneByPointReader implements PlaneReader {
         }
         this.file = file;
         planeList = new ArrayList<>();
-        planeExecutor = PlaneExecutor.getInstance();
+        planeByPointsBuilder = PlaneByPointsBuilder.getInstance();
     }
 
     @Override
@@ -116,7 +116,7 @@ public class PlaneByPointReader implements PlaneReader {
         for (int i = 0, j = 0; i < coordinates.length; i += 3, j++) {
             points[j] = Point.of(coordinates[i], coordinates[i + 1], coordinates[i + 2]);
         }
-        Plane newPlane = planeExecutor.createPlaneFromThreePoints(points[0], points[1], points[2]);
+        Plane newPlane = planeByPointsBuilder.createPlaneFromThreePoints(points[0], points[1], points[2]);
         planeList.add(newPlane);
         return newPlane;
     }
