@@ -5,15 +5,19 @@ import com.epam.jwd.secondtask.exception.PlaneConstructedException;
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.PlaneRegistrar;
 import com.epam.jwd.secondtask.repository.specification_for_planeregistrar.comparing.ComparatorFactory;
+import com.epam.jwd.secondtask.repository.specification_for_planeregistrar.finding.PredicateByIdRange;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class RepositorySortTest {
+public class RepositorySortAndFindTest {
 
     private final static RepositoryOnList<PlaneRegistrar> repository = new RepositoryOnList<>();
 
@@ -75,6 +79,50 @@ public class RepositorySortTest {
         List<PlaneRegistrar> list = repository.findAll();
         for (int i = 0; i < list.size() - 1; i++) {
             assertTrue(list.get(i).getAngleWithOyz().compareTo(list.get(i + 1).getAngleWithOyz())<=0);
+        }
+    }
+
+    @Test
+    public void testSortAndFindById() {
+        Comparator<PlaneRegistrar> comparator = ComparatorFactory.getComparator(ComparatorFactory.CompareParameter.ID);
+        PredicateForRepository<PlaneRegistrar> predicate = new PredicateByIdRange<>(4, 10);
+        List<PlaneRegistrar> list = repository.findAllMatchSorted(predicate, comparator);
+        assertEquals(list.size(), 7);
+        for (int i = 1; i <= 7; i++) {
+            assertEquals(list.get(i-1).getId(),i+3);
+        }
+    }
+
+    @Test
+    public void test_SortReversed_AndFindById() {
+        Comparator<PlaneRegistrar> comparator = ComparatorFactory
+                .getComparator(ComparatorFactory.CompareParameter.ID)
+                .reversed();
+        PredicateForRepository<PlaneRegistrar> predicate = new PredicateByIdRange<>(4, 10);
+        List<PlaneRegistrar> list = repository.findAllMatchSorted(predicate, comparator);
+        assertEquals(list.size(), 7);
+        int j = 10;
+        for (int i = 1; i <= 7; i++) {
+            assertEquals(list.get(i-1).getId(),j--);
+        }
+    }
+
+    @Test
+    public void testSort() {
+        Repository<PlaneRegistrar> localRepository = new RepositoryOnList<>();
+        for (int i = 1; i <= 10; i++) {
+            localRepository.save(new PlaneRegistrar(String.format("%d", i),
+                    Plane.of(2, 2, 2, 0)));
+        }
+        localRepository.sort(new Comparator<PlaneRegistrar>() {
+            @Override
+            public int compare(PlaneRegistrar o1, PlaneRegistrar o2) {
+                return -Long.compare(o1.getId(), o2.getId());
+            }
+        });
+        List<PlaneRegistrar> list = localRepository.findAll();
+        for (int i = 1; i < localRepository.count(); i++) {
+            Assert.assertTrue(list.get(i - 1).getId() > list.get(i).getId());
         }
     }
 }
