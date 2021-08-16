@@ -87,7 +87,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     }
 
     @Override
-    public void update(T newObject, long id) {
+    public T update(T newObject, long id) {
         if (id < MINIMAL_ID_VALUE || id > maxId) {
             throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.INVALID_ID_EXCEPTION);
         }
@@ -97,7 +97,9 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
             throw ex;
         }
         T oldObject = findById(id);
-        list.set(list.indexOf(oldObject), (T) newObject.createWithId(id));
+        T newObjectWithId = (T) newObject.createWithId(id);
+        list.set(list.indexOf(oldObject), newObjectWithId);
+        return newObjectWithId;
     }
 
     @Override

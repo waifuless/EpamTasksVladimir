@@ -18,7 +18,7 @@ public interface Repository<T extends EntityWithId> {
 
     List<T> findAll();
 
-    void update(T t, long id);
+    T update(T t, long id);
 
     void deleteById(long id);
 
