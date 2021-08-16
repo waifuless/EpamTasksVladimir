@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 
-//Every nextPlane() delete string from top of stringDeque and if string is correct, add Plane to the end of planeList
+/**
+ *Every nextPlane() delete string from top of stringDeque and if string is correct,
+ *  add Plane to the end of planeList
+ */
 public class PlaneByPointReader implements PlaneReader {
 
     private final static Logger LOG = LogManager.getLogger(PlaneByPointReader.class);
@@ -81,7 +83,9 @@ public class PlaneByPointReader implements PlaneReader {
     }
 
 
-    //just free memory
+    /**
+     * Method just to free memory
+     */
     @Override
     public void close() {
         if (stringDeque != null) {
@@ -92,9 +96,9 @@ public class PlaneByPointReader implements PlaneReader {
 
     private void fillArrayOfStringsIfItNull() throws IOException {
         if (stringDeque == null) {
-            Stream<String> lines = Files.lines(file.toPath());
-            stringDeque = lines.filter(str -> !str.trim().equals("")).collect(ArrayDeque::new, ArrayDeque::add,
-                    ArrayDeque::addAll);
+            stringDeque = Files.lines(file.toPath())
+                    .filter(str -> !str.trim().equals(""))
+                    .collect(ArrayDeque::new, ArrayDeque::add, ArrayDeque::addAll);
         }
     }
 
@@ -106,8 +110,8 @@ public class PlaneByPointReader implements PlaneReader {
             LOG.error(ex);
             throw ex;
         }
-        for (int i = 0; i < coordinates.length; i++) {
-            if (!ONE_COORDINATE_PATTERN.matcher(coordinates[i]).matches()) {
+        for (String coordinate : coordinates) {
+            if (!ONE_COORDINATE_PATTERN.matcher(coordinate).matches()) {
                 InvalidStringException ex = new InvalidStringException(str);
                 LOG.error(ex);
                 throw ex;

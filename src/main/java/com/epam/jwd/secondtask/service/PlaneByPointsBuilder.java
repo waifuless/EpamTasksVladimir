@@ -94,8 +94,10 @@ public class PlaneByPointsBuilder {
         return maxScaleLength;
     }
 
+    /**
+     * Method multiplies all coefficients by 10^maxScaleLen to get the integers
+     */
     private void multiplyTheCoefficientsToIntegers(BigDecimal[] coefficients, long maxScaleLength) {
-        //multiply by 10^maxScaleLen to get the integers
         if (maxScaleLength > 0) {
             for (int i = 0; i < coefficients.length; i++) {
                 coefficients[i] = coefficients[i]
@@ -104,8 +106,10 @@ public class PlaneByPointsBuilder {
         }
     }
 
+    /**
+     * Method finds the greatest common divisor of all coefficients
+     */
     private long findGcdOfAllCoefficients(BigDecimal[] coefficients) {
-        //Find the greatest common divisor of all coefficients
         GcdFinder gcdFinder = GcdFinder.getInstance();
         long gcdValue = coefficients[0].abs().longValue();
         for (int i = 1; i < coefficients.length; i++) {
