@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.testng.Assert.*;
 

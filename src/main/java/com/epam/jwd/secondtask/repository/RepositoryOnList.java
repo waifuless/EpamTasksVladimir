@@ -16,12 +16,12 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     private List<T> list;
     private long maxId;
 
-    RepositoryOnList() {
+    public RepositoryOnList() {
         this.maxId = 0;
         this.list = new ArrayList<>();
     }
 
-    RepositoryOnList(List<T> list) {
+    public RepositoryOnList(List<T> list) {
         if (list == null) {
             throw new ArgumentNullException();
         }
@@ -149,6 +149,6 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     @Override
     public void sort(Comparator<T> comparator) {
-        list = list.stream().sorted(comparator).collect(Collectors.toList());
+        list.sort(comparator);
     }
 }
