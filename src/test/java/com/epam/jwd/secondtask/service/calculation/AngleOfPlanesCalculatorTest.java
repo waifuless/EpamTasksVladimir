@@ -1,0 +1,40 @@
+package com.epam.jwd.secondtask.service.calculation;
+
+import com.epam.jwd.secondtask.exception.ArgumentNullException;
+import com.epam.jwd.secondtask.model.Plane;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public class AngleOfPlanesCalculatorTest {
+
+    private final AngleOfPlanesCalculator angleOfPlanesCalculator = AngleOfPlanesCalculator.getInstance();
+
+    @DataProvider
+    public Object[][] calculateAngleBetweenPlanesData() {
+        return new Object[][]{
+                {Plane.of(1, 1, 1, 0),
+                        Plane.of(2, 2, 2, 0), BigDecimal.ZERO},
+                {Plane.of(0, 2, 1, 2),
+                        Plane.of(22, 21, -8, 0), BigDecimal.valueOf(61.08580854)},
+                {AngleOfPlanesCalculator.OXY_PLANE, AngleOfPlanesCalculator.OXY_PLANE, BigDecimal.ZERO},
+                {AngleOfPlanesCalculator.OXY_PLANE, AngleOfPlanesCalculator.OXZ_PLANE, BigDecimal.valueOf(90)},
+                {AngleOfPlanesCalculator.OXY_PLANE, AngleOfPlanesCalculator.OYZ_PLANE, BigDecimal.valueOf(90)}
+        };
+    }
+
+    @Test(dataProvider = "calculateAngleBetweenPlanesData")
+    public void testCalculateAngleBetweenPlanes(Plane plane1, Plane plane2, BigDecimal angle) {
+        Assert.assertEquals(angleOfPlanesCalculator.calculateAngleBetweenPlanes(plane1, plane2)
+                        .setScale(4, RoundingMode.HALF_UP),
+                angle.setScale(4, RoundingMode.HALF_UP));
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void testNullArguments() {
+        angleOfPlanesCalculator.calculateAngleBetweenPlanes(null, null);
+    }
+}
