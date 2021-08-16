@@ -57,6 +57,10 @@ public class PlaneRegistrar implements PropertyChangeListener, EntityWithId {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equalsIgnoreCase("freeTerm")){
+            //ignore when change free term(it does not change any angle)
+            return;
+        }
         planeIsValid = planeValidator.isPlaneValid(plane);
         if (planeIsValid) {
             updateAngles();
