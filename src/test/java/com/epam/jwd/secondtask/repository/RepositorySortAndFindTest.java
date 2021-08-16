@@ -31,7 +31,7 @@ public class RepositorySortAndFindTest {
                 repository.save(new PlaneRegistrar(String.format("%d", i),
                         Plane.of(random.nextDouble() * 20 - 7, random.nextDouble() * 20 - 7,
                                 random.nextDouble() * 20 - 7, random.nextDouble() * 20 - 7)));
-            }catch(PlaneConstructedException ignored){//it throws when all coefficients(a,b,c) are zero.
+            } catch (PlaneConstructedException ignored) {//it throws when all coefficients(a,b,c) are zero.
                 i--; //try again
             }
         }
@@ -56,29 +56,29 @@ public class RepositorySortAndFindTest {
     }
 
     @Test
-    public void testSortByAngle_Oxy(){
+    public void testSortByAngle_Oxy() {
         repository.sort(ComparatorFactory.getComparator(ComparatorFactory.CompareParameter.ANGLE_OXY));
         List<PlaneRegistrar> list = repository.findAll();
         for (int i = 0; i < list.size() - 1; i++) {
-            assertTrue(list.get(i).getAngleWithOxy().compareTo(list.get(i + 1).getAngleWithOxy())<=0);
+            assertTrue(list.get(i).getAngleWithOxy().compareTo(list.get(i + 1).getAngleWithOxy()) <= 0);
         }
     }
 
     @Test
-    public void testSortByAngle_Oxz(){
+    public void testSortByAngle_Oxz() {
         repository.sort(ComparatorFactory.getComparator(ComparatorFactory.CompareParameter.ANGLE_OXZ));
         List<PlaneRegistrar> list = repository.findAll();
         for (int i = 0; i < list.size() - 1; i++) {
-            assertTrue(list.get(i).getAngleWithOxz().compareTo(list.get(i + 1).getAngleWithOxz())<=0);
+            assertTrue(list.get(i).getAngleWithOxz().compareTo(list.get(i + 1).getAngleWithOxz()) <= 0);
         }
     }
 
     @Test
-    public void testSortByAngle_Oyz(){
+    public void testSortByAngle_Oyz() {
         repository.sort(ComparatorFactory.getComparator(ComparatorFactory.CompareParameter.ANGLE_OYZ));
         List<PlaneRegistrar> list = repository.findAll();
         for (int i = 0; i < list.size() - 1; i++) {
-            assertTrue(list.get(i).getAngleWithOyz().compareTo(list.get(i + 1).getAngleWithOyz())<=0);
+            assertTrue(list.get(i).getAngleWithOyz().compareTo(list.get(i + 1).getAngleWithOyz()) <= 0);
         }
     }
 
@@ -89,7 +89,7 @@ public class RepositorySortAndFindTest {
         List<PlaneRegistrar> list = repository.findAllMatchSorted(predicate, comparator);
         assertEquals(list.size(), 7);
         for (int i = 1; i <= 7; i++) {
-            assertEquals(list.get(i-1).getId(),i+3);
+            assertEquals(list.get(i - 1).getId(), i + 3);
         }
     }
 
@@ -103,7 +103,7 @@ public class RepositorySortAndFindTest {
         assertEquals(list.size(), 7);
         int j = 10;
         for (int i = 1; i <= 7; i++) {
-            assertEquals(list.get(i-1).getId(),j--);
+            assertEquals(list.get(i - 1).getId(), j--);
         }
     }
 

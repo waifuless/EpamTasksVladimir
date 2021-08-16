@@ -21,8 +21,8 @@ import java.util.regex.Pattern;
 
 
 /**
- *Every nextPlane() delete string from top of stringDeque and if string is correct,
- *  add Plane to the end of planeList
+ * Every nextPlane() delete string from top of stringDeque and if string is correct,
+ * add Plane to the end of planeList
  */
 public class PlaneByPointReader implements PlaneReader {
 

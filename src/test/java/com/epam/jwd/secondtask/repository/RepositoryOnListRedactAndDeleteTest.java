@@ -23,7 +23,7 @@ public class RepositoryOnListRedactAndDeleteTest {
                 repository.save(new PlaneRegistrar(String.format("%d", i),
                         Plane.of(random.nextDouble() * 20 - 7, random.nextDouble() * 20 - 7,
                                 random.nextDouble() * 20 - 7, random.nextDouble() * 20 - 7)));
-            }catch(PlaneConstructedException ignored){//it throws when all coefficients(a,b,c) are zero.
+            } catch (PlaneConstructedException ignored) {//it throws when all coefficients(a,b,c) are zero.
                 i--; //try again
             }
         }
@@ -32,7 +32,7 @@ public class RepositoryOnListRedactAndDeleteTest {
     @Test
     public void testUpdate() {
         PlaneRegistrar newRegistrar = new PlaneRegistrar("10",
-                Plane.of(100,100,100,100));
+                Plane.of(100, 100, 100, 100));
         PlaneRegistrar newRegWithId = repository.update(newRegistrar, 2);
         assertEquals(repository.findById(2), newRegistrar);
         assertNotEquals(newRegWithId.getId(), 2);

@@ -9,14 +9,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 
 public class RepositoryOnListSaveAndExistingTest {
 
-    private Repository<PlaneRegistrar> repositoryForSave = new RepositoryOnList<>();
-    private Repository<PlaneRegistrar> repositoryToCheckExisting = new RepositoryOnList<>();
+    private final Repository<PlaneRegistrar> repositoryForSave = new RepositoryOnList<>();
+    private final Repository<PlaneRegistrar> repositoryToCheckExisting = new RepositoryOnList<>();
 
     @BeforeClass
     public void init_Repository() {
@@ -27,7 +25,7 @@ public class RepositoryOnListSaveAndExistingTest {
                 repositoryToCheckExisting.save(new PlaneRegistrar(String.format("%d", i),
                         Plane.of(random.nextDouble() * 20 - 7, random.nextDouble() * 20 - 7,
                                 random.nextDouble() * 20 - 7, random.nextDouble() * 20 - 7)));
-            }catch(PlaneConstructedException ignored){//it throws when all coefficients(a,b,c) are zero.
+            } catch (PlaneConstructedException ignored) {//it throws when all coefficients(a,b,c) are zero.
                 i--; //try again
             }
         }
@@ -86,7 +84,7 @@ public class RepositoryOnListSaveAndExistingTest {
     @Test
     public void testIsExist_false_whenNotExist() {
         PlaneRegistrar registrar = new PlaneRegistrar("10",
-                Plane.of(100,100,100,100));
+                Plane.of(100, 100, 100, 100));
         Assert.assertFalse(repositoryToCheckExisting.isExist(registrar));
     }
 }

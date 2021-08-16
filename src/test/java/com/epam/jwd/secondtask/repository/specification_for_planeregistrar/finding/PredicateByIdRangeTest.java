@@ -3,30 +3,27 @@ package com.epam.jwd.secondtask.repository.specification_for_planeregistrar.find
 import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.PlaneRegistrar;
 import com.epam.jwd.secondtask.repository.PredicateForRepository;
-import com.epam.jwd.secondtask.repository.specification_for_planeregistrar.comparing.ComparatorFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class PredicateByIdRangeTest {
 
     @DataProvider
-    public Object[][] predicateData(){
+    public Object[][] predicateData() {
         return new Object[][]{
                 {new PlaneRegistrar("1",
-                        Plane.of(1,2,3,4)).createWithId(2),
+                        Plane.of(1, 2, 3, 4)).createWithId(2),
                         1, 5, true},
                 {new PlaneRegistrar("2",
-                        Plane.of(1,2,3,4)).createWithId(20),
+                        Plane.of(1, 2, 3, 4)).createWithId(20),
                         1, 5, false},
                 {new PlaneRegistrar("3",
-                        Plane.of(1,2,3,4)).createWithId(1),
+                        Plane.of(1, 2, 3, 4)).createWithId(1),
                         -100, 10, true},
                 {new PlaneRegistrar("4",
-                        Plane.of(1,2,3,4)).createWithId(20),
+                        Plane.of(1, 2, 3, 4)).createWithId(20),
                         -100, 10, false}
         };
     }
