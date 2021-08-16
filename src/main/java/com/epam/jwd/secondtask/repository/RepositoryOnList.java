@@ -3,6 +3,10 @@ package com.epam.jwd.secondtask.repository;
 import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.exception.repositoryexception.EntityNotFoundException;
 import com.epam.jwd.secondtask.exception.repositoryexception.InvalidIdException;
+import com.epam.jwd.secondtask.exception.repositoryexception.ExceptionInRepository;
+import com.epam.jwd.secondtask.exception.repositoryexception.RepositoryExceptionsFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
+
+    private final static Logger LOG = LogManager.getLogger(RepositoryOnList.class);
 
     private final static long MINIMAL_ID_VALUE = 1;
 
@@ -23,7 +29,9 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     public RepositoryOnList(List<T> list) {
         if (list == null) {
-            throw new ArgumentNullException();
+            ArgumentNullException ex =  new ArgumentNullException();
+            LOG.error(ex);
+            throw ex;
         }
         this.list = new ArrayList<>();
         for (T elem : list) {
@@ -35,7 +43,9 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public T save(T t) {
         if (t == null) {
-            throw new ArgumentNullException();
+            ArgumentNullException ex =  new ArgumentNullException();
+            LOG.error(ex);
+            throw ex;
         }
         T newObject = (T) t.createWithId(++maxId);
         list.add(newObject);
@@ -45,32 +55,32 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public T findById(long id) {
         if (id < MINIMAL_ID_VALUE) {
-            throw new InvalidIdException();
+            throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.INVALID_ID_EXCEPTION);
         }
         if (id > maxId) {
-            throw new EntityNotFoundException();
+            throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.ENTITY_NOT_FOUND_EXCEPTION);
         }
         for (T t : list) {
             if (t.getId() == id) {
                 return t;
             }
         }
-        //todo remake exceptions
-        throw new EntityNotFoundException();
+        throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.ENTITY_NOT_FOUND_EXCEPTION);
     }
 
     @Override
     public long findId(T t) {
         if (t == null) {
-            throw new ArgumentNullException();
+            ArgumentNullException ex =  new ArgumentNullException();
+            LOG.error(ex);
+            throw ex;
         }
         for (T elem : list) {
             if (elem.equals(t)) {
                 return elem.getId();
             }
         }
-        //todo remake exceptions
-        throw new EntityNotFoundException();
+        throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.ENTITY_NOT_FOUND_EXCEPTION);
     }
 
     @Override
@@ -81,10 +91,12 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public void update(T newObject, long id) {
         if (id < MINIMAL_ID_VALUE || id > maxId) {
-            throw new InvalidIdException();
+            throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.INVALID_ID_EXCEPTION);
         }
         if (newObject == null) {
-            throw new ArgumentNullException();
+            ArgumentNullException ex =  new ArgumentNullException();
+            LOG.error(ex);
+            throw ex;
         }
         T oldObject = findById(id);
         list.set(list.indexOf(oldObject), (T) newObject.createWithId(id));
@@ -93,10 +105,10 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public void deleteById(long id) {
         if (id < MINIMAL_ID_VALUE) {
-            throw new InvalidIdException();
+            throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.INVALID_ID_EXCEPTION);
         }
         if (id > maxId) {
-            throw new EntityNotFoundException();
+            throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.ENTITY_NOT_FOUND_EXCEPTION);
         }
         T oldObject = findById(id);
         list.remove(oldObject);
@@ -116,7 +128,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public boolean isExistById(long id) {
         if (id < MINIMAL_ID_VALUE) {
-            throw new InvalidIdException();
+            throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.INVALID_ID_EXCEPTION);
         }
         if (id > maxId) {
             return false;
@@ -132,7 +144,9 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public boolean isExist(T t) {
         if (t == null) {
-            throw new ArgumentNullException();
+            ArgumentNullException ex =  new ArgumentNullException();
+            LOG.error(ex);
+            throw ex;
         }
         for (T elem : list) {
             if (elem.equals(t)) {
