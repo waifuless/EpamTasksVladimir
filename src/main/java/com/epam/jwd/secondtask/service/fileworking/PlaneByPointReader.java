@@ -30,6 +30,7 @@ public class PlaneByPointReader implements PlaneReader {
     private final static Pattern ONE_COORDINATE_PATTERN = Pattern.compile("[+-]?([0-9]+[.])?[0-9]+");
     private final static int NUMBER_OF_POINTS_IN_PLANE = 3;
     private final static int NUMBER_OF_ALL_COORDINATES = 9;
+    private final static String SPACES = "\\s+";
     private final File file;
     private final List<Plane> planeList;
     private final PlaneByPointsBuilder planeByPointsBuilder;
@@ -99,7 +100,7 @@ public class PlaneByPointReader implements PlaneReader {
 
     private Plane makeNextPlane() {
         String str = stringDeque.remove();
-        String[] coordinates = str.trim().split("\\s+");
+        String[] coordinates = str.trim().split(SPACES);
         if (coordinates.length != NUMBER_OF_ALL_COORDINATES) {
             InvalidStringException ex = new InvalidStringException(str);
             LOG.error(ex);
