@@ -34,4 +34,6 @@ public interface Repository<T extends EntityWithId> {
 
     void sort(Comparator<T> comparator);
 
+    List<T> findAllMatchSorted(PredicateForRepository<T> predicate, Comparator<T> comparator);
+
 }

@@ -156,13 +156,21 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
         return false;
     }
 
+
     @Override
     public List<T> findAllMatch(PredicateForRepository<T> predicate) {
         return list.stream().filter(predicate::test).collect(Collectors.toList());
     }
 
+
     @Override
     public void sort(Comparator<T> comparator) {
         list.sort(comparator);
+    }
+
+
+    @Override
+    public List<T> findAllMatchSorted(PredicateForRepository<T> predicate, Comparator<T> comparator) {
+        return list.stream().filter(predicate::test).sorted(comparator).collect(Collectors.toList());
     }
 }
