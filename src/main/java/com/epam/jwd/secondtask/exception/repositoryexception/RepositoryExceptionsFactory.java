@@ -9,9 +9,9 @@ public class RepositoryExceptionsFactory {
     private final static Logger LOG = LogManager.getLogger(RepositoryExceptionsFactory.class);
 
 
-    public static RuntimeException createAndLogException(ExceptionInRepository exception){
+    public static RuntimeException createAndLogException(ExceptionInRepository exception) {
         RuntimeException ex;
-        switch (exception){
+        switch (exception) {
             case INVALID_ID_EXCEPTION:
                 ex = new InvalidIdException();
                 LOG.error(ex.getMessage(), ex);
@@ -26,9 +26,9 @@ public class RepositoryExceptionsFactory {
         return ex;
     }
 
-    public static RuntimeException createAndLogException(ExceptionInRepository exception, String mcg){
+    public static RuntimeException createAndLogException(ExceptionInRepository exception, String mcg) {
         RuntimeException ex;
-        switch (exception){
+        switch (exception) {
             case INVALID_ID_EXCEPTION:
                 ex = new InvalidIdException(mcg);
                 LOG.error(ex.getMessage(), ex);

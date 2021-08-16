@@ -14,10 +14,10 @@ public class PlaneExceptionValidatorTest {
             .getValidationStrategy(PlaneValidationFactory.WayToValidPlane.VALIDATE_WITH_EXCEPTIONS);
 
     @DataProvider
-    public Object[][] InvalidPlaneData(){
-        Plane plane1 = Plane.of(1,0,0,1);
+    public Object[][] InvalidPlaneData() {
+        Plane plane1 = Plane.of(1, 0, 0, 1);
         plane1.setCoefficientA(BigDecimal.ZERO);
-        Plane plane2 = Plane.of(0,1,0,0);
+        Plane plane2 = Plane.of(0, 1, 0, 0);
         plane2.setCoefficientB(BigDecimal.ZERO);
         return new Object[][]{
                 {plane1},
@@ -26,12 +26,12 @@ public class PlaneExceptionValidatorTest {
     }
 
     @Test(dataProvider = "InvalidPlaneData", expectedExceptions = PlaneIsInvalidException.class)
-    public void testInvalidPlaneExceptions(Plane plane){
+    public void testInvalidPlaneExceptions(Plane plane) {
         planeValidator.isPlaneValid(plane);
     }
 
     @Test(expectedExceptions = ArgumentNullException.class)
-    public void testNullArgumentException(){
+    public void testNullArgumentException() {
         planeValidator.isPlaneValid(null);
     }
 }

@@ -1,8 +1,6 @@
 package com.epam.jwd.secondtask.repository;
 
 import com.epam.jwd.secondtask.exception.ArgumentNullException;
-import com.epam.jwd.secondtask.exception.repositoryexception.EntityNotFoundException;
-import com.epam.jwd.secondtask.exception.repositoryexception.InvalidIdException;
 import com.epam.jwd.secondtask.exception.repositoryexception.ExceptionInRepository;
 import com.epam.jwd.secondtask.exception.repositoryexception.RepositoryExceptionsFactory;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +17,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     private final static long MINIMAL_ID_VALUE = 1;
 
-    private List<T> list;
+    private final List<T> list;
     private long maxId;
 
     public RepositoryOnList() {
@@ -29,7 +27,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
 
     public RepositoryOnList(List<T> list) {
         if (list == null) {
-            ArgumentNullException ex =  new ArgumentNullException();
+            ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex);
             throw ex;
         }
@@ -43,7 +41,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public T save(T t) {
         if (t == null) {
-            ArgumentNullException ex =  new ArgumentNullException();
+            ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex);
             throw ex;
         }
@@ -71,7 +69,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public long findId(T t) {
         if (t == null) {
-            ArgumentNullException ex =  new ArgumentNullException();
+            ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex);
             throw ex;
         }
@@ -94,7 +92,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
             throw RepositoryExceptionsFactory.createAndLogException(ExceptionInRepository.INVALID_ID_EXCEPTION);
         }
         if (newObject == null) {
-            ArgumentNullException ex =  new ArgumentNullException();
+            ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex);
             throw ex;
         }
@@ -144,7 +142,7 @@ public class RepositoryOnList<T extends EntityWithId> implements Repository<T> {
     @Override
     public boolean isExist(T t) {
         if (t == null) {
-            ArgumentNullException ex =  new ArgumentNullException();
+            ArgumentNullException ex = new ArgumentNullException();
             LOG.error(ex);
             throw ex;
         }

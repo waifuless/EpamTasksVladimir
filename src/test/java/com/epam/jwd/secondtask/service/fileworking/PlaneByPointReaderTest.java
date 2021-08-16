@@ -4,16 +4,11 @@ import com.epam.jwd.secondtask.exception.ArgumentNullException;
 import com.epam.jwd.secondtask.exception.RunOutOfPlanesException;
 import com.epam.jwd.secondtask.model.Plane;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 

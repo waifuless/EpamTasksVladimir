@@ -4,7 +4,6 @@ import com.epam.jwd.secondtask.model.Plane;
 import com.epam.jwd.secondtask.model.PlaneRegistrar;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -17,11 +16,11 @@ public class RepositoryOnList_WithBefore_Test {
     private List<PlaneRegistrar> list;
 
     @BeforeClass
-    public void before_find(){
+    public void before_find() {
         repository = new RepositoryOnList<>();
         list = new ArrayList<>();
         PlaneRegistrar registrar;
-        for(int i=1;i<=10;i++){
+        for (int i = 1; i <= 10; i++) {
             registrar = repository.save(new PlaneRegistrar(String.format("%d", i),
                     Plane.of(2, 2, 2, 0)));
             list.add(registrar);
@@ -29,23 +28,23 @@ public class RepositoryOnList_WithBefore_Test {
     }
 
     @Test
-    public void testReturnObjectsAndInRep_Same(){
+    public void testReturnObjectsAndInRep_Same() {
         for (int i = 1; i <= 10; i++) {
-            Assert.assertSame(repository.findById(i), list.get(i-1));
+            Assert.assertSame(repository.findById(i), list.get(i - 1));
         }
     }
 
     @Test
     public void testFindById() {
-        for(int i=1;i<=10;i++){
-            Assert.assertEquals(repository.findById(i), list.get(i-1));
+        for (int i = 1; i <= 10; i++) {
+            Assert.assertEquals(repository.findById(i), list.get(i - 1));
         }
     }
 
     @Test
     public void testFindId() {
-        for(int i=1;i<=10;i++){
-            Assert.assertEquals(repository.findId(list.get(i-1)), i);
+        for (int i = 1; i <= 10; i++) {
+            Assert.assertEquals(repository.findId(list.get(i - 1)), i);
         }
     }
 
@@ -64,7 +63,7 @@ public class RepositoryOnList_WithBefore_Test {
 
     @Test
     public void test_FindAllMatch_HaveSideEffects_OnObjects() {
-        List<PlaneRegistrar> repList = repository.findAllMatch(x->x.getId()>0);
+        List<PlaneRegistrar> repList = repository.findAllMatch(x -> x.getId() > 0);
         long id = repList.get(0).getId();
         repList.get(0).getPlane().setCoefficientA(BigDecimal.TEN);
         Assert.assertEquals(list.get(0).getPlane().getCoefficientA(), BigDecimal.TEN);
@@ -72,15 +71,15 @@ public class RepositoryOnList_WithBefore_Test {
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         Assert.assertEquals(repository.count(), list.size());
     }
 
     @Test
-    public void testFindAllMatch_return_valid(){
-        List <PlaneRegistrar> foundList = repository.findAllMatch(x-> x.getId()>5);
+    public void testFindAllMatch_return_valid() {
+        List<PlaneRegistrar> foundList = repository.findAllMatch(x -> x.getId() > 5);
         for (PlaneRegistrar registrar : foundList) {
-            Assert.assertTrue(registrar.getId()>5);
+            Assert.assertTrue(registrar.getId() > 5);
         }
     }
 }

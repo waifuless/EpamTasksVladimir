@@ -51,7 +51,7 @@ public class RepositoryOnListTest {
         });
         List<PlaneRegistrar> list = repository.findAll();
         for (int i = 1; i < repository.count(); i++) {
-            Assert.assertTrue(list.get(i-1).getId()>list.get(i).getId());
+            Assert.assertTrue(list.get(i - 1).getId() > list.get(i).getId());
         }
     }
 
