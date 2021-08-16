@@ -4,15 +4,15 @@ import com.epam.jwd.secondtask.model.PlaneRegistrar;
 
 import java.util.Comparator;
 
-//todo: tests to all comparators
+
 public class ComparatorFactory {
 
-    private static ComparatorById byId;
-    private static ComparatorByName byCommonName;
-    private static ComparatorByName byIgnoreCaseName;
-    private static ComparatorByAngle byOxyAngle;
-    private static ComparatorByAngle byOxzAngle;
-    private static ComparatorByAngle byOyzAngle;
+    private static ComparatorById<? extends PlaneRegistrar> byId;
+    private static ComparatorByName<? extends PlaneRegistrar> byCommonName;
+    private static ComparatorByName<? extends PlaneRegistrar> byIgnoreCaseName;
+    private static ComparatorByAngle<? extends PlaneRegistrar> byOxyAngle;
+    private static ComparatorByAngle<? extends PlaneRegistrar> byOxzAngle;
+    private static ComparatorByAngle<? extends PlaneRegistrar> byOyzAngle;
 
 
     public static <T extends PlaneRegistrar> Comparator<T> getComparator(CompareParameter parameter) {
@@ -33,7 +33,7 @@ public class ComparatorFactory {
 
     private static <T extends PlaneRegistrar> Comparator<T> getById() {
         if (byId == null) {
-            byId = new ComparatorById();
+            byId = new ComparatorById<T>();
         }
         return (Comparator<T>) byId;
     }
@@ -42,12 +42,12 @@ public class ComparatorFactory {
         switch (compareParameter) {
             case NAME_COMMON_CASE:
                 if (byCommonName == null) {
-                    byCommonName = new ComparatorByName(ComparatorByName.CompareMode.COMMON);
+                    byCommonName = new ComparatorByName<T>(ComparatorByName.CompareMode.COMMON);
                 }
                 return (Comparator<T>) byCommonName;
             case NAME_IGNORE_CASE:
                 if (byIgnoreCaseName == null) {
-                    byIgnoreCaseName = new ComparatorByName(ComparatorByName.CompareMode.IGNORE_CASE);
+                    byIgnoreCaseName = new ComparatorByName<T>(ComparatorByName.CompareMode.IGNORE_CASE);
                 }
                 return (Comparator<T>) byIgnoreCaseName;
             default:
@@ -59,17 +59,17 @@ public class ComparatorFactory {
         switch (compareParameter) {
             case ANGLE_OXY:
                 if (byOxyAngle == null) {
-                    byOxyAngle = new ComparatorByAngle(ComparatorByAngle.Angle.OXY);
+                    byOxyAngle = new ComparatorByAngle<T>(ComparatorByAngle.Angle.OXY);
                 }
                 return (Comparator<T>) byOxyAngle;
             case ANGLE_OXZ:
                 if (byOxzAngle == null) {
-                    byOxzAngle = new ComparatorByAngle(ComparatorByAngle.Angle.OXZ);
+                    byOxzAngle = new ComparatorByAngle<T>(ComparatorByAngle.Angle.OXZ);
                 }
                 return (Comparator<T>) byOxzAngle;
             case ANGLE_OYZ:
                 if (byOyzAngle == null) {
-                    byOyzAngle = new ComparatorByAngle(ComparatorByAngle.Angle.OYZ);
+                    byOyzAngle = new ComparatorByAngle<T>(ComparatorByAngle.Angle.OYZ);
                 }
                 return (Comparator<T>) byOyzAngle;
             default:
