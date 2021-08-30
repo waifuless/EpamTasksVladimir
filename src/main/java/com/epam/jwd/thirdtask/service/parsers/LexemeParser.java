@@ -1,7 +1,7 @@
 package com.epam.jwd.thirdtask.service.parsers;
 
 import com.epam.jwd.thirdtask.exception.ActionNotSupportedException;
-import com.epam.jwd.thirdtask.model.Component;
+import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.service.Commands;
 
 import java.util.EnumSet;
@@ -10,17 +10,17 @@ import java.util.EnumSet;
 public class LexemeParser implements ComponentParser{
 
     @Override
-    public Component parse(String textToParse) {
+    public TextComponent parse(String textToParse) {
         return null;
     }
 
     @Override
-    public Component delegateParse(String textToParse) {
+    public TextComponent delegateParse(String textToParse) {
         throw new ActionNotSupportedException();
     }
 
     @Override
-    public void execute(EnumSet<Commands> commands, Component component) {
+    public void execute(EnumSet<Commands> commands, TextComponent textComponent) {
 
     }
 }

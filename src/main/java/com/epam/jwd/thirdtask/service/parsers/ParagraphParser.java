@@ -1,8 +1,7 @@
 package com.epam.jwd.thirdtask.service.parsers;
 
-import com.epam.jwd.thirdtask.model.Component;
+import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.model.Paragraph;
-import com.epam.jwd.thirdtask.model.Text;
 import com.epam.jwd.thirdtask.service.Commands;
 
 import java.util.EnumSet;
@@ -12,10 +11,10 @@ public class ParagraphParser implements ComponentParser{
     private final SentenceParser lowerHandler = new SentenceParser();
 
     @Override
-    public Component parse(String textToParse) {
+    public TextComponent parse(String textToParse) {
         //todo: remake (\.|(...)|!|\?) - does not work
         String[] arrOfSentences = textToParse.trim().split("[.!?]");
-        Component paragraph = new Paragraph();
+        TextComponent paragraph = new Paragraph();
         for (String sentence : arrOfSentences) {
             paragraph.addComponent(delegateParse(sentence));
         }
@@ -23,12 +22,12 @@ public class ParagraphParser implements ComponentParser{
     }
 
     @Override
-    public Component delegateParse(String textToParse) {
+    public TextComponent delegateParse(String textToParse) {
         return lowerHandler.parse(textToParse);
     }
 
     @Override
-    public void execute(EnumSet<Commands> commands, Component component) {
+    public void execute(EnumSet<Commands> commands, TextComponent textComponent) {
 
     }
 }

@@ -1,6 +1,6 @@
 package com.epam.jwd.thirdtask.service.parsers;
 
-import com.epam.jwd.thirdtask.model.Component;
+import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.model.Text;
 import com.epam.jwd.thirdtask.service.Commands;
 
@@ -11,10 +11,10 @@ public class TextParser implements ComponentParser{
     private final ParagraphParser lowerHandler = new ParagraphParser();
 
     @Override
-    public Component parse(String textToParse) {
+    public TextComponent parse(String textToParse) {
         //todo:remake to also use tabs. old = (?m)(?=^\s{4})
         String[] arrOfParagraphs = textToParse.trim().split("(?m)((?=^\\s{4})|(?=^\t))");
-        Component text = new Text();
+        TextComponent text = new Text();
         for (String paragraph : arrOfParagraphs) {
             text.addComponent(delegateParse(paragraph));
         }
@@ -22,12 +22,12 @@ public class TextParser implements ComponentParser{
     }
 
     @Override
-    public Component delegateParse(String textToParse) {
+    public TextComponent delegateParse(String textToParse) {
         return lowerHandler.parse(textToParse);
     }
 
     @Override
-    public void execute(EnumSet<Commands> commands, Component component) {
+    public void execute(EnumSet<Commands> commands, TextComponent textComponent) {
 
     }
 }
