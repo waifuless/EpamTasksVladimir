@@ -4,10 +4,6 @@ import java.util.List;
 
 public interface TextComponent {
 
-    String getPreviousSymbols();
-
-    String getAfterSymbols();
-
     String getText();
 
     void addComponent(TextComponent textComponent);

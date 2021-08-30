@@ -16,17 +16,6 @@ public abstract class AbstractTextComponent implements TextComponent {
     }
 
     @Override
-    public String getText() {
-        StringBuilder result = new StringBuilder();
-        for (TextComponent component : listOfTextComponents) {
-            result.append(component.getPreviousSymbols())
-                    .append(component.getText())
-                    .append(component.getAfterSymbols());
-        }
-        return new String(result);
-    }
-
-    @Override
     public void addComponent(TextComponent textComponent) {
         listOfTextComponents.add(textComponent);
     }

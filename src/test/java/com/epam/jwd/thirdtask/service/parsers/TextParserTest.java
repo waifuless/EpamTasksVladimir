@@ -17,7 +17,7 @@ class TextParserTest {
     void parse() {
         TextParser textParser = new TextParser();
         String originText = readLineByLineJava8("src/test/resources/test_text.txt");
-        //System.out.println(originText+"\n\n\n\n\n\n\n\n");
+        System.out.println(originText+"\n\n\n\n\n\n\n\n");
         Text text = (Text) textParser.parse(originText);
         System.out.println(text.getText());
     }

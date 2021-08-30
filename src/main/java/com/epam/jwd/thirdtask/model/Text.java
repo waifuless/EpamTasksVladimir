@@ -2,13 +2,13 @@ package com.epam.jwd.thirdtask.model;
 
 import java.util.List;
 
-public class Text extends AbstractComponent {
+public class Text extends AbstractTextComponent {
 
     @Override
     public String getText() {
-        List<Component> listOfComponents = super.getComponents();
+        List<TextComponent> listOfComponents = super.getComponents();
         StringBuilder result = new StringBuilder();
-        for (Component component : listOfComponents) {
+        for (TextComponent component : listOfComponents) {
             result.append("\t").append(component.getText()).append("\n");
         }
         return new String(result);

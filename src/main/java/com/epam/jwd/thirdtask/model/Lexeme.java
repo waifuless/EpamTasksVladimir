@@ -4,7 +4,8 @@ import com.epam.jwd.thirdtask.exception.ActionNotSupportedException;
 
 import java.util.List;
 
-public class Lexeme implements Component {
+//todo: parse lexeme to parts?
+public class Lexeme implements TextComponent {
 
     protected String value;
 
@@ -18,17 +19,17 @@ public class Lexeme implements Component {
     }
 
     @Override
-    public void addComponent(Component component) {
+    public void addComponent(TextComponent component) {
         throw new ActionNotSupportedException();
     }
 
     @Override
-    public void removeComponent(Component component) {
+    public void removeComponent(TextComponent component) {
         throw new ActionNotSupportedException();
     }
 
     @Override
-    public List<Component> getComponents() {
+    public List<TextComponent> getComponents() {
         throw new ActionNotSupportedException();
     }
 }

@@ -2,14 +2,17 @@ package com.epam.jwd.thirdtask.model;
 
 import java.util.List;
 
-public class Paragraph extends AbstractComponent {
+public class Paragraph extends AbstractTextComponent {
 
     @Override
     public String getText() {
-        List<Component> listOfComponents = super.getComponents();
+        List<TextComponent> listOfComponents = super.getComponents();
         StringBuilder result = new StringBuilder();
-        for (Component component : listOfComponents) {
-            result.append(component.getText());
+        for (int i = 0, listOfComponentsSize = listOfComponents.size(); i < listOfComponentsSize-1; i++) {
+            result.append(listOfComponents.get(i).getText()).append(" ");
+        }
+        if(!listOfComponents.isEmpty()){ //No white-space after last sentence
+            result.append(listOfComponents.get(listOfComponents.size()-1).getText());
         }
         return new String(result);
     }
