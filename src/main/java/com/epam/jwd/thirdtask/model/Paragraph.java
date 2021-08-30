@@ -8,7 +8,6 @@ public class Paragraph extends AbstractComponent {
     public String getText() {
         List<Component> listOfComponents = super.getComponents();
         StringBuilder result = new StringBuilder();
-        result.append("\n");
         for (Component component : listOfComponents) {
             result.append(component.getText());
         }

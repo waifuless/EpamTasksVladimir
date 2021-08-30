@@ -9,7 +9,7 @@ public class Text extends AbstractComponent {
         List<Component> listOfComponents = super.getComponents();
         StringBuilder result = new StringBuilder();
         for (Component component : listOfComponents) {
-            result.append(component.getText()).append("\n");
+            result.append("\t").append(component.getText()).append("\n");
         }
         return new String(result);
     }

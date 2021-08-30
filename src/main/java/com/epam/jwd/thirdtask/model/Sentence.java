@@ -9,7 +9,7 @@ public class Sentence extends AbstractComponent {
         List<Component> listOfComponents = super.getComponents();
         StringBuilder result = new StringBuilder();
         for (Component component : listOfComponents) {
-            result.append(component.getText());
+            result.append(" ").append(component.getText()).append(" ");
         }
         return new String(result);
     }

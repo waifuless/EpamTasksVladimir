@@ -10,13 +10,13 @@ public interface ComponentParser {
     /**
      * recursive method to composite
      */
-    Component parse();
+    Component parse(String textToParse);
 
-    Component delegateParse();
+    Component delegateParse(String textToParse);
 
     /**
      * If component can execute one of the command, it does. Commands go deeper recursively
      */
-    void execute(EnumSet<Commands> commands);
+    void execute(EnumSet<Commands> commands, Component component);
 
 }
