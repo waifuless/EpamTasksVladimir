@@ -8,11 +8,11 @@ public class Paragraph extends AbstractTextComponent {
     public String getText() {
         List<TextComponent> listOfComponents = super.getComponents();
         StringBuilder result = new StringBuilder();
-        for (int i = 0, listOfComponentsSize = listOfComponents.size(); i < listOfComponentsSize-1; i++) {
+        for (int i = 0, listOfComponentsSize = listOfComponents.size(); i < listOfComponentsSize - 1; i++) {
             result.append(listOfComponents.get(i).getText()).append(" ");
         }
-        if(!listOfComponents.isEmpty()){ //No white-space after last sentence
-            result.append(listOfComponents.get(listOfComponents.size()-1).getText());
+        if (!listOfComponents.isEmpty()) { //No white-space after last sentence
+            result.append(listOfComponents.get(listOfComponents.size() - 1).getText());
         }
         return new String(result);
     }

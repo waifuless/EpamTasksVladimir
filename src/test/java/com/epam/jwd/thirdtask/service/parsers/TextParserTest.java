@@ -15,10 +15,10 @@ class TextParserTest {
 
     @Test
     void parse() {
-        TextParser textParser = new TextParser();
+        TextParser parser = TextParser.getInstance();
         String originText = readLineByLineJava8("src/test/resources/test_text.txt");
         System.out.println(originText+"\n\n\n\n\n\n\n\n");
-        Text text = (Text) textParser.parse(originText);
+        Text text = (Text) parser.parse(originText);
         System.out.println(text.getText());
     }
 

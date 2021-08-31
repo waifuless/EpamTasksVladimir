@@ -1,18 +1,27 @@
 package com.epam.jwd.thirdtask.service.parsers;
 
-import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.model.Paragraph;
+import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.service.Commands;
 
 import java.text.BreakIterator;
 import java.util.EnumSet;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class ParagraphParser implements ComponentParser{
+public class ParagraphParser implements ComponentParser {
 
-    private final SentenceParser lowerHandler = new SentenceParser();
+    private static ParagraphParser instance;
+    private final SentenceParser lowerHandler = SentenceParser.getInstance();
+
+    private ParagraphParser() {
+    }
+
+    public static ParagraphParser getInstance() {
+        if (instance == null) {
+            instance = new ParagraphParser();
+        }
+        return instance;
+    }
 
     @Override
     public TextComponent parse(String textToParse) {
@@ -31,7 +40,7 @@ public class ParagraphParser implements ComponentParser{
         sentenceIterator.setText(textToParse);
         int start = sentenceIterator.first();
         for (int end = sentenceIterator.next(); end != BreakIterator.DONE; start = end, end = sentenceIterator.next()) {
-            paragraph.addComponent(delegateParse(textToParse.substring(start,end)));
+            paragraph.addComponent(delegateParse(textToParse.substring(start, end)));
         }
         return paragraph;
     }

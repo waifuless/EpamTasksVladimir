@@ -1,14 +1,25 @@
 package com.epam.jwd.thirdtask.service.parsers;
 
-import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.model.Text;
+import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.service.Commands;
 
 import java.util.EnumSet;
 
-public class TextParser implements ComponentParser{
+public class TextParser implements ComponentParser {
 
-    private final ParagraphParser lowerHandler = new ParagraphParser();
+    private static TextParser instance;
+    private final ParagraphParser lowerHandler = ParagraphParser.getInstance();
+
+    private TextParser() {
+    }
+
+    public static TextParser getInstance() {
+        if (instance == null) {
+            instance = new TextParser();
+        }
+        return instance;
+    }
 
     @Override
     public TextComponent parse(String textToParse) {
