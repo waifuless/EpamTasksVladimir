@@ -1,4 +1,4 @@
-package com.epam.jwd.thirdtask.service.parsers;
+package com.epam.jwd.thirdtask.service.parser;
 
 import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.service.Commands;
