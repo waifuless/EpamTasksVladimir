@@ -1,6 +1,6 @@
 package com.epam.jwd.thirdtask.model;
 
-public class Expression extends Lexeme {
+public class Expression extends MinimalUnit {
 
     public Expression(String value) {
         super(value);
@@ -12,6 +12,6 @@ public class Expression extends Lexeme {
     }
 
     private String calculateExpression() {
-        return null;
+        return "I am expression";
     }
 }

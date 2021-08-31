@@ -12,7 +12,6 @@ public class TextParser implements ComponentParser{
 
     @Override
     public TextComponent parse(String textToParse) {
-        //todo:remake to also use tabs. old = (?m)(?=^\s{4})
         String[] arrOfParagraphs = textToParse.trim().split("(?m)((?=^\\s{4})|(?=^\t))");
         TextComponent text = new Text();
         for (String paragraph : arrOfParagraphs) {

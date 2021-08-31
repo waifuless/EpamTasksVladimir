@@ -4,12 +4,11 @@ import com.epam.jwd.thirdtask.exception.ActionNotSupportedException;
 
 import java.util.List;
 
-//todo: parse lexeme to parts?
-public class Lexeme implements TextComponent {
+public class MinimalUnit implements TextComponent {
 
     protected String value;
 
-    public Lexeme(String value) {
+    public MinimalUnit(String value) {
         this.value = value;
     }
 
