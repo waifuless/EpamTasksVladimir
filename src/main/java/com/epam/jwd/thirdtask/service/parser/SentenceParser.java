@@ -5,10 +5,8 @@ import com.epam.jwd.thirdtask.model.Expression;
 import com.epam.jwd.thirdtask.model.MinimalUnit;
 import com.epam.jwd.thirdtask.model.Sentence;
 import com.epam.jwd.thirdtask.model.TextComponent;
-import com.epam.jwd.thirdtask.service.Commands;
 
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,10 +47,5 @@ public class SentenceParser implements ComponentParser {
     @Override
     public TextComponent delegateParse(String textToParse) {
         throw new ActionNotSupportedException();
-    }
-
-    @Override
-    public void execute(EnumSet<Commands> commands, TextComponent textComponent) {
-
     }
 }

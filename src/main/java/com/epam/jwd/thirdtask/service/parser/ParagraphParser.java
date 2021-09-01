@@ -2,10 +2,8 @@ package com.epam.jwd.thirdtask.service.parser;
 
 import com.epam.jwd.thirdtask.model.Paragraph;
 import com.epam.jwd.thirdtask.model.TextComponent;
-import com.epam.jwd.thirdtask.service.Commands;
 
 import java.text.BreakIterator;
-import java.util.EnumSet;
 import java.util.Locale;
 
 public class ParagraphParser implements ComponentParser {
@@ -48,10 +46,5 @@ public class ParagraphParser implements ComponentParser {
     @Override
     public TextComponent delegateParse(String textToParse) {
         return lowerHandler.parse(textToParse);
-    }
-
-    @Override
-    public void execute(EnumSet<Commands> commands, TextComponent textComponent) {
-
     }
 }

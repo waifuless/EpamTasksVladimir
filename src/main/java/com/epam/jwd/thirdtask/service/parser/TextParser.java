@@ -2,9 +2,6 @@ package com.epam.jwd.thirdtask.service.parser;
 
 import com.epam.jwd.thirdtask.model.Text;
 import com.epam.jwd.thirdtask.model.TextComponent;
-import com.epam.jwd.thirdtask.service.Commands;
-
-import java.util.EnumSet;
 
 public class TextParser implements ComponentParser {
 
@@ -34,10 +31,5 @@ public class TextParser implements ComponentParser {
     @Override
     public TextComponent delegateParse(String textToParse) {
         return lowerHandler.parse(textToParse);
-    }
-
-    @Override
-    public void execute(EnumSet<Commands> commands, TextComponent textComponent) {
-
     }
 }
