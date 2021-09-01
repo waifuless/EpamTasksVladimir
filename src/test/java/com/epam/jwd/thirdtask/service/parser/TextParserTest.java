@@ -1,15 +1,20 @@
 package com.epam.jwd.thirdtask.service.parser;
 
+import com.epam.jwd.thirdtask.comparator.ParagraphComparator;
+import com.epam.jwd.thirdtask.comparator.SentenceComparator;
 import com.epam.jwd.thirdtask.model.Text;
-import com.epam.jwd.thirdtask.service.Commands;
-import com.epam.jwd.thirdtask.service.sort.TextSorter;
+import com.epam.jwd.thirdtask.model.TextComponent;
+import com.epam.jwd.thirdtask.service.Command;
+import com.epam.jwd.thirdtask.service.sort.TextComponentSorter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.EnumSet;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 class TextParserTest {
@@ -21,8 +26,11 @@ class TextParserTest {
         System.out.println(originText+"\n\n\n\n\n\n\n\n");
         Text text = (Text) parser.parse(originText);
         System.out.println(text.getText());
-        TextSorter sorter = TextSorter.getInstance();
-        EnumSet<Commands> commands = EnumSet.of(Commands.SORT_PARAGRAPHS, Commands.SORT_SENTENCES);
+        TextComponentSorter sorter = TextComponentSorter.getTextSorter();
+        Map<Command, Comparator<TextComponent>> commands
+                = new HashMap<>();
+        commands.put(Command.SORT_PARAGRAPHS, new ParagraphComparator());
+        commands.put(Command.SORT_SENTENCES, new SentenceComparator());
         sorter.sort(commands, text);
         System.out.println(text.getText());
     }
