@@ -23,16 +23,6 @@ public class ParagraphParser implements ComponentParser {
 
     @Override
     public TextComponent parse(String textToParse) {
-        //todo: remake (\.|(...)|!|\?) - does not work
-        /*
-        String[] arrOfSentences = textToParse.trim().split("[.!?]");
-        TextComponent paragraph = new Paragraph();
-        for (String sentence : arrOfSentences) {
-            paragraph.addComponent(delegateParse(sentence));
-        }
-        return paragraph;
-         */
-        //todo: replace that govno
         TextComponent paragraph = new Paragraph();
         BreakIterator sentenceIterator = BreakIterator.getSentenceInstance(Locale.US);
         sentenceIterator.setText(textToParse);
