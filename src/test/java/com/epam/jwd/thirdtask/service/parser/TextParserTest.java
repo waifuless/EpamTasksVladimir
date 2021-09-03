@@ -2,6 +2,7 @@ package com.epam.jwd.thirdtask.service.parser;
 
 import com.epam.jwd.thirdtask.comparator.ParagraphComparator;
 import com.epam.jwd.thirdtask.comparator.SentenceComparator;
+import com.epam.jwd.thirdtask.io.FileToOneStringReader;
 import com.epam.jwd.thirdtask.model.Text;
 import com.epam.jwd.thirdtask.model.TextComponent;
 import com.epam.jwd.thirdtask.service.Command;
@@ -20,10 +21,11 @@ import java.util.stream.Stream;
 class TextParserTest {
 
     @Test
-    void parse() {
+    void parse() throws IOException {
         TextParser parser = TextParser.getInstance();
-        String originText = readLineByLineJava8("src/test/resources/test_text.txt");
-        System.out.println(originText+"\n\n\n\n\n\n\n\n");
+        String originText = FileToOneStringReader.getInstance()
+                .readToOneString("src/test/resources/test_text.txt");
+        System.out.println(originText + "\n\n\n\n\n\n\n\n");
         Text text = (Text) parser.parse(originText);
         System.out.println(text.getText());
         TextComponentSorter sorter = TextComponentSorter.getTextSorter();
@@ -33,21 +35,5 @@ class TextParserTest {
         commands.put(Command.SORT_SENTENCES, new SentenceComparator());
         sorter.sort(commands, text);
         System.out.println(text.getText());
-    }
-
-    private static String readLineByLineJava8(String filePath)
-    {
-        StringBuilder contentBuilder = new StringBuilder();
-
-        try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8))
-        {
-            stream.forEach(s -> contentBuilder.append(s).append("\n"));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-        return contentBuilder.toString();
     }
 }
