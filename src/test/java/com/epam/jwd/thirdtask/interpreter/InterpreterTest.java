@@ -23,6 +23,6 @@ class InterpreterTest {
 
     @Test
     void testPol(){
-        System.out.println(PolishNoteCalculator.getInstance().calculate(Interpreter.getInstance().interpretToPolishNote("273+4|1+ (22+2)*21  + 2")));
+        System.out.println(PolishNoteCalculator.getInstance().calculate(Interpreter.getInstance().interpretToPolishNote("((1+2)*3)/6/2*4+1")));
     }
 }

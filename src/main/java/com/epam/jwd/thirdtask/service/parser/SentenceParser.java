@@ -28,14 +28,19 @@ public class SentenceParser implements ComponentParser {
     @Override
     public TextComponent parse(String textToParse) {
         String[] arrOfLexemes = textToParse.trim().split("\\s+");
-        Pattern expression = Pattern.compile("\\d+\\p{Punct}+\\d+");
+        Pattern expression = Pattern.compile("\\(([\\d+\\-*/%|^&~()]|(<<)|(>>)|(>>>))+\\)");
         TextComponent sentence = new Sentence();
         Matcher matcher;
         Consumer<String> addMinimalUnit = x -> sentence.addComponent(new MinimalUnit(x));
         for (String lexeme : arrOfLexemes) {
             matcher = expression.matcher(lexeme);
-            if (matcher.matches()) {
-                sentence.addComponent(new Expression(lexeme));
+            if (matcher.find()) {
+                //todo: bring adding to private method and remove double space
+                Arrays.stream(lexeme.substring(0, matcher.start()).split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
+                        .forEach(addMinimalUnit);
+                sentence.addComponent(new Expression(matcher.group()));
+                Arrays.stream(lexeme.substring(matcher.end()).split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
+                        .forEach(addMinimalUnit);
                 continue;
             }
             Arrays.stream(lexeme.split("((?<=\\p{Punct})|(?=\\p{Punct}))"))

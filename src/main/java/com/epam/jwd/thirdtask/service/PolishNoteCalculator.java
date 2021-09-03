@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Stack;
-import java.util.function.ToDoubleBiFunction;
 import java.util.function.ToIntBiFunction;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
@@ -40,7 +39,10 @@ public class PolishNoteCalculator {
                 continue;
             }
             if(isBinaryOperator(unit)){
-                stack.push(findBiFunctionByOperator(unit).applyAsInt(stack.pop(), stack.pop()));
+                //head of stack should be second param in function
+                stack.push(findBiFunctionByOperator(unit).applyAsInt(stack.get(1), stack.get(0)));
+                stack.pop();
+                stack.pop();
                 continue;
             }
             //todo: check is unit unary operation
