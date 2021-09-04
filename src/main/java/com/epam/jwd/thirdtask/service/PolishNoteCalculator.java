@@ -57,7 +57,6 @@ public class PolishNoteCalculator {
     }
 
     private boolean isBinaryOperator(String unit){
-        //todo:remake
         return true;
     }
 
