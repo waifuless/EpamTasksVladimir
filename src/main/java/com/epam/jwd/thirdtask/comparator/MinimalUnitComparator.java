@@ -3,6 +3,7 @@ package com.epam.jwd.thirdtask.comparator;
 import com.epam.jwd.thirdtask.model.TextComponent;
 
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.function.IntPredicate;
 
 public class MinimalUnitComparator implements Comparator<TextComponent> {
@@ -10,7 +11,7 @@ public class MinimalUnitComparator implements Comparator<TextComponent> {
     private final IntPredicate isCharSearchValuePredicate;
 
     private MinimalUnitComparator(char searchValue){
-        isCharSearchValuePredicate = c->c==searchValue;
+        isCharSearchValuePredicate = c->c==Character.toLowerCase(searchValue);
     }
 
     public static MinimalUnitComparator by(char searchValue){
@@ -23,6 +24,8 @@ public class MinimalUnitComparator implements Comparator<TextComponent> {
     }
 
     private long findCountOfSearchValue(String str){
-        return str.chars().filter(isCharSearchValuePredicate).count();
+        return str.toLowerCase(Locale.ROOT).chars()
+                .filter(isCharSearchValuePredicate)
+                .count();
     }
 }

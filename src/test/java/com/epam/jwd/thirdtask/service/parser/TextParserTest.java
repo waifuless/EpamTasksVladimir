@@ -26,16 +26,15 @@ class TextParserTest {
         TextParser parser = TextParser.getInstance();
         String originText = FileToOneStringReader.getInstance()
                 .readToOneString("src/test/resources/test_text.txt");
-        System.out.println(originText + "\n\n\n\n\n\n\n\n");
         Text text = (Text) parser.parse(originText);
-        System.out.println(text.getText());
+        System.out.println("\n\n"+text.getText() + "\n\n");
 
         TextComponentSorter sorter = TextComponentSorter.getTextSorter();
         Map<Command, Comparator<TextComponent>> commands
                 = new HashMap<>();
         commands.put(Command.SORT_PARAGRAPHS, ParagraphComparator.getInstance());
         commands.put(Command.SORT_SENTENCES, SentenceComparator.getInstance());
-        commands.put(Command.SORT_MINIMAL_UNITS, MinimalUnitComparator.by('a'));
+        commands.put(Command.SORT_MINIMAL_UNITS, MinimalUnitComparator.by('a').reversed());
         sorter.sort(commands, text);
         System.out.println(text.getText());
 

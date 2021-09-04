@@ -11,11 +11,6 @@ public abstract class AbstractTextComponent implements TextComponent {
         listOfTextComponents = new ArrayList<>();
     }
 
-    //todo: delete this or make other constructors in inheritors
-    public AbstractTextComponent(List<TextComponent> listOfTextComponents) {
-        this.listOfTextComponents = listOfTextComponents;
-    }
-
     @Override
     public void addComponent(TextComponent textComponent) {
         listOfTextComponents.add(textComponent);
