@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class ParagraphParser implements ComponentParser {
 
-    private static ParagraphParser instance;
+    private static volatile ParagraphParser instance;
     private final SentenceParser lowerHandler = SentenceParser.getInstance();
 
     private ParagraphParser() {
@@ -16,7 +16,11 @@ public class ParagraphParser implements ComponentParser {
 
     public static ParagraphParser getInstance() {
         if (instance == null) {
-            instance = new ParagraphParser();
+            synchronized (ParagraphParser.class) {
+                if (instance == null) {
+                    instance = new ParagraphParser();
+                }
+            }
         }
         return instance;
     }

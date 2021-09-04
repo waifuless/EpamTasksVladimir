@@ -13,14 +13,18 @@ import java.util.regex.Pattern;
 
 public class SentenceParser implements ComponentParser {
 
-    private static SentenceParser instance;
+    private static volatile SentenceParser instance;
 
     private SentenceParser() {
     }
 
     public static SentenceParser getInstance() {
         if (instance == null) {
-            instance = new SentenceParser();
+            synchronized (SentenceParser.class) {
+                if (instance == null) {
+                    instance = new SentenceParser();
+                }
+            }
         }
         return instance;
     }

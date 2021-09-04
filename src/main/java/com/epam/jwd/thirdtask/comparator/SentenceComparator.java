@@ -7,6 +7,22 @@ import java.util.List;
 
 public class SentenceComparator implements Comparator<TextComponent> {
 
+    private static volatile SentenceComparator instance;
+
+    private SentenceComparator() {
+    }
+
+    public static SentenceComparator getInstance() {
+        if (instance == null) {
+            synchronized (SentenceComparator.class) {
+                if (instance == null) {
+                    instance = new SentenceComparator();
+                }
+            }
+        }
+        return instance;
+    }
+
     @Override
     public int compare(TextComponent o1, TextComponent o2) {
         return Double.compare(findAverageWordLength(o1), findAverageWordLength(o2));

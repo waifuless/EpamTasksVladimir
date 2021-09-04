@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class SentencesSorterText implements TextComponentSorter {
 
-    private static SentencesSorterText instance;
+    private static volatile SentencesSorterText instance;
     private final MinimalUnitsSorterText lowerSorter = MinimalUnitsSorterText.getInstance();
 
     private SentencesSorterText() {
@@ -18,7 +18,11 @@ public class SentencesSorterText implements TextComponentSorter {
 
     public static SentencesSorterText getInstance() {
         if (instance == null) {
-            instance = new SentencesSorterText();
+            synchronized (SentencesSorterText.class) {
+                if (instance == null) {
+                    instance = new SentencesSorterText();
+                }
+            }
         }
         return instance;
     }

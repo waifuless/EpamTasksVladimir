@@ -10,14 +10,18 @@ import java.util.Map;
 
 public class MinimalUnitsSorterText implements TextComponentSorter {
 
-    private static MinimalUnitsSorterText instance;
+    private static volatile MinimalUnitsSorterText instance;
 
     private MinimalUnitsSorterText() {
     }
 
     public static MinimalUnitsSorterText getInstance() {
         if (instance == null) {
-            instance = new MinimalUnitsSorterText();
+            synchronized (MinimalUnitsSorterText.class) {
+                if (instance == null) {
+                    instance = new MinimalUnitsSorterText();
+                }
+            }
         }
         return instance;
     }

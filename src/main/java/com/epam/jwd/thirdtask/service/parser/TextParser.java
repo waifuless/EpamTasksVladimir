@@ -5,7 +5,7 @@ import com.epam.jwd.thirdtask.model.TextComponent;
 
 public class TextParser implements ComponentParser {
 
-    private static TextParser instance;
+    private static volatile TextParser instance;
     private final ParagraphParser lowerHandler = ParagraphParser.getInstance();
 
     private TextParser() {
@@ -13,7 +13,11 @@ public class TextParser implements ComponentParser {
 
     public static TextParser getInstance() {
         if (instance == null) {
-            instance = new TextParser();
+            synchronized (TextParser.class) {
+                if (instance == null) {
+                    instance = new TextParser();
+                }
+            }
         }
         return instance;
     }
