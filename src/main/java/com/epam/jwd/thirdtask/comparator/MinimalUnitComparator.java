@@ -1,31 +1,28 @@
 package com.epam.jwd.thirdtask.comparator;
 
 import com.epam.jwd.thirdtask.model.TextComponent;
-import com.epam.jwd.thirdtask.service.Interpreter;
 
 import java.util.Comparator;
+import java.util.function.IntPredicate;
 
 public class MinimalUnitComparator implements Comparator<TextComponent> {
 
-    private static volatile MinimalUnitComparator instance;
+    private final IntPredicate isCharSearchValuePredicate;
 
-    private MinimalUnitComparator() {
+    private MinimalUnitComparator(char searchValue){
+        isCharSearchValuePredicate = c->c==searchValue;
     }
 
-    public static MinimalUnitComparator getInstance() {
-        if (instance == null) {
-            synchronized (MinimalUnitComparator.class) {
-                if (instance == null) {
-                    instance = new MinimalUnitComparator();
-                }
-            }
-        }
-        return instance;
+    public static MinimalUnitComparator by(char searchValue){
+        return new MinimalUnitComparator(searchValue);
     }
 
     @Override
     public int compare(TextComponent o1, TextComponent o2) {
-        //todo: change func
-        return o1.getText().compareTo(o2.getText());
+        return Long.compare(findCountOfSearchValue(o1.getText()), findCountOfSearchValue(o2.getText()));
+    }
+
+    private long findCountOfSearchValue(String str){
+        return str.chars().filter(isCharSearchValuePredicate).count();
     }
 }

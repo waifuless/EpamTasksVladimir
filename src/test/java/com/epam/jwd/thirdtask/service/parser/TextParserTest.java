@@ -1,5 +1,6 @@
 package com.epam.jwd.thirdtask.service.parser;
 
+import com.epam.jwd.thirdtask.comparator.MinimalUnitComparator;
 import com.epam.jwd.thirdtask.comparator.ParagraphComparator;
 import com.epam.jwd.thirdtask.comparator.SentenceComparator;
 import com.epam.jwd.thirdtask.io.FileToOneStringReader;
@@ -28,15 +29,16 @@ class TextParserTest {
         System.out.println(originText + "\n\n\n\n\n\n\n\n");
         Text text = (Text) parser.parse(originText);
         System.out.println(text.getText());
-        /*
+
         TextComponentSorter sorter = TextComponentSorter.getTextSorter();
         Map<Command, Comparator<TextComponent>> commands
                 = new HashMap<>();
-        commands.put(Command.SORT_PARAGRAPHS, new ParagraphComparator());
-        commands.put(Command.SORT_SENTENCES, new SentenceComparator());
+        commands.put(Command.SORT_PARAGRAPHS, ParagraphComparator.getInstance());
+        commands.put(Command.SORT_SENTENCES, SentenceComparator.getInstance());
+        commands.put(Command.SORT_MINIMAL_UNITS, MinimalUnitComparator.by('a'));
         sorter.sort(commands, text);
         System.out.println(text.getText());
 
-         */
+
     }
 }

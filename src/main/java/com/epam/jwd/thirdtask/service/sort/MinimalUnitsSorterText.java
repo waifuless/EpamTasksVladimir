@@ -29,9 +29,9 @@ public class MinimalUnitsSorterText implements TextComponentSorter {
     @Override
     public void sort(Map<Command, Comparator<TextComponent>> commands, TextComponent component) {
         List<TextComponent> listOfLowerComponents;
-        if (commands.containsKey(Command.SORT_LEXEMES)) {
+        if (commands.containsKey(Command.SORT_MINIMAL_UNITS)) {
             listOfLowerComponents = component.getComponents();
-            listOfLowerComponents.sort(commands.get(Command.SORT_PARAGRAPHS));
+            listOfLowerComponents.sort(commands.get(Command.SORT_MINIMAL_UNITS));
         }
     }
 
