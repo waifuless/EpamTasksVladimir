@@ -10,11 +10,11 @@ public class MinimalUnitComparator implements Comparator<TextComponent> {
 
     private final IntPredicate isCharSearchValuePredicate;
 
-    private MinimalUnitComparator(char searchValue){
-        isCharSearchValuePredicate = c->c==Character.toLowerCase(searchValue);
+    private MinimalUnitComparator(char searchValue) {
+        isCharSearchValuePredicate = c -> c == Character.toLowerCase(searchValue);
     }
 
-    public static MinimalUnitComparator by(char searchValue){
+    public static MinimalUnitComparator by(char searchValue) {
         return new MinimalUnitComparator(searchValue);
     }
 
@@ -23,7 +23,7 @@ public class MinimalUnitComparator implements Comparator<TextComponent> {
         return Long.compare(findCountOfSearchValue(o1.getText()), findCountOfSearchValue(o2.getText()));
     }
 
-    private long findCountOfSearchValue(String str){
+    private long findCountOfSearchValue(String str) {
         return str.toLowerCase(Locale.ROOT).chars()
                 .filter(isCharSearchValuePredicate)
                 .count();

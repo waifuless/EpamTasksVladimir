@@ -11,6 +11,7 @@ import java.util.Map;
 public class ParagraphSorterText implements TextComponentSorter {
 
     private static volatile ParagraphSorterText instance;
+
     private final SentencesSorterText lowerSorter = SentencesSorterText.getInstance();
 
     private ParagraphSorterText() {

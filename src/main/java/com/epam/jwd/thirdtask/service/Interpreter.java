@@ -12,12 +12,15 @@ import java.util.stream.Stream;
 public class Interpreter {
 
     private final static Logger LOG = LogManager.getLogger(Interpreter.class);
+    private final static String ORIGIN_EXPRESSION_LOG_MCG = "Origin expression: {}";
+    private final static String RESULT_LOG_MCG = "Reverse polish note result: {}";
     private final static String BITWISE_COMPLEMENT = "~";
     private final static String OPENING_BRACKET = "(";
     private final static String CLOSING_BRACKET = ")";
     private final static String FACTORIAL_FUNC = "!";
     private final static Pattern DIGIT_PATTERN = Pattern.compile("\\d+");
     private final static Pattern NOT_WHITE_SPACE_PATTERN = Pattern.compile("\\S+");
+    private final static Pattern UNITS_DIVISOR_PATTERN = Pattern.compile("(?<=\\D)|(?=\\D)");
 
     private static volatile Interpreter instance;
 
@@ -36,12 +39,12 @@ public class Interpreter {
     }
 
     public List<String> interpretToPolishNote(String expression) {
-        List<String> result = new ArrayList<>();
-        LOG.debug("Origin expression: {}", expression);
-        String[] units = Arrays.stream(expression.split("(?<=\\D)|(?=\\D)"))
+        LOG.debug(ORIGIN_EXPRESSION_LOG_MCG, expression);
+        String[] units = Arrays.stream(UNITS_DIVISOR_PATTERN.split(expression))
                 .filter(s -> NOT_WHITE_SPACE_PATTERN.matcher(s).matches())
                 .toArray(String[]::new);
         final Stack<String> stack = new Stack<>();
+        List<String> result = new ArrayList<>();
         for (String unit : units) {
             if (unit.equals(FACTORIAL_FUNC) || DIGIT_PATTERN.matcher(unit).matches()) {
                 result.add(unit);
@@ -71,7 +74,7 @@ public class Interpreter {
         while (!stack.empty()) {
             result.add(stack.pop());
         }
-        LOG.debug("Reverse polish note result: {}", result);
+        LOG.debug(RESULT_LOG_MCG, result);
         return result;
     }
 

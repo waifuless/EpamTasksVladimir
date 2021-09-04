@@ -5,6 +5,7 @@ import com.epam.jwd.thirdtask.service.PolishNoteCalculator;
 
 public class Expression extends MinimalUnit {
 
+    private final static String INVALID_EXPRESSION_MCG = "<Expression is invalid: %s>";
     private final static Interpreter interpreter = Interpreter.getInstance();
     private final static PolishNoteCalculator polishCalculator = PolishNoteCalculator.getInstance();
 
@@ -21,7 +22,7 @@ public class Expression extends MinimalUnit {
             try {
                 calculatedAnswer = String.valueOf(polishCalculator.calculate(interpreter.interpretToPolishNote(value)));
             } catch (Exception ex) {
-                calculatedAnswer = String.format("<Expression is invalid: %s>", value);
+                calculatedAnswer = String.format(INVALID_EXPRESSION_MCG, value);
             }
             expressionCalculated = true;
         }

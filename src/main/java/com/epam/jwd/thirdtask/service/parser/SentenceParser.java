@@ -13,6 +13,10 @@ import java.util.regex.Pattern;
 
 public class SentenceParser implements ComponentParser {
 
+    private final static Pattern EXPRESSION_PATTERN = Pattern.compile("\\(([\\d+\\-*/%|^&~()]|(<<)|(>>)|(>>>))+\\)");
+    private final static Pattern LEXEME_DIVISOR_PATTERN = Pattern.compile("\\s+");
+    private final static Pattern MINIMAL_UNITS_DIVISOR_PATTERN = Pattern.compile("((?<=\\p{Punct})|(?=\\p{Punct}))");
+
     private static volatile SentenceParser instance;
 
     private SentenceParser() {
@@ -31,12 +35,11 @@ public class SentenceParser implements ComponentParser {
 
     @Override
     public TextComponent parse(String textToParse) {
-        String[] arrOfLexemes = textToParse.trim().split("\\s+");
-        Pattern expression = Pattern.compile("\\(([\\d+\\-*/%|^&~()]|(<<)|(>>)|(>>>))+\\)");
+        String[] arrOfLexemes = LEXEME_DIVISOR_PATTERN.split(textToParse.trim());
         TextComponent sentence = new Sentence();
         Matcher matcher;
         for (String lexeme : arrOfLexemes) {
-            matcher = expression.matcher(lexeme);
+            matcher = EXPRESSION_PATTERN.matcher(lexeme);
             if (matcher.find()) {
                 splitAndAddMinimalUnitsToSentence(lexeme.substring(0, matcher.start()), sentence);
                 sentence.addComponent(new Expression(matcher.group()));
@@ -56,7 +59,7 @@ public class SentenceParser implements ComponentParser {
     private void splitAndAddMinimalUnitsToSentence(String lexeme, TextComponent sentence) {
         if (lexeme.length() > 0) {
             Consumer<String> addMinimalUnit = x -> sentence.addComponent(new MinimalUnit(x));
-            Arrays.stream(lexeme.split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
+            Arrays.stream(MINIMAL_UNITS_DIVISOR_PATTERN.split(lexeme))
                     .forEach(addMinimalUnit);
         }
     }

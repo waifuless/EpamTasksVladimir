@@ -17,6 +17,8 @@ public class PolishNoteCalculator {
     private final static List<String> LIST_OF_BINARY_OPERATORS =
             Arrays.asList("+", "-", "*", "/", "%", ">>", "<<", ">>>", "&", "^", "|");
     private final static Pattern DIGIT_PATTERN = Pattern.compile("\\d+");
+    private final static String ORIGIN_EXPRESSION_LOG_MCG = "Expression to calculate: {}";
+    private final static String RESULT_LOG_MCG = "Result of calculating: {}";
     private final static String OPERATOR_NOT_FOUND_MCG = "Operator not found";
     private final static String INVALID_EXPRESSION_MCG = "Given expression is invalid";
 
@@ -38,7 +40,7 @@ public class PolishNoteCalculator {
 
     public int calculate(List<String> expression) {
         //todo:validate
-        LOG.debug("Expression to calculate: {}", expression);
+        LOG.debug(ORIGIN_EXPRESSION_LOG_MCG, expression);
         final Stack<Integer> stack = new Stack<>();
         Integer arg1;
         Integer arg2;
@@ -69,7 +71,7 @@ public class PolishNoteCalculator {
             LOG.error(INVALID_EXPRESSION_MCG, ex);
             throw ex;
         }
-        LOG.debug("Result of calculating: {}", stack.peek());
+        LOG.debug(RESULT_LOG_MCG, stack.peek());
         return stack.pop();
     }
 
