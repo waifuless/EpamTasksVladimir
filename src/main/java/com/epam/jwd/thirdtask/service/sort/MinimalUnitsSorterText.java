@@ -27,7 +27,6 @@ public class MinimalUnitsSorterText implements TextComponentSorter {
         List<TextComponent> listOfLowerComponents;
         if (commands.containsKey(Command.SORT_LEXEMES)) {
             listOfLowerComponents = component.getComponents();
-            //todo: bring to standalone comparator;
             listOfLowerComponents.sort(commands.get(Command.SORT_PARAGRAPHS));
         }
     }

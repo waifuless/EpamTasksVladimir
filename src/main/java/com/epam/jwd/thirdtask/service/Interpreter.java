@@ -12,6 +12,13 @@ import java.util.stream.Stream;
 public class Interpreter {
 
     private final static Logger LOG = LogManager.getLogger(Interpreter.class);
+    private final static String BITWISE_COMPLEMENT = "~";
+    private final static String OPENING_BRACKET = "(";
+    private final static String CLOSING_BRACKET = ")";
+    private final static String FACTORIAL_FUNC = "!";
+    private final static Pattern DIGIT_PATTERN = Pattern.compile("\\d+");
+    private final static Pattern NOT_WHITE_SPACE_PATTERN = Pattern.compile("\\S+");
+
     private static volatile Interpreter instance;
 
     private Interpreter() {
@@ -29,50 +36,42 @@ public class Interpreter {
     }
 
     public List<String> interpretToPolishNote(String expression) {
-        final String bitwiseComplement = "~";
-        final String openingBracket = "(";
-        final String closingBracket = ")";
-        final String factorialFunc = "!";
         List<String> result = new ArrayList<>();
-        final Pattern digitPattern = Pattern.compile("\\d+");
-        final Pattern notWhiteSpacePattern = Pattern.compile("\\S+");
+        LOG.debug("Origin expression: {}", expression);
         String[] units = Arrays.stream(expression.split("(?<=\\D)|(?=\\D)"))
-                .filter(s -> notWhiteSpacePattern.matcher(s).matches())
+                .filter(s -> NOT_WHITE_SPACE_PATTERN.matcher(s).matches())
                 .toArray(String[]::new);
-        LOG.debug(Arrays.toString(units));
         final Stack<String> stack = new Stack<>();
         for (String unit : units) {
-            if (unit.equals(factorialFunc) || digitPattern.matcher(unit).matches()) {
+            if (unit.equals(FACTORIAL_FUNC) || DIGIT_PATTERN.matcher(unit).matches()) {
                 result.add(unit);
                 continue;
             }
-            if (unit.equals(bitwiseComplement) || unit.equals(openingBracket)) {
+            if (unit.equals(BITWISE_COMPLEMENT) || unit.equals(OPENING_BRACKET)) {
                 stack.push(unit);
                 continue;
             }
-            if (unit.equals(closingBracket)) {
-                if (!stack.contains(openingBracket)) {
+            if (unit.equals(CLOSING_BRACKET)) {
+                if (!stack.contains(OPENING_BRACKET)) {
                     throw new InValidExpressionException();
                 }
-                while (!stack.peek().equals(openingBracket)) {
+                while (!stack.peek().equals(OPENING_BRACKET)) {
                     result.add(stack.pop());
                 }
                 stack.pop();
                 continue;
             }
-            //todo: check unit is binary operation
-            while (!stack.empty() && findPriority(stack.peek())>0 && (stack.peek().equals(bitwiseComplement)
+            while (!stack.empty() && findPriority(stack.peek()) > 0 && (stack.peek().equals(BITWISE_COMPLEMENT)
                     || comparePriority(stack.peek(), unit) >= 0)) {
                 result.add(stack.pop());
             }
             stack.push(unit);
         }
-        LOG.debug(result);
-        LOG.debug(stack);
         //todo: check that in stack only operators
-        while(!stack.empty()){
+        while (!stack.empty()) {
             result.add(stack.pop());
         }
+        LOG.debug("Reverse polish note result: {}", result);
         return result;
     }
 

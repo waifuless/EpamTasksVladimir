@@ -9,12 +9,13 @@ public class FileToOneStringReader {
 
     private static volatile FileToOneStringReader instance;
 
-    private FileToOneStringReader(){}
+    private FileToOneStringReader() {
+    }
 
     public static FileToOneStringReader getInstance() {
-        if(instance==null){
-            synchronized (FileToOneStringReader.class){
-                if(instance==null){
+        if (instance == null) {
+            synchronized (FileToOneStringReader.class) {
+                if (instance == null) {
                     instance = new FileToOneStringReader();
                 }
             }
@@ -22,7 +23,7 @@ public class FileToOneStringReader {
         return instance;
     }
 
-    public String readToOneString(String filePath) throws IOException{
+    public String readToOneString(String filePath) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)
                 .forEachOrdered(s -> contentBuilder.append(s).append("\n"));

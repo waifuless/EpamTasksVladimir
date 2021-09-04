@@ -28,7 +28,6 @@ public class ParagraphSorterText implements TextComponentSorter {
         List<TextComponent> listOfLowerComponents;
         if (commands.containsKey(Command.SORT_PARAGRAPHS)) {
             listOfLowerComponents = component.getComponents();
-            //todo: bring to standalone comparator;
             listOfLowerComponents.sort(commands.get(Command.SORT_PARAGRAPHS));
             commands.remove(Command.SORT_PARAGRAPHS);
         }

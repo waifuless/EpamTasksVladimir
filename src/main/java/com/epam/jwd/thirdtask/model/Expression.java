@@ -17,8 +17,12 @@ public class Expression extends MinimalUnit {
 
     @Override
     public String getText() {
-        if(!expressionCalculated){
-            calculatedAnswer = String.valueOf(polishCalculator.calculate(interpreter.interpretToPolishNote(value)));
+        if (!expressionCalculated) {
+            try {
+                calculatedAnswer = String.valueOf(polishCalculator.calculate(interpreter.interpretToPolishNote(value)));
+            } catch (Exception ex) {
+                calculatedAnswer = String.format("<Expression is invalid: %s>", value);
+            }
             expressionCalculated = true;
         }
         return calculatedAnswer;

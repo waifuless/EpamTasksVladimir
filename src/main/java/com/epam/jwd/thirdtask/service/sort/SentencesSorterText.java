@@ -28,8 +28,6 @@ public class SentencesSorterText implements TextComponentSorter {
         List<TextComponent> listOfLowerComponents;
         if (commands.containsKey(Command.SORT_SENTENCES)) {
             listOfLowerComponents = component.getComponents();
-            //todo: bring to standalone comparator;
-            //Compare by average word length
             listOfLowerComponents.sort(commands.get(Command.SORT_SENTENCES));
             commands.remove(Command.SORT_SENTENCES);
         }
