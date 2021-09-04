@@ -31,20 +31,15 @@ public class SentenceParser implements ComponentParser {
         Pattern expression = Pattern.compile("\\(([\\d+\\-*/%|^&~()]|(<<)|(>>)|(>>>))+\\)");
         TextComponent sentence = new Sentence();
         Matcher matcher;
-        Consumer<String> addMinimalUnit = x -> sentence.addComponent(new MinimalUnit(x));
         for (String lexeme : arrOfLexemes) {
             matcher = expression.matcher(lexeme);
             if (matcher.find()) {
-                //todo: bring adding to private method and remove double space
-                Arrays.stream(lexeme.substring(0, matcher.start()).split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
-                        .forEach(addMinimalUnit);
+                splitAndAddMinimalUnitsToSentence(lexeme.substring(0, matcher.start()), sentence);
                 sentence.addComponent(new Expression(matcher.group()));
-                Arrays.stream(lexeme.substring(matcher.end()).split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
-                        .forEach(addMinimalUnit);
+                splitAndAddMinimalUnitsToSentence(lexeme.substring(matcher.end()), sentence);
                 continue;
             }
-            Arrays.stream(lexeme.split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
-                    .forEach(addMinimalUnit);
+            splitAndAddMinimalUnitsToSentence(lexeme, sentence);
         }
         return sentence;
     }
@@ -52,5 +47,13 @@ public class SentenceParser implements ComponentParser {
     @Override
     public TextComponent delegateParse(String textToParse) {
         throw new ActionNotSupportedException();
+    }
+
+    private void splitAndAddMinimalUnitsToSentence(String lexeme, TextComponent sentence) {
+        if (lexeme.length() > 0) {
+            Consumer<String> addMinimalUnit = x -> sentence.addComponent(new MinimalUnit(x));
+            Arrays.stream(lexeme.split("((?<=\\p{Punct})|(?=\\p{Punct}))"))
+                    .forEach(addMinimalUnit);
+        }
     }
 }

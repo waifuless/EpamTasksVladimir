@@ -28,6 +28,7 @@ class TextParserTest {
         System.out.println(originText + "\n\n\n\n\n\n\n\n");
         Text text = (Text) parser.parse(originText);
         System.out.println(text.getText());
+        /*
         TextComponentSorter sorter = TextComponentSorter.getTextSorter();
         Map<Command, Comparator<TextComponent>> commands
                 = new HashMap<>();
@@ -35,5 +36,7 @@ class TextParserTest {
         commands.put(Command.SORT_SENTENCES, new SentenceComparator());
         sorter.sort(commands, text);
         System.out.println(text.getText());
+
+         */
     }
 }

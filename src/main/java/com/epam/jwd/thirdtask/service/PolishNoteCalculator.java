@@ -33,16 +33,18 @@ public class PolishNoteCalculator {
         //todo:validate
         final Pattern digitPattern = Pattern.compile("\\d+");
         final Stack<Integer> stack = new Stack<>();
+        Integer arg1;
+        Integer arg2;
         for (String unit : expression) {
             if(digitPattern.matcher(unit).matches()){
                 stack.push(Integer.valueOf(unit));
                 continue;
             }
             if(isBinaryOperator(unit)){
-                //head of stack should be second param in function
-                stack.push(findBiFunctionByOperator(unit).applyAsInt(stack.get(1), stack.get(0)));
-                stack.pop();
-                stack.pop();
+                //head of stack is second param in function
+                arg2 = stack.pop();
+                arg1 = stack.pop();
+                stack.push(findBiFunctionByOperator(unit).applyAsInt(arg1, arg2));
                 continue;
             }
             //todo: check is unit unary operation
