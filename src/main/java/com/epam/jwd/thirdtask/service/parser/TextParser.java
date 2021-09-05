@@ -11,7 +11,7 @@ public class TextParser implements ComponentParser {
 
     private static volatile TextParser instance;
 
-    private final ParagraphParser lowerHandler = ParagraphParser.getInstance();
+    private ParagraphParser lowerHandler = ParagraphParser.getInstance();
 
     private TextParser() {
     }

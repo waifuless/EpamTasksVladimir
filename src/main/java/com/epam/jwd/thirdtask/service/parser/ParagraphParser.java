@@ -10,7 +10,7 @@ public class ParagraphParser implements ComponentParser {
 
     private static volatile ParagraphParser instance;
 
-    private final SentenceParser lowerHandler = SentenceParser.getInstance();
+    private SentenceParser lowerHandler = SentenceParser.getInstance();
 
     private ParagraphParser() {
     }
