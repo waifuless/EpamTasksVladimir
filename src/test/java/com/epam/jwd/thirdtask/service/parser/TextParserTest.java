@@ -1,43 +1,36 @@
 package com.epam.jwd.thirdtask.service.parser;
 
-import com.epam.jwd.thirdtask.comparator.MinimalUnitComparator;
-import com.epam.jwd.thirdtask.comparator.ParagraphComparator;
-import com.epam.jwd.thirdtask.comparator.SentenceComparator;
-import com.epam.jwd.thirdtask.io.FileToOneStringReader;
+import com.epam.jwd.thirdtask.model.Paragraph;
 import com.epam.jwd.thirdtask.model.Text;
 import com.epam.jwd.thirdtask.model.TextComponent;
-import com.epam.jwd.thirdtask.service.Command;
-import com.epam.jwd.thirdtask.service.sort.TextComponentSorter;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Stream;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class TextParserTest {
 
+    private final static String TEXT_TO_PARSE = "    AAAsdasd.\n" +
+            "\tBuba!\n" +
+            "    Lupo.\n";
+
+    @Mock
+    private ParagraphParser lowerHandler;
+
+    @InjectMocks
+    private TextParser textParser;
+
     @Test
-    void parse() throws IOException {
-        TextParser parser = TextParser.getInstance();
-        String originText = FileToOneStringReader.getInstance()
-                .readToOneString("src/test/resources/test_text.txt");
-        Text text = (Text) parser.parse(originText);
-        System.out.println("\n\n"+text.getText() + "\n\n");
-
-        TextComponentSorter sorter = TextComponentSorter.getTextSorter();
-        Map<Command, Comparator<TextComponent>> commands
-                = new HashMap<>();
-        commands.put(Command.SORT_PARAGRAPHS, ParagraphComparator.getInstance());
-        commands.put(Command.SORT_SENTENCES, SentenceComparator.getInstance());
-        commands.put(Command.SORT_MINIMAL_UNITS, MinimalUnitComparator.by('a').reversed());
-        sorter.sort(commands, text);
-        System.out.println(text.getText());
-
-
+    void parse() {
+        when(lowerHandler.parse(anyString())).thenReturn(new Paragraph());
+        TextComponent text = textParser.parse(TEXT_TO_PARSE);
+        assertEquals(3, text.getComponents().size());
     }
 }
