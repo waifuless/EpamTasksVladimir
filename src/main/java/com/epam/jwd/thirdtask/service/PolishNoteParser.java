@@ -69,7 +69,7 @@ public class PolishNoteParser {
                     || comparePriority(stack.peek(), unit) >= 0)) {
                 result.add(stack.pop());
             }
-            if(findPriority(unit) < 0){
+            if (findPriority(unit) < 0) {
                 InValidExpressionException ex = new InValidExpressionException();
                 LOG.error(INVALID_EXPRESSION_MCG, ex);
                 throw ex;
