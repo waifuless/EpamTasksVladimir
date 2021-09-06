@@ -1,0 +1,6 @@
+    Hi, . I am: Vova. Lola.
+Asdasdd asdasasd asddsaas. Koka pola la. AAAAAAAAAAAA!
+    I am (20+20*(1+(500/5))) Karl5.
+    Lol? (((1+2)*3)/6/2*4+1).
+    (1+3+2*(2*2)-3+(100/4)/5).
+    Invalid expressions: (5/0), (5///2).
