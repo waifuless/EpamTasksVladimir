@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class PolishNoteCalculator {
 
-    private final static Logger LOG = LogManager.getLogger(Interpreter.class);
+    private final static Logger LOG = LogManager.getLogger(PolishNoteCalculator.class);
     private final static List<String> LIST_OF_BINARY_OPERATORS =
             Arrays.asList("+", "-", "*", "/", "%", ">>", "<<", ">>>", "&", "^", "|");
     private final static Pattern DIGIT_PATTERN = Pattern.compile("\\d+");

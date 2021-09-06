@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FileToOneStringReaderTest {
 
@@ -19,6 +19,6 @@ class FileToOneStringReaderTest {
     @Test
     void readToOneString() throws IOException {
         FileToOneStringReader reader = FileToOneStringReader.getInstance();
-        assertEquals(TEXT_IN_FILE ,reader.readToOneString(TEXT_FILE_PATH));
+        assertEquals(TEXT_IN_FILE, reader.readToOneString(TEXT_FILE_PATH));
     }
 }

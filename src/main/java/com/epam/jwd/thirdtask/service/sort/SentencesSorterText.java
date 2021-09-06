@@ -8,20 +8,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SentencesSorterText implements TextComponentSorter {
+public class SentencesSorterText extends AbstractNotFinalSorter {
 
     private static volatile SentencesSorterText instance;
 
-    private MinimalUnitsSorterText lowerSorter = MinimalUnitsSorterText.getInstance();
-
-    private SentencesSorterText() {
+    private SentencesSorterText(TextComponentSorter lowerSorter) {
+        super(lowerSorter);
     }
 
     public static SentencesSorterText getInstance() {
         if (instance == null) {
             synchronized (SentencesSorterText.class) {
                 if (instance == null) {
-                    instance = new SentencesSorterText();
+                    instance = new SentencesSorterText(MinimalUnitsSorterText.getInstance());
                 }
             }
         }
@@ -41,10 +40,5 @@ public class SentencesSorterText implements TextComponentSorter {
                 delegateSort(new HashMap<>(commands), lowerComponent);
             }
         }
-    }
-
-    @Override
-    public void delegateSort(Map<Command, Comparator<TextComponent>> commands, TextComponent component) {
-        lowerSorter.sort(commands, component);
     }
 }

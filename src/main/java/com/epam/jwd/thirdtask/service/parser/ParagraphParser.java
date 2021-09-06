@@ -6,20 +6,19 @@ import com.epam.jwd.thirdtask.model.TextComponent;
 import java.text.BreakIterator;
 import java.util.Locale;
 
-public class ParagraphParser implements ComponentParser {
+public class ParagraphParser extends AbstractNotFinalParser {
 
     private static volatile ParagraphParser instance;
 
-    private SentenceParser lowerHandler = SentenceParser.getInstance();
-
-    private ParagraphParser() {
+    private ParagraphParser(ComponentParser lowerHandler) {
+        super(lowerHandler);
     }
 
     public static ParagraphParser getInstance() {
         if (instance == null) {
             synchronized (ParagraphParser.class) {
                 if (instance == null) {
-                    instance = new ParagraphParser();
+                    instance = new ParagraphParser(SentenceParser.getInstance());
                 }
             }
         }
@@ -36,10 +35,5 @@ public class ParagraphParser implements ComponentParser {
             paragraph.addComponent(delegateParse(textToParse.substring(start, end)));
         }
         return paragraph;
-    }
-
-    @Override
-    public TextComponent delegateParse(String textToParse) {
-        return lowerHandler.parse(textToParse);
     }
 }

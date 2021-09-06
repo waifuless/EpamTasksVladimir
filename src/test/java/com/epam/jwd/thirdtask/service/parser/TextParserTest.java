@@ -1,11 +1,9 @@
 package com.epam.jwd.thirdtask.service.parser;
 
 import com.epam.jwd.thirdtask.model.Paragraph;
-import com.epam.jwd.thirdtask.model.Text;
 import com.epam.jwd.thirdtask.model.TextComponent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
