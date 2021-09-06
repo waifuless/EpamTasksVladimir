@@ -8,19 +8,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SentencesSorterText extends AbstractNotFinalSorter {
+public class ParagraphSorter extends AbstractNotFinalSorter {
 
-    private static volatile SentencesSorterText instance;
+    private static volatile ParagraphSorter instance;
 
-    private SentencesSorterText(TextComponentSorter lowerSorter) {
+    private ParagraphSorter(TextComponentSorter lowerSorter) {
         super(lowerSorter);
     }
 
-    public static SentencesSorterText getInstance() {
+    public static ParagraphSorter getInstance() {
         if (instance == null) {
-            synchronized (SentencesSorterText.class) {
+            synchronized (ParagraphSorter.class) {
                 if (instance == null) {
-                    instance = new SentencesSorterText(MinimalUnitsSorterText.getInstance());
+                    instance = new ParagraphSorter(SentencesSorter.getInstance());
                 }
             }
         }
@@ -30,10 +30,10 @@ public class SentencesSorterText extends AbstractNotFinalSorter {
     @Override
     public void sort(Map<Command, Comparator<TextComponent>> commands, TextComponent component) {
         List<TextComponent> listOfLowerComponents;
-        if (commands.containsKey(Command.SORT_SENTENCES)) {
+        if (commands.containsKey(Command.SORT_PARAGRAPHS)) {
             listOfLowerComponents = component.getComponents();
-            listOfLowerComponents.sort(commands.get(Command.SORT_SENTENCES));
-            commands.remove(Command.SORT_SENTENCES);
+            listOfLowerComponents.sort(commands.get(Command.SORT_PARAGRAPHS));
+            commands.remove(Command.SORT_PARAGRAPHS);
         }
         if (!commands.isEmpty()) {
             for (TextComponent lowerComponent : component.getComponents()) {

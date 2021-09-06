@@ -1,10 +1,12 @@
 package com.epam.jwd.thirdtask.io;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 class FileToOneStringReaderTest {
 
@@ -20,5 +22,10 @@ class FileToOneStringReaderTest {
     void readToOneString() throws IOException {
         FileToOneStringReader reader = FileToOneStringReader.getInstance();
         assertEquals(TEXT_IN_FILE, reader.readToOneString(TEXT_FILE_PATH));
+    }
+
+    @RepeatedTest(2)
+    void testReaderIsSingleton() {
+        assertSame(FileToOneStringReader.getInstance(), FileToOneStringReader.getInstance());
     }
 }

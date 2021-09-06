@@ -1,11 +1,13 @@
 package com.epam.jwd.thirdtask.service.parser;
 
 import com.epam.jwd.thirdtask.model.TextComponent;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @ExtendWith(MockitoExtension.class)
 class SentenceParserTest {
@@ -17,5 +19,10 @@ class SentenceParserTest {
         SentenceParser sentenceParser = SentenceParser.getInstance();
         TextComponent text = sentenceParser.parse(SENTENCE_TO_PARSE);
         assertEquals(9, text.getComponents().size());
+    }
+
+    @RepeatedTest(2)
+    void testParserIsSingleton() {
+        assertSame(SentenceParser.getInstance(), SentenceParser.getInstance());
     }
 }

@@ -1,5 +1,6 @@
 package com.epam.jwd.thirdtask.service;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 class InterpreterTest {
 
@@ -24,5 +26,10 @@ class InterpreterTest {
     @MethodSource("interpretTestData")
     void interpretToPolishNoteTest(List<String> expected, String actual) {
         assertEquals(expected, interpreter.interpretToPolishNote(actual));
+    }
+
+    @RepeatedTest(2)
+    void testInterpreterIsSingleton() {
+        assertSame(Interpreter.getInstance(), Interpreter.getInstance());
     }
 }

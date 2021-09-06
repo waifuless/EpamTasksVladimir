@@ -8,18 +8,18 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class MinimalUnitsSorterText implements TextComponentSorter {
+public class MinimalUnitsSorter implements TextComponentSorter {
 
-    private static volatile MinimalUnitsSorterText instance;
+    private static volatile MinimalUnitsSorter instance;
 
-    private MinimalUnitsSorterText() {
+    private MinimalUnitsSorter() {
     }
 
-    public static MinimalUnitsSorterText getInstance() {
+    public static MinimalUnitsSorter getInstance() {
         if (instance == null) {
-            synchronized (MinimalUnitsSorterText.class) {
+            synchronized (MinimalUnitsSorter.class) {
                 if (instance == null) {
-                    instance = new MinimalUnitsSorterText();
+                    instance = new MinimalUnitsSorter();
                 }
             }
         }

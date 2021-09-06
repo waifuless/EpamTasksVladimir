@@ -9,7 +9,7 @@ import java.util.Map;
 public interface TextComponentSorter {
 
     static TextComponentSorter getTextSorter() {
-        return ParagraphSorterText.getInstance();
+        return ParagraphSorter.getInstance();
     }
 
     void sort(Map<Command, Comparator<TextComponent>> commands, TextComponent component);
