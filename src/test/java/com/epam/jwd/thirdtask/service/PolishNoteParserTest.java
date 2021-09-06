@@ -10,9 +10,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-class InterpreterTest {
+class PolishNoteParserTest {
 
-    private final Interpreter interpreter = Interpreter.getInstance();
+    private final PolishNoteParser polishNoteParser = PolishNoteParser.getInstance();
 
     public static Object[][] interpretTestData() {
         return new Object[][]{
@@ -25,11 +25,11 @@ class InterpreterTest {
     @ParameterizedTest
     @MethodSource("interpretTestData")
     void interpretToPolishNoteTest(List<String> expected, String actual) {
-        assertEquals(expected, interpreter.interpretToPolishNote(actual));
+        assertEquals(expected, polishNoteParser.parseToPolishNote(actual));
     }
 
     @RepeatedTest(2)
     void testInterpreterIsSingleton() {
-        assertSame(Interpreter.getInstance(), Interpreter.getInstance());
+        assertSame(PolishNoteParser.getInstance(), PolishNoteParser.getInstance());
     }
 }

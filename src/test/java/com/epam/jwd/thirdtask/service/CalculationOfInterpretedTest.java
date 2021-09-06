@@ -1,5 +1,6 @@
 package com.epam.jwd.thirdtask.service;
 
+import com.epam.jwd.thirdtask.service.interpreter.PolishNoteInterpreter;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,9 +11,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-class PolishNoteCalculatorTest {
+class CalculationOfInterpretedTest {
 
-    private final PolishNoteCalculator calculator = PolishNoteCalculator.getInstance();
+    private final PolishNoteInterpreter polishNoteInterpreter = PolishNoteInterpreter.getInstance();
 
     public static Object[][] interpretTestData() {
         return new Object[][]{
@@ -24,12 +25,12 @@ class PolishNoteCalculatorTest {
 
     @ParameterizedTest
     @MethodSource("interpretTestData")
-    void interpretToPolishNoteTest(int expected, List<String> actual) {
-        assertEquals(expected, calculator.calculate(actual));
+    void interpretAndCalculateToPolishNoteTest(int expected, List<String> actual) {
+        assertEquals(expected, polishNoteInterpreter.interpret(actual).calculate());
     }
 
     @RepeatedTest(2)
-    void testCalculatorIsSingleton() {
-        assertSame(PolishNoteCalculator.getInstance(), PolishNoteCalculator.getInstance());
+    void testInterpreterIsSingleton() {
+        assertSame(PolishNoteInterpreter.getInstance(), PolishNoteInterpreter.getInstance());
     }
 }

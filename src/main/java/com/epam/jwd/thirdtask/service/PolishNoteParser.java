@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Interpreter {
+public class PolishNoteParser {
 
-    private final static Logger LOG = LogManager.getLogger(Interpreter.class);
+    private final static Logger LOG = LogManager.getLogger(PolishNoteParser.class);
     private final static String ORIGIN_EXPRESSION_LOG_MCG = "Origin expression: {}";
     private final static String RESULT_LOG_MCG = "Reverse polish note result: {}";
     private final static String BITWISE_COMPLEMENT = "~";
@@ -22,23 +22,23 @@ public class Interpreter {
     private final static Pattern NOT_WHITE_SPACE_PATTERN = Pattern.compile("\\S+");
     private final static Pattern UNITS_DIVISOR_PATTERN = Pattern.compile("(?<=\\D)|(?=\\D)");
 
-    private static volatile Interpreter instance;
+    private static volatile PolishNoteParser instance;
 
-    private Interpreter() {
+    private PolishNoteParser() {
     }
 
-    public static Interpreter getInstance() {
+    public static PolishNoteParser getInstance() {
         if (instance == null) {
-            synchronized (Interpreter.class) {
+            synchronized (PolishNoteParser.class) {
                 if (instance == null) {
-                    instance = new Interpreter();
+                    instance = new PolishNoteParser();
                 }
             }
         }
         return instance;
     }
 
-    public List<String> interpretToPolishNote(String expression) {
+    public List<String> parseToPolishNote(String expression) {
         LOG.debug(ORIGIN_EXPRESSION_LOG_MCG, expression);
         String[] units = Arrays.stream(UNITS_DIVISOR_PATTERN.split(expression))
                 .filter(s -> NOT_WHITE_SPACE_PATTERN.matcher(s).matches())
