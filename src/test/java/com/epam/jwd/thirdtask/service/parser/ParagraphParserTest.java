@@ -1,6 +1,6 @@
 package com.epam.jwd.thirdtask.service.parser;
 
-import com.epam.jwd.thirdtask.model.Paragraph;
+import com.epam.jwd.thirdtask.model.Sentence;
 import com.epam.jwd.thirdtask.model.TextComponent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,22 +13,20 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class TextParserTest {
+class ParagraphParserTest {
 
-    private final static String TEXT_TO_PARSE = "    AAAsdasd.\n" +
-            "\tBuba!\n" +
-            "    Lupo.\n";
+    private final static String PARAGRAPH_TO_PARSE = "    Hola! Are you from lola? Ke, pu, ka! Free potato.";
 
     @Mock
     private ComponentParser lowerHandler;
 
     @InjectMocks
-    private TextParser textParser;
+    private ParagraphParser paragraphParser;
 
     @Test
     void parseTest() {
-        when(lowerHandler.parse(anyString())).thenReturn(new Paragraph());
-        TextComponent text = textParser.parse(TEXT_TO_PARSE);
-        assertEquals(3, text.getComponents().size());
+        when(lowerHandler.parse(anyString())).thenReturn(new Sentence());
+        TextComponent paragraph = paragraphParser.parse(PARAGRAPH_TO_PARSE);
+        assertEquals(4, paragraph.getComponents().size());
     }
 }
