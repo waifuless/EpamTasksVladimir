@@ -14,6 +14,7 @@ public class PolishNoteParser {
     private final static Logger LOG = LogManager.getLogger(PolishNoteParser.class);
     private final static String ORIGIN_EXPRESSION_LOG_MCG = "Origin expression: {}";
     private final static String RESULT_LOG_MCG = "Reverse polish note result: {}";
+    private final static String INVALID_EXPRESSION_MCG = "Given expression is invalid";
     private final static String BITWISE_COMPLEMENT = "~";
     private final static String OPENING_BRACKET = "(";
     private final static String CLOSING_BRACKET = ")";
@@ -68,9 +69,13 @@ public class PolishNoteParser {
                     || comparePriority(stack.peek(), unit) >= 0)) {
                 result.add(stack.pop());
             }
+            if(findPriority(unit) < 0){
+                InValidExpressionException ex = new InValidExpressionException();
+                LOG.error(INVALID_EXPRESSION_MCG, ex);
+                throw ex;
+            }
             stack.push(unit);
         }
-        //todo: check that in stack only operators
         while (!stack.empty()) {
             result.add(stack.pop());
         }
